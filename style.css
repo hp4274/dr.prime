@@ -2909,7 +2909,7 @@ ul {
     /* ===== CTA SECTION ===== */
     .cta-section {
         padding: 60px 20px;
-        background: linear-gradient(135deg, #A875D6 0%, #8D51B9 100%);
+        background-color: #1e6ea4;
         text-align: center;
     }
 
@@ -4007,7 +4007,7 @@ ul {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse at center, rgba(182,123,186,0.6) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(182, 123, 186, 0.6) 0%, transparent 70%);
     z-index: 1;
 }
 
