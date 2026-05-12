@@ -1873,9 +1873,7 @@ ul {
         display: none;
     }
 
-    .contact-link {
-        display: none;
-    }
+    .contact-link {}
 
     .nav-actions {
         display: flex;
@@ -3498,7 +3496,7 @@ ul {
 
 .contact-content-section {
     position: relative;
-    padding: 100px 0 100px;
+    padding: 50px 0 50px;
     background-color: white;
 }
 
@@ -3671,8 +3669,8 @@ ul {
 
     .contact-vertical-text {
         font-size: 70px;
-        right: -20px;
-        top: 180px;
+        right: 35px;
+        top: 45px;
     }
 
     .contact-main-image {
@@ -3687,7 +3685,11 @@ ul {
     }
 
     .contact-form-box {
-        padding: 40px 20px;
+        padding: 40px 60px;
+    }
+
+    .contact-form-container {
+        padding-bottom: 60px;
     }
 }
 
@@ -3831,7 +3833,7 @@ ul {
 
 @media (max-width: 768px) {
     .c-faq-section {
-        padding: 60px 0;
+        padding: 50px 0;
     }
 
     .faq-title {
@@ -4994,6 +4996,7 @@ ul {
         height: 80px;
     }
 }
+
 .nav-menu {
     display: contents;
 }
@@ -5009,11 +5012,13 @@ ul {
         align-items: center;
         padding: 0 20px;
     }
+
     .hamburger {
         display: block;
         z-index: 105;
         position: relative;
     }
+
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -5024,32 +5029,39 @@ ul {
         height: 100vh;
         background-color: var(--white);
         padding: 80px 30px 40px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         transition: right 0.3s ease;
         z-index: 101;
     }
+
     .nav-container.active .nav-menu {
         right: 0;
     }
+
     .mobile-nav-logo {
         display: block;
         margin-top: auto;
         text-align: center;
     }
+
     .mobile-nav-logo img {
         height: 40px;
         width: auto;
     }
-    .nav-links, .nav-actions {
+
+    .nav-links,
+    .nav-actions {
         display: flex;
         width: 100%;
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
+
     .nav-links {
         gap: 20px;
     }
+
     .nav-actions {
         gap: 15px;
         margin-top: 30px;
