@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Dr. Prime</title>
+    <meta name="description"
+        content="Explore Dr. Prime's premium sleep products designed for deeper recovery on any bed.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="Dr. Prime Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="product.html" class="active">PRODUCTS</a></li>
+                <li><a href="#">BLOGS</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="contact.html" class="contact-link">CONTACT US</a>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <p>Get Upto 30% flat on first order</p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="product-hero" id="product-hero">
+        <div class="container product-hero__wrapper">
+            <!-- Left Side: Product Gallery -->
+            <div class="product-hero__gallery">
+                <div class="product-hero__main-image">
+                    <div class="product-hero__main-glow"></div>
+                    <img src="assets/product-display.png" alt="The PrimeHeal Pillow">
+                </div>
+                <div class="product-hero__thumbnails">
+                    <div class="product-hero__thumb"><img src="assets/product-pillow.png" alt="Thumbnail 1"></div>
+                    <div class="product-hero__thumb"><img src="assets/product-pillow.png" alt="Thumbnail 2"></div>
+                    <div class="product-hero__thumb"><img src="assets/product-pillow.png" alt="Thumbnail 3"></div>
+                    <div class="product-hero__thumb"><img src="assets/product-pillow.png" alt="Thumbnail 4"></div>
+                </div>
+            </div>
+
+            <!-- Right Side: Product Info -->
+            <div class="product-hero__info">
+                <p class="product-hero__subtitle">Sed lobortis, turpis maximus</p>
+
+                <div class="product-hero__title-wrapper">
+                    <h1 class="product-hero__title">The PrimeHeal</h1>
+                    <div class="product-hero__rating">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="rating-score">(4.5)</span>
+                        <span class="rating-reviews">2k reviews</span>
+                    </div>
+                </div>
+
+                <hr class="product-hero__divider">
+
+                <div class="product-hero__description">
+                    <h3>Description</h3>
+                    <p>Sed lobortis, turpis maximus fermentum vestibulum, risus nisl placerat dolor, imperdiet facilisis
+                        ante lorem sed metus. Maecenas feugiat ullamcorper erat ut pharetra facilisis ante lorem sed
+                        metus. Maecenas feugiat.</p>
+                </div>
+
+                <div class="product-hero__price">$ 45.00</div>
+
+                <hr class="product-hero__divider">
+
+                <div class="product-hero__options">
+                    <h3>Color</h3>
+                    <div class="color-options">
+                        <button class="color-circle color-blue active" aria-label="Blue color"></button>
+                        <button class="color-circle color-grey" aria-label="Grey color"></button>
+                        <span class="color-name">Blue</span>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-buy-now">
+                    <i class="fa-solid fa-cart-shopping"></i> Buy Now
+                </a>
+
+                <ul class="product-hero__features">
+                    <li><i class="fa-solid fa-check"></i> Sed lobortis, turpis maximus fermentum</li>
+                    <li><i class="fa-solid fa-check"></i> Sed lobortis, turpis maximus fermentum</li>
+                    <li><i class="fa-solid fa-check"></i> Vestibulum ante orci luctus et ultrices posuere cubilia curae.
+                    </li>
+                    <li><i class="fa-solid fa-check"></i> Phasellus euismod ligula sit amet dui volutpat, in phare
+                        dictum.</li>
+                    <li><i class="fa-solid fa-check"></i> ligula sit amet dui volutpat, in phare dictum.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Section -->
+    <section class="product-details-section" id="product-details">
+        <div class="product-details__card">
+            <div class="product-details__glow product-details__glow--left"></div>
+            <div class="product-details__glow product-details__glow--right"></div>
+
+            <!-- Left Feature -->
+            <div class="product-details__feature product-details__feature--left">
+                <div class="product-details__stat">340+</div>
+                <div class="product-details__feature-text product-details__feature-text--right-align">
+                    <h3>Lorem fabric</h3>
+                    <p>Making it look like readable English. Many desktop publishing packages and web page.</p>
+                </div>
+            </div>
+
+            <!-- Center Pillow -->
+            <div class="product-details__center">
+                <div class="product-details__pillow-container">
+                    <img src="assets/body_design2.png" alt="Pillow Product View" class="product-details__pillow-img">
+                    <div class="product-details__dots">
+                        <span class="product-details__dot product-details__dot--active"></span>
+                        <span class="product-details__dot"></span>
+                        <span class="product-details__dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Feature -->
+            <div class="product-details__feature product-details__feature--right">
+                <div class="product-details__stat">100%</div>
+                <div class="product-details__feature-text">
+                    <h3>Lorem fabric</h3>
+                    <p>Making it look like readable English. Many desktop publishing packages and web page.</p>
+                </div>
+            </div>
+
+            <!-- Bottom Headline -->
+            <div class="product-details__headline">
+                <h2>Lorem sleep system designed for deeper recovery, on any bed</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Body Design Features Section -->
+    <section class="body-design-section" id="body-design">
+        <div class="body-design__purple-circle"></div>
+        <div class="body-design__outline-circle"></div>
+
+        <div class="body-design__image">
+            <img src="assets/body_design1.png" alt="Product Body Design">
+        </div>
+
+        <div class="body-design__features">
+            <div class="body-design__feature-item">
+                <div class="body-design__check-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="body-design__feature-content">
+                    <h3>Lorem fabric</h3>
+                    <p>Making it look like readable English. Many desktop publishing packages and web page.</p>
+                </div>
+            </div>
+
+            <div class="body-design__feature-item">
+                <div class="body-design__check-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="body-design__feature-content">
+                    <h3>Lorem fabric</h3>
+                    <p>Sed lobortis, turpis maximus fermentum vestibulum, risus nisl placerat dolor, imperdiet facilisis
+                        ante lorem sed metus. Maecenas feugiat ullamcorper erat ut pharetra</p>
+                </div>
+            </div>
+
+            <div class="body-design__feature-item">
+                <div class="body-design__check-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="body-design__feature-content">
+                    <h3>Lorem fabric</h3>
+                    <p>Making it look like readable English. Many desktop publishing packages and web page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery" id="photo-gallery">
+        <div class="container">
+            <h2 class="photo-gallery__title">Lorem ispums sdklsae</h2>
+            <div class="photo-gallery__grid">
+                <div class="photo-gallery__card photo-gallery__card--light">
+                    <p class="photo-gallery__card-label">Duis consectetur leo quis elementum ultrices</p>
+                    <div class="photo-gallery__card-image">
+                        <img src="assets/product-person1.png" alt="Person with pillow 1">
+                    </div>
+                </div>
+                <div class="photo-gallery__card photo-gallery__card--dark">
+                    <p class="photo-gallery__card-label">Duis consectetur leo quis elementum ultrices</p>
+                    <div class="photo-gallery__card-image">
+                        <img src="assets/product-person2.png" alt="Person with pillow 2">
+                    </div>
+                    <div class="photo-gallery__card-glow"></div>
+                </div>
+                <div class="photo-gallery__card photo-gallery__card--light photo-gallery__card--rounded-tr">
+                    <p class="photo-gallery__card-label">Duis consectetur leo quis elementum ultrices</p>
+                    <div class="photo-gallery__card-image">
+                        <img src="assets/product-person3.png" alt="Person with pillow 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wash Instructions Section -->
+    <section class="wash-instructions" id="wash-instructions">
+        <div class="container">
+            <h2 class="wash-instructions__title">Wash instructions</h2>
+            <div class="wash-instructions__grid">
+                <div class="wash-instructions__item">
+                    <div class="wash-instructions__icon-box"></div>
+                    <div class="wash-instructions__text">
+                        <h4>1. Wash instructions</h4>
+                        <p>Making it look like readable English. Many desktop publishing packages and web page editors
+                            now.</p>
+                    </div>
+                </div>
+                <div class="wash-instructions__item">
+                    <div class="wash-instructions__icon-box"></div>
+                    <div class="wash-instructions__text">
+                        <h4>2. Dry cleaning only</h4>
+                        <p>Ensure that the design maintains clarity and accessibility. Consider color contrasts and font
+                            sizes.</p>
+                    </div>
+                </div>
+                <div class="wash-instructions__item">
+                    <div class="wash-instructions__icon-box"></div>
+                    <div class="wash-instructions__text">
+                        <h4>3. Iron on low heat</h4>
+                        <p>Utilize white space effectively to guide the reader's eye. Avoid cluttered layouts.</p>
+                    </div>
+                </div>
+                <div class="wash-instructions__item">
+                    <div class="wash-instructions__icon-box"></div>
+                    <div class="wash-instructions__text">
+                        <h4>4. Do not bleach</h4>
+                        <p>Incorporate visual hierarchy to emphasize key information. Use headings and bullet points
+                            for.</p>
+                    </div>
+                </div>
+                <div class="wash-instructions__item">
+                    <div class="wash-instructions__icon-box"></div>
+                    <div class="wash-instructions__text">
+                        <h4>5. Hang to dry</h4>
+                        <p>Test the layout with real users to gather feedback on usability and readability. Adjust based
+                            on the.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="c-faq-section">
+        <div class="container">
+            <div class="c-faq-grid">
+                <!-- Left Column -->
+                <div class="c-faq-left">
+                    <span class="faq-tagline">Jon lorem ipsum</span>
+                    <h2 class="faq-title">Frequently <span class="serif-text">asked</span> <br> Questions</h2>
+                    <p class="faq-desc">Streamline your entire digital workflow with FosterX. From strategy to
+                        execution, unlock the full potential of social media to elevate your marketing, boost
+                        productivity, and drive results across your entire organization.</p>
+
+                    <div class="help-card">
+                        <h3>Still have questions?</h3>
+                        <p>Streamline your entire digital workflow with FosterX. From strategy to execution, unlock the
+                            full potential of social media to elevate your marketing, boost productivity.</p>
+                        <a href="mailto:dr.primecontact@gmail.com" class="btn btn-outline">Send mail</a>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="c-faq-right">
+                    <div class="accordion-item active">
+                        <div class="accordion-header">
+                            <h3>Mauris accumsan lacus sed urna porta ultricies?</h3>
+                            <span class="icon">-</span>
+                        </div>
+                        <div class="accordion-body" style="display: block;">
+                            <p>Streamline your entire digital workflow with FosterX. From strategy to execution, unlock
+                                the full potential of social media to elevate your marketing, boost productivity.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Lorem accumsan lacus sed urna porta ultricies?</h3>
+                            <span class="icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>Streamline your entire digital workflow with FosterX. From strategy to execution, unlock
+                                the full potential of social media to elevate your marketing, boost productivity.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Lorem accumsan lacus sed urna porta ultricies?</h3>
+                            <span class="icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>Streamline your entire digital workflow with FosterX. From strategy to execution, unlock
+                                the full potential of social media to elevate your marketing, boost productivity.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Lorem accumsan lacus sed urna porta ultricies?</h3>
+                            <span class="icon">+</span>
+                        </div>
+                        <div class="accordion-body">
+                            <p>Streamline your entire digital workflow with FosterX. From strategy to execution, unlock
+                                the full potential of social media to elevate your marketing, boost productivity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center text-white">
+            <p class="subtitle">Our Mission</p>
+            <h2>Change Your Pillow</h2>
+            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Aenean nec ipsum scelerisque,
+                consectetur sem non,<br>semper eros.</p>
+            <div class="cta-actions">
+                <a href="#" class="btn btn-white-solid">Lorem ispum</a>
+                <a href="#" class="btn btn-white-outline">Lorem ispum</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container relative-container">
+            <div class="newsletter-box text-white text-center">
+                <div class="newsletter-glow"></div>
+                <div class="newsletter-vector newsletter-vector-left">
+                    <img src="assets/newsletter-vector.svg" alt="">
+                </div>
+                <div class="newsletter-vector newsletter-vector-right">
+                    <img src="assets/newsletter-vector.svg" alt="">
+                </div>
+                <h2>Get in touch with Dr.Prime</h2>
+                <p>Making it look like readable English. Many desktop publishing packages and web page editors now use
+                    Lorem<br>Ipsum as their default model text when an unknown printer took a galley.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Enter your email address here">
+                    <button type="submit" class="btn btn-subscribe">
+                        <span class="btn-text">Subscribe</span>
+                        <i class="fa-solid fa-arrow-right btn-icon"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Dr. Prime" class="footer-logo"
+                        style="filter: brightness(0) invert(1);">
+                    <p>Making it look like readable English. Many desktop publishing packages and web page editors now
+                        use Lorem Ipsum as their default model text when an unknown printer took a galley.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-threads"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Ipsum</a></li>
+                        <li><a href="#">Instant</a></li>
+                        <li><a href="#">Poclisers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Poclisers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Lorem</h3>
+                    <ul>
+                        <li><a href="#">Ispuma</a></li>
+                        <li><a href="#">Jofet</a></li>
+                        <li><a href="#">Tufferation</a></li>
+                        <li><a href="#">lorem Ispu</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="email-contact">
+                    <i class="fa-solid fa-envelope"></i> dr.primecontact@gmail.com
+                </div>
+                <p>&copy; 2026 Dr.Prime | All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
