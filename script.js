@@ -33,6 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navContainer = document.querySelector('.nav-container');
+    
+    if (hamburger && navContainer) {
+        hamburger.addEventListener('click', () => {
+            navContainer.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            if (icon) {
+                if (navContainer.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+
     // Product Hero Color Options
     const colorCircles = document.querySelectorAll('.color-circle');
     const colorNameSpan = document.querySelector('.color-name');
