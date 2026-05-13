@@ -77,4 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    // Video Carousel Logic (About Page)
+    const videoGrid = document.querySelector('.video-cards-grid');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+
+    if (videoGrid && dots.length > 0) {
+        // Dot Click to Scroll
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
+                videoGrid.scrollTo({
+                    left: index * cardWidth,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll listener to update active dot
+        videoGrid.addEventListener('scroll', () => {
+            const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20;
+            const scrollPos = videoGrid.scrollLeft;
+            const activeIndex = Math.round(scrollPos / cardWidth);
+
+            dots.forEach((dot, idx) => {
+                if (idx === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+    }
 });

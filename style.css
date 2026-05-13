@@ -1942,6 +1942,11 @@ ul {
     .challenge-cards {
         flex-direction: column;
     }
+
+    .product-body-design {
+        padding-top: 100px;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -3501,7 +3506,10 @@ ul {
         margin-top: 40px;
     }
 
-
+    .img-center,
+    .img-right {
+        display: none;
+    }
 
     .stats-header-container {
         flex-direction: column;
@@ -3531,7 +3539,28 @@ ul {
 
 @media (max-width: 768px) {
     .video-cards-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .video-cards-grid::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar for Chrome, Safari and Opera */
+    }
+
+    .video-card {
+        flex: 0 0 100%;
+        /* Show only 1 video at a time */
+        scroll-snap-align: center;
+        height: 300px;
+        /* Reduced height for mobile */
     }
 
     .about-title {
@@ -3540,6 +3569,33 @@ ul {
 
     .stats-header h2 {
         font-size: 32px;
+    }
+
+    .buy-now-content {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .buy-now-image {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .buy-now-text {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .buy-now-text h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .buy-now-text p {
+        font-size: 20px;
+        margin-bottom: 30px;
     }
 }
 
@@ -3559,7 +3615,6 @@ ul {
     position: relative;
     width: 100%;
     border-radius: 20px;
-    overflow: hidden;
     z-index: 2;
 }
 
@@ -3568,6 +3623,7 @@ ul {
     height: 480px;
     object-fit: cover;
     display: block;
+    border-radius: 20px;
 }
 
 .contact-vertical-text {
@@ -3792,6 +3848,15 @@ ul {
 
     .contact-form-container {
         padding-bottom: 60px;
+    }
+
+    .contact-relative-container {
+        border: none;
+    }
+
+    .contact-pill {
+        border-top: none;
+        z-index: 100;
     }
 }
 
@@ -4936,6 +5001,13 @@ ul {
     .wash-instructions__item {
         width: calc(50% - 11px);
     }
+
+    .body-design__blue-circle {
+        height: 600px;
+        width: 600px;
+        top: 250px;
+        left: -300px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -5106,6 +5178,11 @@ ul {
 
     .product-faq .faq-left h2 {
         font-size: 32px;
+    }
+
+    .product-cta-section .desc {
+        font-size: 20px;
+        line-height: 1.5;
     }
 }
 
