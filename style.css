@@ -4897,6 +4897,14 @@ ul {
         width: 100%;
         max-width: 300px;
         height: 360px;
+        position: relative;
+    }
+
+    .product-details__dots {
+        bottom: 20px;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
     }
 
     .product-details__feature-text--right-align {
@@ -4920,22 +4928,35 @@ ul {
     .body-design__image {
         flex: none;
         width: 100%;
-        margin-bottom: 40px;
     }
 
     .body-design__features {
         padding-left: 0;
         padding-top: 0;
+        gap: 40px;
+    }
+
+    .body-design__feature-item:nth-child(1),
+    .body-design__feature-item:nth-child(2),
+    .body-design__feature-item:nth-child(3) {
+        transform: none !important;
     }
 
     .body-design__purple-circle {
         width: 200px;
         height: 200px;
+        top: 60px;
+        transform: none;
     }
 
     /* Photo Gallery */
+    .photo-gallery {
+        padding: 40px 0;
+    }
+
     .photo-gallery__title {
         font-size: 28px;
+        margin-bottom: 30px;
     }
 
     .photo-gallery__grid {
@@ -4953,8 +4974,13 @@ ul {
     }
 
     /* Wash Instructions */
+    .wash-instructions {
+        padding: 30px 0 50px;
+    }
+
     .wash-instructions__title {
         font-size: 28px;
+        margin-bottom: 30px;
     }
 
     .wash-instructions__item {
@@ -4962,6 +4988,9 @@ ul {
     }
 
     /* FAQ */
+    .product-faq {
+        padding: 40px 0;
+    }
     .product-faq .faq-layout {
         flex-direction: column;
         gap: 40px;
