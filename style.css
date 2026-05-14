@@ -53,7 +53,8 @@
 @font-face {
     font-family: 'BeauSiteFitWeb';
     src: url('assets/fonts/BeausiteFitWeb-Light.woff2') format('woff2');
-    font-weight: 300 700; /* Handles both light and mapped headings */
+    font-weight: 300 700;
+    /* Handles both light and mapped headings */
     font-style: normal;
     font-display: swap;
 }
@@ -599,7 +600,16 @@ ul {
     margin-bottom: 20px;
 }
 
-.dark-bg p,
+.dark-bg:hover {
+    background-color: #ffffff;
+}
+
+.dark-bg p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+
 .light-bg p {
     color: rgba(255, 255, 255, 0.8);
 }
@@ -607,6 +617,50 @@ ul {
 .dark-bg h3,
 .light-bg h3 {
     color: var(--white);
+}
+
+.dark-bg:hover p {
+    color: #1f2558;
+}
+
+.dark-bg:hover h3 {
+    color: #1f2558;
+}
+
+.dark-bg:hover .read-more {
+    color: #1f2558;
+}
+
+.light-bg:hover {
+    background-color: #ffffff;
+}
+
+.light-bg:hover p {
+    color: #1f2558;
+}
+
+.light-bg:hover h3 {
+    color: #1f2558;
+}
+
+.light-bg:hover .read-more {
+    color: #1f2558;
+}
+
+.white-bg:hover {
+    background-color: #0070A9;
+}
+
+.white-bg:hover p {
+    color: #ffffff;
+}
+
+.white-bg:hover h3 {
+    color: #ffffff;
+}
+
+.white-bg:hover .read-more {
+    color: #ffffff;
 }
 
 .read-more {
