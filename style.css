@@ -45,26 +45,31 @@
     --white: #fff;
     --dreamy-blue: #1d1c50;
     /* Custom fonts: place font files in assets/fonts/ (BeauSiteFitWeb.* and TWKlausanne.*) */
-    --font-heading: 'BeauSiteFitWeb', serif;
-    --font-body: 'TWKlausanne', 'Helvetica Neue', Arial, sans-serif;
-    --font-other: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+    --font-heading: 'BeauSiteFitWeb';
+    --font-body: 'TWKlausanne';
 }
 
-/* Custom @font-face declarations (use real font files in assets/fonts/) */
+/* Custom @font-face declarations */
 @font-face {
     font-family: 'BeauSiteFitWeb';
-    src: url('assets/fonts/BeauSiteFitWeb.woff2') format('woff2'),
-         url('assets/fonts/BeauSiteFitWeb.woff') format('woff');
-    font-weight: 700;
+    src: url('assets/fonts/BeausiteFitWeb-Light.woff2') format('woff2');
+    font-weight: 300 700; /* Handles both light and mapped headings */
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'TWKlausanne';
-    src: url('assets/fonts/TWKlausanne.woff2') format('woff2'),
-         url('assets/fonts/TWKlausanne.woff') format('woff');
+    src: url('assets/fonts/twklausanne-350.woff2') format('woff2');
     font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TWKlausanne';
+    src: url('assets/fonts/twklausanne-600.woff2') format('woff2');
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
