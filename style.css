@@ -44,8 +44,29 @@
     --bg-light: #f8f9fa;
     --white: #fff;
     --dreamy-blue: #1d1c50;
-    --font-heading: 'Satoshi', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    /* Custom fonts: place font files in assets/fonts/ (BeauSiteFitWeb.* and TWKlausanne.*) */
+    --font-heading: 'BeauSiteFitWeb', serif;
+    --font-body: 'TWKlausanne', 'Helvetica Neue', Arial, sans-serif;
+    --font-other: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+}
+
+/* Custom @font-face declarations (use real font files in assets/fonts/) */
+@font-face {
+    font-family: 'BeauSiteFitWeb';
+    src: url('assets/fonts/BeauSiteFitWeb.woff2') format('woff2'),
+         url('assets/fonts/BeauSiteFitWeb.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TWKlausanne';
+    src: url('assets/fonts/TWKlausanne.woff2') format('woff2'),
+         url('assets/fonts/TWKlausanne.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 * {
