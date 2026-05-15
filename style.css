@@ -442,21 +442,6 @@ ul {
     max-width: 610px;
 }
 
-.image-tag {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    padding: 5px 24px;
-    border-radius: 42px;
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 30px;
-    z-index: 4;
-    backdrop-filter: blur(4px);
-}
 
 .rounded-image {
     width: 100%;
@@ -760,11 +745,10 @@ ul {
 
 .product-showcase .pointer-box {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 10px;
+    padding: 10px 12px;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.08);
-    width: 160px;
-    height: 120px;
+    width: 150px;
     backdrop-filter: blur(8px);
 }
 
