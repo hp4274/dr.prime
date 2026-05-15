@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = acc.querySelector('.accordion-header');
         header.addEventListener('click', () => {
             const isActive = acc.classList.contains('active');
-            
+
             // Close all accordions
             accordions.forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.icon').textContent = '+';
                 const body = item.querySelector('.accordion-body');
-                if(body) body.style.display = 'none';
+                if (body) body.style.display = 'none';
             });
 
             // Open clicked accordion if it wasn't active
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hamburger Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navContainer = document.querySelector('.nav-container');
-    
+
     if (hamburger && navContainer) {
         hamburger.addEventListener('click', () => {
             navContainer.classList.toggle('active');
@@ -59,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (colorCircles.length > 0) {
         colorCircles.forEach(circle => {
-            circle.addEventListener('click', function() {
+            circle.addEventListener('click', function () {
                 // Remove active class from all
                 colorCircles.forEach(c => c.classList.remove('active'));
-                
+
                 // Add active class to clicked
                 this.classList.add('active');
 
@@ -109,4 +109,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    /* ========================= FAQ ACCORDION========================= */
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", () => {
+
+            faqItems.forEach(faq => {
+                if (faq !== item) {
+                    faq.classList.remove("active");
+                }
+            });
+
+            item.classList.toggle("active");
+        });
+    });
 });
