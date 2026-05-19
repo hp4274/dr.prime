@@ -3966,85 +3966,71 @@ ul {
 }
 
 .c-faq-section {
-    padding: 20px 0;
-    background-color: #fff;
+    padding: 80px 0 120px;
+    background: #f8f8f8;
+}
+
+.c-faq-section .faq-title {
+    text-align: center;
+    font-size: 60px;
+    color: #1d1c50;
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-family: var(--font-heading);
 }
 
 .c-faq-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
+    max-width: 850px;
+    margin: auto;
+    background: #f3f3f7;
+    border-radius: 20px;
+    padding: 20px 35px;
 }
 
 .faq-tagline {
-    font-size: 16px;
-    color: var(--primary-blue);
-    opacity: 0.8;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.faq-title {
-    font-size: 64px;
-    line-height: 1.1;
-    color: var(--primary-blue);
-    margin-bottom: 30px;
+    display: none;
 }
 
 .faq-title .serif-text {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 400;
-    color: #1E6EA4;
+    display: none;
 }
 
 .faq-desc {
-    font-size: 16px;
-    color: var(--primary-blue);
-    opacity: 0.7;
-    margin-bottom: 50px;
-    line-height: 1.6;
-    max-width: 397px;
+    display: none;
 }
 
 .help-card {
-    background-color: #F6F7FA;
-    padding: 40px;
-    border-radius: 12px;
+    display: none;
 }
 
-.help-card h3 {
-    font-size: 24px;
-    color: var(--primary-blue);
-    margin-bottom: 20px;
+.c-faq-left {
+    display: none;
 }
 
-.help-card p {
-    font-size: 15px;
-    color: var(--primary-blue);
-    opacity: 0.8;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-/* Accordion (Contact Page Unique) */
+/* Accordion Styling */
 .c-faq-right {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
+    width: 100%;
 }
 
 .c-faq-right .accordion-item {
-    background-color: #F6F7FA;
-    border-radius: 12px;
-    padding: 22px 25px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 0;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+}
+
+.c-faq-right .accordion-item:last-child {
+    border-bottom: none;
 }
 
 .c-faq-right .accordion-item.active {
-    border-color: #1d1c50;
+    border: none;
+    border-bottom: 1px solid #ddd;
 }
 
 .c-faq-right .accordion-header {
@@ -4052,42 +4038,63 @@ ul {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    padding: 28px 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
 }
 
 .c-faq-right .accordion-header h3 {
-    font-size: 15px;
-    color: var(--primary-blue);
+    font-size: 22px;
+    color: #1d1c50;
     margin: 0;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.4;
     padding-right: 20px;
+    font-family: var(--font-heading);
 }
 
 .c-faq-right .accordion-header .icon {
-    width: 24px;
-    height: 24px;
-    background-color: #1d1c50;
-    color: #fff;
+    width: 38px;
+    height: 38px;
+    background-color: #e5e5ee;
+    color: #1d1c50;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 50%;
     font-size: 18px;
     font-weight: bold;
     flex-shrink: 0;
+    transition: 0.3s ease;
+    font-family: Arial, sans-serif;
+}
+
+.c-faq-right .accordion-item.active .accordion-header .icon {
+    background: #1d1c50;
+    color: white;
 }
 
 .c-faq-right .accordion-body {
     display: none;
-    margin-top: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    padding-bottom: 25px;
+}
+
+.c-faq-right .accordion-item.active .accordion-body {
+    display: block;
+    max-height: 200px;
 }
 
 .c-faq-right .accordion-body p {
-    font-size: 15px;
-    color: var(--primary-blue);
-    opacity: 0.7;
+    font-size: 17px;
+    color: #555;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.8;
+    font-family: var(--font-body);
 }
 
 /* =========================
@@ -5499,6 +5506,7 @@ FAQ CATEGORY SECTION
     color: #1d1c50;
     margin-bottom: 80px;
     font-weight: 700;
+    font-family: var(--font-heading);
 }
 
 .faq-category-grid {
@@ -5537,6 +5545,7 @@ FAQ CATEGORY SECTION
     font-size: 20px;
     color: #1d1c50;
     font-weight: 600;
+    font-family: var(--font-heading);
 }
 
 .faq-category-card:hover .faq-icon,
@@ -5561,6 +5570,7 @@ FAQ CATEGORY SECTION
     color: #1d1c50;
     margin-bottom: 50px;
     font-weight: 700;
+    font-family: var(--font-heading);
 }
 
 .faq-wrapper {
@@ -5592,6 +5602,7 @@ FAQ CATEGORY SECTION
     font-size: 22px;
     font-weight: 600;
     color: #1d1c50;
+    font-family: var(--font-heading);
 }
 
 .faq-question i {
@@ -5617,6 +5628,7 @@ FAQ CATEGORY SECTION
     font-size: 17px;
     line-height: 1.8;
     color: #555;
+    font-family: var(--font-body);
 }
 
 .faq-item.active .faq-answer {
@@ -5640,11 +5652,13 @@ FAQ CATEGORY SECTION
     }
 
     .faq-main-title,
-    .faq-title {
+    .faq-title,
+    .c-faq-section .faq-title {
         font-size: 42px;
     }
 
-    .faq-question {
+    .faq-question,
+    .c-faq-right .accordion-header h3 {
         font-size: 18px;
     }
 }
