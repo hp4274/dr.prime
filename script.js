@@ -87,12 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add active class to clicked
                 this.classList.add('active');
 
-                // Update text based on color
+                const mainImage = document.querySelector('.product-hero__main-image img');
+                const pillowImg = document.querySelector('.product-details__pillow-img');
+                const bodyDesignImg = document.querySelector('.product-body-design');
+
+                // Update text based on color and handle image swapping
                 if (colorNameSpan) {
                     if (this.classList.contains('color-blue')) {
                         colorNameSpan.textContent = 'Blue';
+                        document.body.classList.remove('theme-grey');
+                        
+                        if (mainImage) mainImage.src = 'assets/product-display.png';
+                        if (pillowImg) pillowImg.src = 'assets/body_design2.png';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2.png';
+                        
                     } else if (this.classList.contains('color-grey')) {
                         colorNameSpan.textContent = 'Grey';
+                        document.body.classList.add('theme-grey');
+                        
+                        if (mainImage) mainImage.src = 'assets/product-display-grey.png';
+                        if (pillowImg) pillowImg.src = 'assets/body_design2-grey.png';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2-grey.png';
                     }
                 }
             });

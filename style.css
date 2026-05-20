@@ -1209,34 +1209,53 @@ ul {
     margin-top: 60px;
     height: 400px;
 }
-
-.challenge-main {
-    flex: 2.2;
+.challenge-card {
+    position: relative;
+    flex: 1;
+    min-width: 0;
     background: var(--white);
     border-radius: 24px;
-    padding: 20px;
     display: flex;
     flex-direction: row;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
     align-items: center;
-    gap: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.8s ease-in-out;
 }
 
-.challenge-main img {
-    flex: 0 0 45%;
-    width: 100%;
+.challenge-card:hover {
+    flex: 2.8;
+}
+
+.challenge-card img {
+    width: 400px;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
+    object-position: left center;
+    border-radius: 24px;
+    flex-shrink: 0;
 }
 
 .challenge-text-box {
-    flex: 1;
-    padding: 20px 40px 20px 0;
+    position: absolute;
+    right: -360px;
+    top: 0;
+    width: 360px;
+    height: 100%;
+    padding: 20px 40px;
+    background: var(--white);
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    opacity: 0;
+    transition: right 0.8s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.challenge-card:hover .challenge-text-box {
+    right: 0;
+    opacity: 1;
 }
 
 .challenge-text-box h3 {
@@ -1262,18 +1281,6 @@ ul {
     font-weight: 700;
     color: #6a6f85;
     text-decoration: none;
-}
-
-.challenge-side {
-    flex: 1;
-    border-radius: 24px;
-    overflow: hidden;
-}
-
-.challenge-side img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 /* Dots */
@@ -1610,7 +1617,7 @@ ul {
     max-width: 90%;
     height: auto;
     display: block;
-    margin: -230px auto -120px;
+    margin: -230px auto -160px;
     position: relative;
     z-index: 2;
 }
@@ -2768,25 +2775,34 @@ ul {
         height: auto;
     }
 
-    .challenge-main {
+    .challenge-card {
         flex-direction: column;
-        gap: 0;
         border-radius: 20px;
         background: #fff;
-        overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
-    .challenge-main img {
+    .challenge-card:not(:first-child) {
+        display: none;
+        /* Hide side cards completely to match mobile carousel view */
+    }
+
+    .challenge-card img {
         width: 100%;
         height: auto;
-        max-height: unset;
         border-radius: 20px 20px 0 0;
         flex: none;
-        object-fit: cover;
+    }
+
+    .challenge-card:hover img {
+        width: 100%; /* disable hover shrink on mobile */
     }
 
     .challenge-text-box {
+        position: relative;
+        right: 0;
+        width: 100%;
+        opacity: 1;
         padding: 24px 20px 30px;
         text-align: left;
     }
@@ -2810,11 +2826,6 @@ ul {
         font-size: 12px;
         font-weight: 600;
         color: #556;
-    }
-
-    .challenge-side {
-        display: none;
-        /* Hide side cards completely to match mobile carousel view */
     }
 
     .sleep-challenge .carousel-dots {
@@ -4985,6 +4996,11 @@ ul {
     height: 100%;
     object-fit: contain;
     object-position: bottom center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.photo-gallery__card:hover .photo-gallery__card-image img {
+    transform: scale(1.05);
 }
 
 .photo-gallery__card-glow {
@@ -5977,3 +5993,42 @@ FAQ CATEGORY SECTION
 .reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.55s; }
 .reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.65s; }
 .reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.75s; }
+
+/* ==========================================================================
+   THEME GREY IMAGE OVERRIDES
+   ========================================================================== */
+body.theme-grey .product-body-design {
+    margin: 40px auto 0px;
+    max-width: 600px;
+    padding-top: 0;
+}
+
+body.theme-grey .product-details__pillow-img {
+    max-width: 400px;
+}
+
+/* ==========================================================================
+   CTA IMAGE FLOATING ANIMATION
+   ========================================================================== */
+@keyframes slowFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.product-body-design {
+    animation: slowFloat 4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MAIN PILLOW FLOATING ANIMATION (PRESERVES CENTERING)
+   ========================================================================== */
+@keyframes slowFloatCentered {
+    0% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-50%, calc(-50% - 15px)); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+.product-showcase .main-pillow {
+    animation: slowFloatCentered 4s ease-in-out infinite;
+}
