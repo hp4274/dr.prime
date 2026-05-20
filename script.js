@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const accordions = document.querySelectorAll('.accordion-item');
 
+    // Initialize accordion states smoothly
+    accordions.forEach(acc => {
+        const body = acc.querySelector('.accordion-body');
+        if (body) {
+            body.style.display = ''; // Clear display style to let CSS transition handle it
+            if (acc.classList.contains('active')) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.style.opacity = '1';
+            } else {
+                body.style.maxHeight = '0px';
+                body.style.opacity = '0';
+            }
+        }
+    });
+
     accordions.forEach(acc => {
         const header = acc.querySelector('.accordion-header');
         header.addEventListener('click', () => {
@@ -9,26 +24,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Close all accordions
             accordions.forEach(item => {
                 item.classList.remove('active');
-                item.querySelector('.icon').textContent = '+';
+                const icon = item.querySelector('.icon');
+                if (icon) icon.textContent = '+';
                 const body = item.querySelector('.accordion-body');
-                if (body) body.style.display = 'none';
+                if (body) {
+                    body.style.maxHeight = '0px';
+                    body.style.opacity = '0';
+                }
             });
 
             // Open clicked accordion if it wasn't active
             if (!isActive) {
                 acc.classList.add('active');
-                acc.querySelector('.icon').textContent = '-';
-                const body = acc.querySelector('.accordion-body');
-                if (body) {
-                    body.style.display = 'block';
-                } else {
+                const icon = acc.querySelector('.icon');
+                if (icon) icon.textContent = '-';
+                let body = acc.querySelector('.accordion-body');
+                if (!body) {
                     // Create body if it doesn't exist (for demo purposes based on UI)
-                    const newBody = document.createElement('div');
-                    newBody.classList.add('accordion-body');
-                    newBody.style.display = 'block';
-                    newBody.innerHTML = '<p>Surround your name digital workflow with Frame2. Free strategy to break out, unlock the full potential of social media to elevate your marketing, boost productivity.</p>';
-                    acc.appendChild(newBody);
+                    body = document.createElement('div');
+                    body.classList.add('accordion-body');
+                    body.innerHTML = '<p>Surround your name digital workflow with Frame2. Free strategy to break out, unlock the full potential of social media to elevate your marketing, boost productivity.</p>';
+                    acc.appendChild(body);
                 }
+                // Trigger reflow to ensure height transition plays
+                body.getBoundingClientRect();
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.style.opacity = '1';
             }
         });
     });
@@ -128,4 +149,87 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.toggle("active");
         });
     });
+
+    /* ==========================================================================
+       SCROLL REVEAL INTERSECTION OBSERVER
+       ========================================================================== */
+    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+
+    if ('IntersectionObserver' in window && revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback
+        revealElements.forEach(el => el.classList.add('in-view'));
+    }
+
+    /* ==========================================================================
+       BODY DESIGN CIRCULAR SCROLL ANIMATION
+       ========================================================================== */
+    const bodyDesignSection = document.getElementById('body-design');
+    const featuresContainer = document.querySelector('.body-design__features');
+    const featureItems = document.querySelectorAll('.body-design__feature-item');
+
+    if (bodyDesignSection && featuresContainer && featureItems.length > 0) {
+        window.addEventListener('scroll', () => {
+            const rect = bodyDesignSection.getBoundingClientRect();
+            // scrollDistance is total height minus viewport height
+            const scrollDistance = rect.height - window.innerHeight;
+            
+            // progress is 0 at top, 1 at bottom
+            let progress = -rect.top / scrollDistance;
+            progress = Math.max(0, Math.min(1, progress));
+
+            const radius = 550; // Radius of the dashed circle (1099 / 2 = 549.5)
+            const angleSpacing = 25; // Degrees between each item
+            const totalRotation = (featureItems.length - 1) * angleSpacing; // Total rotation needed to bring last item to 0deg
+
+            let closestItemIndex = 0;
+            let minAngleAbs = Infinity;
+
+            featureItems.forEach((item, index) => {
+                // Base angle: item 0 starts at 0deg, item 1 at 25deg, etc.
+                // Subtract totalRotation * progress to rotate them upwards
+                const angleDeg = (index * angleSpacing) - (progress * totalRotation);
+                const angleRad = angleDeg * (Math.PI / 180);
+
+                const x = Math.cos(angleRad) * radius;
+                const y = Math.sin(angleRad) * radius;
+
+                // Position item. translateY(-50%) centers it vertically on the point.
+                // We add a little padding (e.g., 20px) to x so it sits just outside the line.
+                item.style.transform = `translate(${x}px, calc(-50% + ${y}px))`;
+
+                // Find active item (closest to 0 degrees)
+                if (Math.abs(angleDeg) < minAngleAbs) {
+                    minAngleAbs = Math.abs(angleDeg);
+                    closestItemIndex = index;
+                }
+            });
+
+            // Update active classes
+            featureItems.forEach((item, index) => {
+                if (index === closestItemIndex) {
+                    item.classList.add('is-active');
+                } else {
+                    item.classList.remove('is-active');
+                }
+            });
+        });
+        
+        // Trigger once on load to set initial state
+        window.dispatchEvent(new Event('scroll'));
+    }
 });
