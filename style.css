@@ -1209,6 +1209,7 @@ ul {
     margin-top: 60px;
     height: 400px;
 }
+
 .challenge-card {
     position: relative;
     flex: 1;
@@ -2795,7 +2796,8 @@ ul {
     }
 
     .challenge-card:hover img {
-        width: 100%; /* disable hover shrink on mobile */
+        width: 100%;
+        /* disable hover shrink on mobile */
     }
 
     .challenge-text-box {
@@ -4796,7 +4798,8 @@ ul {
 /* --- Body Design Features Section --- */
 .body-design-section {
     position: relative;
-    height: 400vh; /* Scroll height for animation */
+    height: 400vh;
+    /* Scroll height for animation */
     background: #ffffff;
 }
 
@@ -5220,9 +5223,9 @@ ul {
     }
 
     .body-design__blue-circle {
-        height: 600px;
-        width: 600px;
-        top: 250px;
+        height: 400px;
+        width: 500px;
+        top: 100px;
         left: -300px;
     }
 }
@@ -5317,19 +5320,47 @@ ul {
 
     /* Body Design */
     .body-design-section {
-        flex-direction: column;
+        height: auto !important;
         padding: 60px 20px;
+    }
+
+    .body-design__sticky-container {
+        position: relative;
+        height: auto;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
     }
 
     .body-design__image {
         flex: none;
         width: 100%;
+        position: relative;
+        z-index: 1;
     }
 
     .body-design__features {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        transform: none !important;
         padding-left: 0;
         padding-top: 0;
         gap: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .body-design__feature-item {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        opacity: 1 !important;
+        transform: none !important;
     }
 
     .body-design__feature-item:nth-child(1),
@@ -5712,11 +5743,11 @@ FAQ CATEGORY SECTION
 .social-icons-wrapper a,
 .play-btn,
 .color-circle {
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-                box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-                background-color 0.3s ease, 
-                color 0.3s ease, 
-                border-color 0.3s ease !important;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease !important;
 }
 
 /* Buttons Hover */
@@ -5735,10 +5766,15 @@ FAQ CATEGORY SECTION
 }
 
 /* Logo scale */
-.logo img, .mobile-nav-logo img, .footer-logo {
+.logo img,
+.mobile-nav-logo img,
+.footer-logo {
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.logo img:hover, .mobile-nav-logo img:hover, .footer-logo:hover {
+
+.logo img:hover,
+.mobile-nav-logo img:hover,
+.footer-logo:hover {
     transform: scale(1.03);
 }
 
@@ -5780,18 +5816,21 @@ FAQ CATEGORY SECTION
 
 /* Card Hover Lift Effects */
 .grid-card {
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                background-color 0.4s ease,
-                color 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.4s ease,
+        color 0.4s ease;
 }
+
 .grid-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
+
 .grid-card img {
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .grid-card:hover img {
     transform: scale(1.04);
 }
@@ -5799,75 +5838,92 @@ FAQ CATEGORY SECTION
 .feature-item {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .feature-item:hover {
     transform: translateY(-3px);
 }
+
 .feature-icon-circle {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
 }
+
 .feature-item:hover .feature-icon-circle {
     transform: scale(1.1) rotate(5deg);
 }
 
 .testi-card {
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .testi-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(30, 32, 76, 0.08);
 }
 
 .video-card {
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     overflow: hidden;
 }
+
 .video-card img {
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .video-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
+
 .video-card:hover img {
     transform: scale(1.05);
 }
+
 .video-card .play-btn {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
 }
+
 .video-card:hover .play-btn {
     transform: translate(-50%, -50%) scale(1.15);
 }
 
-.accordion-header, .faq-question {
+.accordion-header,
+.faq-question {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-.accordion-item, .faq-item {
+
+.accordion-item,
+.faq-item {
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
-.accordion-item:hover, .faq-item:hover {
+
+.accordion-item:hover,
+.faq-item:hover {
     border-color: #7585C0;
 }
 
 /* Pulsing showcase dots */
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4), 
-                    0 0 0 10px rgba(255, 255, 255, 0.15), 
-                    0 0 0 22px rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4),
+            0 0 0 10px rgba(255, 255, 255, 0.15),
+            0 0 0 22px rgba(255, 255, 255, 0.05);
     }
+
     70% {
-        box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 
-                    0 0 0 15px rgba(255, 255, 255, 0.15), 
-                    0 0 0 25px rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 0 12px rgba(255, 255, 255, 0),
+            0 0 0 15px rgba(255, 255, 255, 0.15),
+            0 0 0 25px rgba(255, 255, 255, 0.05);
     }
+
     100% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 
-                    0 0 0 10px rgba(255, 255, 255, 0.15), 
-                    0 0 0 22px rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0),
+            0 0 0 10px rgba(255, 255, 255, 0.15),
+            0 0 0 22px rgba(255, 255, 255, 0.05);
     }
 }
+
 .product-showcase .dot {
     animation: pulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -5877,10 +5933,11 @@ FAQ CATEGORY SECTION
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-                padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .c-faq-right .accordion-item.active .accordion-body {
     opacity: 1;
     padding-top: 10px;
@@ -5892,6 +5949,7 @@ FAQ CATEGORY SECTION
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -5903,6 +5961,7 @@ FAQ CATEGORY SECTION
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -5910,19 +5969,24 @@ FAQ CATEGORY SECTION
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Initial Loaded Animation States */
-.hero-content, 
-.about-hero h1, 
+.hero-content,
+.about-hero h1,
 .about-hero p,
-.about-hero-images, 
-.product-hero__gallery, 
-.product-hero__info, 
-.contact-image-wrapper, 
-.contact-info, 
+.about-hero-images,
+.product-hero__gallery,
+.product-hero__info,
+.contact-image-wrapper,
+.contact-info,
 .contact-form-container,
 .faq-image-wrapper {
     opacity: 0;
@@ -5942,8 +6006,8 @@ FAQ CATEGORY SECTION
 /* Scroll Reveal base utility classes */
 .reveal {
     opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: transform, opacity;
 }
 
@@ -5973,26 +6037,49 @@ FAQ CATEGORY SECTION
     will-change: transform, opacity;
 }
 
-.reveal-stagger > * {
+.reveal-stagger>* {
     opacity: 0;
     transform: translateY(25px);
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.reveal-stagger.in-view > * {
+.reveal-stagger.in-view>* {
     opacity: 1;
     transform: translateY(0);
 }
 
-.reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; }
-.reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; }
-.reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; }
-.reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.35s; }
-.reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.45s; }
-.reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.55s; }
-.reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.65s; }
-.reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.75s; }
+.reveal-stagger.in-view>*:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.reveal-stagger.in-view>*:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.reveal-stagger.in-view>*:nth-child(3) {
+    transition-delay: 0.25s;
+}
+
+.reveal-stagger.in-view>*:nth-child(4) {
+    transition-delay: 0.35s;
+}
+
+.reveal-stagger.in-view>*:nth-child(5) {
+    transition-delay: 0.45s;
+}
+
+.reveal-stagger.in-view>*:nth-child(6) {
+    transition-delay: 0.55s;
+}
+
+.reveal-stagger.in-view>*:nth-child(7) {
+    transition-delay: 0.65s;
+}
+
+.reveal-stagger.in-view>*:nth-child(8) {
+    transition-delay: 0.75s;
+}
 
 /* ==========================================================================
    THEME GREY IMAGE OVERRIDES
@@ -6011,9 +6098,17 @@ body.theme-grey .product-details__pillow-img {
    CTA IMAGE FLOATING ANIMATION
    ========================================================================== */
 @keyframes slowFloat {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .product-body-design {
@@ -6024,9 +6119,17 @@ body.theme-grey .product-details__pillow-img {
    MAIN PILLOW FLOATING ANIMATION (PRESERVES CENTERING)
    ========================================================================== */
 @keyframes slowFloatCentered {
-    0% { transform: translate(-50%, -50%); }
-    50% { transform: translate(-50%, calc(-50% - 15px)); }
-    100% { transform: translate(-50%, -50%); }
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, calc(-50% - 15px));
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
 }
 
 .product-showcase .main-pillow {
