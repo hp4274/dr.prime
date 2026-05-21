@@ -1661,17 +1661,21 @@ ul {
 }
 
 .btn-white-solid {
-    background-color: #1E204C;
-    color: var(--white);
-    padding: 12px 60px;
+    background-color: #ffffff;
+    color: #0070A9;
+    padding: 15px 40px;
     border-radius: 30px;
+    border: 1px solid var(--white);
+    font-family: var(--font-body);
+    font-weight: 500;
     font-size: 14px;
     text-decoration: none;
     transition: 0.3s;
+    display: inline-block;
 }
 
 .btn-white-solid:hover {
-    background-color: #1a1c3d;
+    background-color: #ffffff;
 }
 
 .btn-white-outline {
@@ -3328,8 +3332,9 @@ ul {
 .about-hero-images {
     position: absolute;
     bottom: -150px;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1440px;
     height: 650px;
     display: flex;
     justify-content: center;
