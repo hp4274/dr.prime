@@ -3328,9 +3328,8 @@ ul {
 .about-hero-images {
     position: absolute;
     bottom: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1440px;
+    left: 0;
+    width: 100%;
     height: 650px;
     display: flex;
     justify-content: center;
