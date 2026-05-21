@@ -27,7 +27,7 @@
             </div>
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><u style="color: #7585C0;"><a href="#" class="active">HOME</a></u></li>
+                    <li><a href="#" class="active">HOME</a></li>
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="product.html">PRODUCTS</a></li>
                     <li><a href="faq.html">FAQs</a></li>
@@ -295,32 +295,99 @@
                 <p>Making it look like readable English. Many desktop publishing packages and web page.</p>
             </div>
 
-            <div class="challenge-cards reveal reveal-stagger">
-                <div class="challenge-card">
-                    <img src="assets/body_end1.png" alt="Couple sleeping">
-                    <div class="challenge-text-box">
-                        <h3>Relief from hot<br>flashes, every night</h3>
-                        <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
-                            wakes you, you can hit a button.</p>
-                        <a href="#" class="explore-link">Explore more</a>
+            <div class="sleep-challenge-carousel">
+                <div class="sleep-challenge-track" style="display: grid;">
+                    <!-- Page 1 -->
+                    <div class="challenge-cards sleep-page active-page reveal reveal-stagger" style="grid-area: 1 / 1; transition: opacity 0.5s ease; opacity: 1; pointer-events: auto;">
+                        <div class="challenge-card">
+                            <img src="assets/body_end1.png" alt="Couple sleeping">
+                            <div class="challenge-text-box">
+                                <h3>Relief from hot<br>flashes, every night</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end3.png" alt="Socks">
+                            <div class="challenge-text-box">
+                                <h3>Perfect temperature<br>for deep sleep</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end2.png" alt="Woman">
+                            <div class="challenge-text-box">
+                                <h3>Wake up refreshed<br>and energized</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="challenge-card">
-                    <img src="assets/body_end3.png" alt="Socks">
-                    <div class="challenge-text-box">
-                        <h3>Relief from hot<br>flashes, every night</h3>
-                        <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
-                            wakes you, you can hit a button.</p>
-                        <a href="#" class="explore-link">Explore more</a>
+
+                    <!-- Page 2 -->
+                    <div class="challenge-cards sleep-page" style="grid-area: 1 / 1; transition: opacity 0.5s ease; opacity: 0; pointer-events: none;">
+                        <div class="challenge-card">
+                            <img src="assets/body_end2.png" alt="Woman" style="transform: scaleX(-1);">
+                            <div class="challenge-text-box">
+                                <h3>Fall asleep faster<br>than ever</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end1.png" alt="Couple sleeping" style="transform: scaleX(-1);">
+                            <div class="challenge-text-box">
+                                <h3>Uninterrupted<br>restful nights</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end3.png" alt="Socks">
+                            <div class="challenge-text-box">
+                                <h3>Advanced sleep<br>tracking metrics</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="challenge-card">
-                    <img src="assets/body_end2.png" alt="Woman">
-                    <div class="challenge-text-box">
-                        <h3>Relief from hot<br>flashes, every night</h3>
-                        <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
-                            wakes you, you can hit a button.</p>
-                        <a href="#" class="explore-link">Explore more</a>
+
+                    <!-- Page 3 -->
+                    <div class="challenge-cards sleep-page" style="grid-area: 1 / 1; transition: opacity 0.5s ease; opacity: 0; pointer-events: none;">
+                        <div class="challenge-card">
+                            <img src="assets/body_end3.png" alt="Socks" style="transform: scaleX(-1);">
+                            <div class="challenge-text-box">
+                                <h3>Personalized<br>climate control</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end2.png" alt="Woman">
+                            <div class="challenge-text-box">
+                                <h3>Optimize your<br>circadian rhythm</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
+                        <div class="challenge-card">
+                            <img src="assets/body_end1.png" alt="Couple sleeping">
+                            <div class="challenge-text-box">
+                                <h3>Smart home<br>integrations</h3>
+                                <p>The Pod keeps your side of the bed cool all night to help prevent overheating. If a hot flash
+                                    wakes you, you can hit a button.</p>
+                                <a href="#" class="explore-link">Explore more</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

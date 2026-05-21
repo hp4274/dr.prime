@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Video Carousel Logic (About Page)
     const videoGrid = document.querySelector('.video-cards-grid');
-    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const videoDots = document.querySelectorAll('.about-videos .carousel-dots .dot');
 
-    if (videoGrid && dots.length > 0) {
+    if (videoGrid && videoDots.length > 0) {
         // Dot Click to Scroll
-        dots.forEach(dot => {
+        videoDots.forEach(dot => {
             dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
+                const index = parseInt(dot.getAttribute('data-index') || Array.from(videoDots).indexOf(dot));
                 const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
                 videoGrid.scrollTo({
                     left: index * cardWidth,
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPos = videoGrid.scrollLeft;
             const activeIndex = Math.round(scrollPos / cardWidth);
 
-            dots.forEach((dot, idx) => {
+            videoDots.forEach((dot, idx) => {
                 if (idx === activeIndex) {
                     dot.classList.add('active');
                 } else {
@@ -144,6 +144,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // Sleep Challenge Carousel Logic
+    const sleepPages = document.querySelectorAll('.sleep-challenge .sleep-page');
+    const sleepDots = document.querySelectorAll('.sleep-challenge .carousel-dots .dot');
+    const sleepCarousel = document.querySelector('.sleep-challenge-carousel');
+
+    if (sleepPages.length > 0 && sleepDots.length > 0) {
+        let sleepCurrentIndex = 0;
+        let sleepTimer;
+        let isSleepHovered = false;
+
+        const goToSleepPage = (index) => {
+            sleepCurrentIndex = index;
+            // Update pages visibility
+            sleepPages.forEach((page, i) => {
+                if (i === index) {
+                    page.style.opacity = '1';
+                    page.style.pointerEvents = 'auto';
+                    page.classList.add('active-page');
+                } else {
+                    page.style.opacity = '0';
+                    page.style.pointerEvents = 'none';
+                    page.classList.remove('active-page');
+                }
+            });
+            
+            // Update active dot
+            sleepDots.forEach(d => d.classList.remove('active'));
+            sleepDots[index].classList.add('active');
+        };
+
+        const startSleepTimer = () => {
+            clearTimeout(sleepTimer);
+            const delay = isSleepHovered ? 10000 : 5000;
+            sleepTimer = setTimeout(() => {
+                let nextIndex = (sleepCurrentIndex + 1) % sleepDots.length;
+                goToSleepPage(nextIndex);
+                startSleepTimer();
+            }, delay);
+        };
+
+        sleepDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSleepPage(index);
+                startSleepTimer();
+            });
+        });
+
+        if (sleepCarousel) {
+            sleepCarousel.addEventListener('mouseenter', () => {
+                isSleepHovered = true;
+                startSleepTimer();
+            });
+            
+            sleepCarousel.addEventListener('mouseleave', () => {
+                isSleepHovered = false;
+                startSleepTimer();
+            });
+        }
+
+        // Initialize
+        startSleepTimer();
     }
 
     /* ========================= FAQ ACCORDION========================= */
@@ -246,5 +309,31 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Trigger once on load to set initial state
         window.dispatchEvent(new Event('scroll'));
+    }
+
+    /* ==========================================================================
+       SUBSCRIBE FORM
+       ========================================================================== */
+    const subscribeForm = document.querySelector('.subscribe-form');
+    if (subscribeForm) {
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            
+            // Optionally clear the input field after subscribing
+            const input = subscribeForm.querySelector('input[type="email"]');
+            if (input && input.value.trim() !== '') {
+                input.value = '';
+                
+                // You can add a success message notification here if desired
+                const btnText = subscribeForm.querySelector('.btn-text');
+                if (btnText) {
+                    const originalText = btnText.textContent;
+                    btnText.textContent = 'Subscribed!';
+                    setTimeout(() => {
+                        btnText.textContent = originalText;
+                    }, 3000);
+                }
+            }
+        });
     }
 });
