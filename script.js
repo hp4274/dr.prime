@@ -5,14 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     accordions.forEach(acc => {
         const body = acc.querySelector('.accordion-body');
         if (body) {
-            body.style.display = ''; // Clear display style to let CSS transition handle it
-            if (acc.classList.contains('active')) {
-                body.style.maxHeight = body.scrollHeight + 'px';
-                body.style.opacity = '1';
-            } else {
-                body.style.maxHeight = '0px';
-                body.style.opacity = '0';
-            }
+            body.style.display = ''; // Clear inline display styles from HTML
+            body.style.maxHeight = ''; // Remove any lingering JS inline styles
         }
     });
 
@@ -27,10 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const icon = item.querySelector('.icon');
                 if (icon) icon.textContent = '+';
                 const body = item.querySelector('.accordion-body');
-                if (body) {
-                    body.style.maxHeight = '0px';
-                    body.style.opacity = '0';
-                }
+                if (body) body.style.maxHeight = ''; // Clean up any old inline styles
             });
 
             // Open clicked accordion if it wasn't active
@@ -38,18 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 acc.classList.add('active');
                 const icon = acc.querySelector('.icon');
                 if (icon) icon.textContent = '-';
-                let body = acc.querySelector('.accordion-body');
-                if (!body) {
-                    // Create body if it doesn't exist (for demo purposes based on UI)
-                    body = document.createElement('div');
-                    body.classList.add('accordion-body');
-                    body.innerHTML = '<p>Surround your name digital workflow with Frame2. Free strategy to break out, unlock the full potential of social media to elevate your marketing, boost productivity.</p>';
-                    acc.appendChild(body);
-                }
-                // Trigger reflow to ensure height transition plays
-                body.getBoundingClientRect();
-                body.style.maxHeight = body.scrollHeight + 'px';
-                body.style.opacity = '1';
             }
         });
     });
