@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const banners = document.querySelectorAll('.top-banner');
     banners.forEach(banner => {
         let content = banner.querySelector('.top-banner-content');
-        
+
         // If content wrapper doesn't exist, create it (handles product.html etc.)
         if (!content) {
             const inner = banner.innerHTML;
@@ -13,17 +13,34 @@ document.addEventListener('DOMContentLoaded', () => {
             content = banner.querySelector('.top-banner-content');
         }
 
+        // Clean up and check if there's only 1 text element to loop
+        const children = Array.from(content.children);
+        const textSpans = children.filter(el => !el.classList.contains('dot-separator') && el.textContent.trim() !== '');
+
+        if (textSpans.length === 1) {
+            // There is just 1 unique text! Let's mark the banner
+            banner.classList.add('single-text');
+            const mainText = textSpans[0].textContent.trim();
+
+            // Rebuild content with cleaner normalized structure: Text followed by a dot-separator
+            content.innerHTML = `<span>${mainText}</span><span class="dot-separator"></span>`;
+
+            // Repeat the item enough times (e.g., 10 times) to guarantee it spans beyond any screen width smoothly
+            const repeatedHTML = content.innerHTML.repeat(5);
+            content.innerHTML = repeatedHTML;
+        }
+
         // Create the scrolling track
         const track = document.createElement('div');
         track.className = 'top-banner-track';
-        
+
         // Clone the content for a seamless loop
         const clone = content.cloneNode(true);
-        
+
         // Append both to track
         track.appendChild(content);
         track.appendChild(clone);
-        
+
         // Clear banner and append track
         banner.innerHTML = '';
         banner.appendChild(track);
@@ -105,15 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (this.classList.contains('color-blue')) {
                         colorNameSpan.textContent = 'Blue';
                         document.body.classList.remove('theme-grey');
-                        
+
                         if (mainImage) mainImage.src = 'assets/product-display.png';
                         if (pillowImg) pillowImg.src = 'assets/body_design2.png';
                         if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2.png';
-                        
+
                     } else if (this.classList.contains('color-grey')) {
                         colorNameSpan.textContent = 'Grey';
                         document.body.classList.add('theme-grey');
-                        
+
                         if (mainImage) mainImage.src = 'assets/product-display-grey.png';
                         if (pillowImg) pillowImg.src = 'assets/body_design2-grey.png';
                         if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2-grey.png';
@@ -179,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     page.classList.remove('active-page');
                 }
             });
-            
+
             // Update active dot
             sleepDots.forEach(d => d.classList.remove('active'));
             sleepDots[index].classList.add('active');
@@ -207,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isSleepHovered = true;
                 startSleepTimer();
             });
-            
+
             sleepCarousel.addEventListener('mouseleave', () => {
                 isSleepHovered = false;
                 startSleepTimer();
@@ -274,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = bodyDesignSection.getBoundingClientRect();
             // scrollDistance is total height minus viewport height
             const scrollDistance = rect.height - window.innerHeight;
-            
+
             // progress is 0 at top, 1 at bottom
             let progress = -rect.top / scrollDistance;
             progress = Math.max(0, Math.min(1, progress));
@@ -315,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        
+
         // Trigger once on load to set initial state
         window.dispatchEvent(new Event('scroll'));
     }
@@ -327,12 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (subscribeForm) {
         subscribeForm.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent page reload
-            
+
             // Optionally clear the input field after subscribing
             const input = subscribeForm.querySelector('input[type="email"]');
             if (input && input.value.trim() !== '') {
                 input.value = '';
-                
+
                 // You can add a success message notification here if desired
                 const btnText = subscribeForm.querySelector('.btn-text');
                 if (btnText) {
@@ -362,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             containerSelector: '.why-choose-us .grid-container',
             itemSelector: '.grid-card',
             dotsSelector: '.why-choose-us .carousel-dots',
-            desktopItems: 7, 
+            desktopItems: 8,
             mobileItems: 2,
             activeDisplay: 'block'
         },
@@ -370,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
             containerSelector: '.testimonials .testi-grid',
             itemSelector: '.testi-card',
             dotsSelector: '.testimonials .carousel-dots, .carousel-dots.testi-dots',
-            desktopItems: 3,
+            desktopItems: 4,
             mobileItems: 1,
             activeDisplay: 'block'
         },
@@ -394,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselConfigs.forEach(config => {
         const dotsContainers = document.querySelectorAll(config.dotsSelector);
-        
+
         dotsContainers.forEach(dotsContainer => {
             let container = null;
             if (config.containerSelector.includes(' ')) {
@@ -405,14 +422,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 container = document.querySelector(config.containerSelector);
             }
-            
+
             if (!container) return;
-            
+
             let items = Array.from(container.querySelectorAll(config.itemSelector));
             if (items.length === 0) return;
 
             // Duplicate data in all components
-            const cloneCount = 2; 
+            const cloneCount = 2;
             const originalItems = [...items];
             for (let i = 0; i < cloneCount; i++) {
                 originalItems.forEach(item => {
@@ -426,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
                 const totalPages = Math.ceil(items.length / itemsPerPage);
-                
+
                 dotsContainer.innerHTML = '';
                 for (let i = 0; i < totalPages; i++) {
                     const dot = document.createElement('span');
@@ -434,23 +451,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     dot.addEventListener('click', () => goToPage(i));
                     dotsContainer.appendChild(dot);
                 }
-                
+
                 goToPage(0);
             }
 
             function goToPage(pageIndex) {
                 const isMobile = window.innerWidth <= 768;
                 const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
-                
+
                 const dots = dotsContainer.querySelectorAll('.dot');
                 dots.forEach((dot, index) => {
                     if (index === pageIndex) dot.classList.add('active');
                     else dot.classList.remove('active');
                 });
-                
+
                 const startIndex = pageIndex * itemsPerPage;
                 const endIndex = startIndex + itemsPerPage;
-                
+
                 items.forEach((item, index) => {
                     item.classList.remove('carousel-item-hidden', 'carousel-item-flex', 'carousel-item-block');
                     if (index >= startIndex && index < endIndex) {

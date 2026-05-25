@@ -237,18 +237,22 @@ ul {
     animation: marquee 25s linear infinite;
 }
 
-.top-banner:hover .top-banner-track {
-    animation-play-state: paused;
-}
-
 .top-banner-content {
     display: flex;
     align-items: center;
     gap: 30px;
-    padding-right: 30px; /* Must equal gap for seamless loop */
+    padding-right: 30px;
+    /* Must equal gap for seamless loop */
 }
 
-.top-banner p, .top-banner span {
+.top-banner.single-text .top-banner-content {
+    gap: 120px;
+    padding-right: 120px;
+    /* Must equal gap for seamless loop */
+}
+
+.top-banner p,
+.top-banner span {
     margin: 0;
     white-space: nowrap;
 }
@@ -266,6 +270,7 @@ ul {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -4104,7 +4109,7 @@ ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: stretch;
 }
 
 @media (max-width: 991px) {
@@ -4117,6 +4122,7 @@ ul {
 .c-faq-left-content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .faq-subtitle {
@@ -4189,27 +4195,31 @@ ul {
 .c-faq-right {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     width: 100%;
+    background: #f8f8f8;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .c-faq-right .accordion-item {
-    background: #f8f8f8;
-    border: 1px solid transparent;
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     padding: 0;
+    border-bottom: 1px solid #e5e5ee;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 .c-faq-right .accordion-item:last-child {
-    border-bottom: 1px solid transparent;
-    /* Override previous last-child rule */
+    border-bottom: none;
 }
 
 .c-faq-right .accordion-item.active {
-    background: #ffffff;
-    border: 1px solid #1e204c;
-    border-radius: 8px;
+    /* Retain the bottom border and transparent background from .accordion-item */
 }
 
 .c-faq-right .accordion-header {
@@ -4259,7 +4269,7 @@ ul {
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s ease;
-    padding-left: 25px;
+    padding-left: 45px;
     padding-right: 25px;
     padding-bottom: 0;
     opacity: 0;
@@ -5721,7 +5731,7 @@ FAQ CATEGORY SECTION
 
 .faq-category-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 60px 40px;
     max-width: 1100px;
     margin: auto;
