@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    /* ==========================================================================
+       TOP BANNER INFINITE SCROLL
+       ========================================================================== */
+    const banners = document.querySelectorAll('.top-banner');
+    banners.forEach(banner => {
+        let content = banner.querySelector('.top-banner-content');
+        
+        // If content wrapper doesn't exist, create it (handles product.html etc.)
+        if (!content) {
+            const inner = banner.innerHTML;
+            banner.innerHTML = `<div class="top-banner-content">${inner}</div>`;
+            content = banner.querySelector('.top-banner-content');
+        }
+
+        // Create the scrolling track
+        const track = document.createElement('div');
+        track.className = 'top-banner-track';
+        
+        // Clone the content for a seamless loop
+        const clone = content.cloneNode(true);
+        
+        // Append both to track
+        track.appendChild(content);
+        track.appendChild(clone);
+        
+        // Clear banner and append track
+        banner.innerHTML = '';
+        banner.appendChild(track);
+    });
+
     const accordions = document.querySelectorAll('.accordion-item');
 
     // Initialize accordion states smoothly
@@ -315,4 +345,128 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* ==========================================================================
+       GENERIC CAROUSEL LOGIC & DATA DUPLICATION
+       ========================================================================== */
+    const carouselConfigs = [
+        {
+            containerSelector: '.sleep-challenge .challenge-cards',
+            itemSelector: '.challenge-card',
+            dotsSelector: '.sleep-challenge .carousel-dots',
+            desktopItems: 3,
+            mobileItems: 1,
+            activeDisplay: 'flex'
+        },
+        {
+            containerSelector: '.why-choose-us .grid-container',
+            itemSelector: '.grid-card',
+            dotsSelector: '.why-choose-us .carousel-dots',
+            desktopItems: 7, 
+            mobileItems: 2,
+            activeDisplay: 'block'
+        },
+        {
+            containerSelector: '.testimonials .testi-grid',
+            itemSelector: '.testi-card',
+            dotsSelector: '.testimonials .carousel-dots, .carousel-dots.testi-dots',
+            desktopItems: 3,
+            mobileItems: 1,
+            activeDisplay: 'block'
+        },
+        {
+            containerSelector: '.about-videos .video-cards-grid',
+            itemSelector: '.video-card',
+            dotsSelector: '.about-videos .carousel-dots',
+            desktopItems: 4,
+            mobileItems: 1,
+            activeDisplay: 'block'
+        }
+    ];
+
+    const carouselStyle = document.createElement('style');
+    carouselStyle.innerHTML = `
+        .carousel-item-hidden { display: none !important; }
+        .carousel-item-flex { display: flex !important; }
+        .carousel-item-block { display: block !important; }
+    `;
+    document.head.appendChild(carouselStyle);
+
+    carouselConfigs.forEach(config => {
+        const dotsContainers = document.querySelectorAll(config.dotsSelector);
+        
+        dotsContainers.forEach(dotsContainer => {
+            let container = null;
+            if (config.containerSelector.includes(' ')) {
+                const parentSelector = config.containerSelector.split(' ')[0];
+                const section = dotsContainer.closest(parentSelector);
+                if (section) container = section.querySelector(config.containerSelector.split(' ')[1]);
+                else container = document.querySelector(config.containerSelector);
+            } else {
+                container = document.querySelector(config.containerSelector);
+            }
+            
+            if (!container) return;
+            
+            let items = Array.from(container.querySelectorAll(config.itemSelector));
+            if (items.length === 0) return;
+
+            // Duplicate data in all components
+            const cloneCount = 2; 
+            const originalItems = [...items];
+            for (let i = 0; i < cloneCount; i++) {
+                originalItems.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    container.appendChild(clone);
+                    items.push(clone);
+                });
+            }
+
+            function updateCarousel() {
+                const isMobile = window.innerWidth <= 768;
+                const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                const totalPages = Math.ceil(items.length / itemsPerPage);
+                
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalPages; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = i === 0 ? 'dot active' : 'dot';
+                    dot.addEventListener('click', () => goToPage(i));
+                    dotsContainer.appendChild(dot);
+                }
+                
+                goToPage(0);
+            }
+
+            function goToPage(pageIndex) {
+                const isMobile = window.innerWidth <= 768;
+                const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    if (index === pageIndex) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+                
+                const startIndex = pageIndex * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                
+                items.forEach((item, index) => {
+                    item.classList.remove('carousel-item-hidden', 'carousel-item-flex', 'carousel-item-block');
+                    if (index >= startIndex && index < endIndex) {
+                        item.classList.add('carousel-item-' + config.activeDisplay);
+                    } else {
+                        item.classList.add('carousel-item-hidden');
+                    }
+                });
+            }
+
+            updateCarousel();
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateCarousel, 200);
+            });
+        });
+    });
 });
