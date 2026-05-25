@@ -1331,16 +1331,14 @@ ul {
     align-items: center;
     overflow: hidden;
     cursor: pointer;
-    transition: flex-grow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s,
-                opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) 0.4s,
-                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
+    /* COLLAPSE: card shrinks AFTER text box hides (0.4s delay) */
+    transition: flex-grow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.35s;
 }
 
 .sleep-challenge .challenge-card:hover {
     flex-grow: 2.8;
-    transition: flex-grow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0s,
-                opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) 0s,
-                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+    /* EXPAND: card grows IMMEDIATELY (no delay) */
+    transition: flex-grow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
 }
 
 .challenge-card img {
@@ -1366,15 +1364,17 @@ ul {
     justify-content: center;
     opacity: 0;
     transform: translateX(100%);
-    /* Close smoothly before card finishes shrinking */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    /* COLLAPSE: text box hides IMMEDIATELY (no delay), finishes before card shrinks */
+    transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s,
+                transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
 }
 
 .challenge-card:hover .challenge-text-box {
     transform: translateX(0);
     opacity: 1;
-    /* Start smoothly after card expands */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s;
+    /* EXPAND: text box slides in AFTER card finishes expanding (0.45s delay) */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.45s,
+                transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.45s;
 }
 
 .challenge-text-box h3 {
