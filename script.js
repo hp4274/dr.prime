@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const mainText = textSpans[0].textContent.trim();
 
             content.innerHTML = `<span>${mainText}</span>`;
-            
+
             // For single text, we don't need a seamless duplicate track, just animate the single content
             banner.innerHTML = '';
             banner.appendChild(content);
@@ -144,15 +144,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoDots = document.querySelectorAll('.about-videos .carousel-dots .dot');
 
     if (videoGrid && videoDots.length > 0) {
+        let videoCurrentIndex = 0;
+        let videoAutoScrollTimer;
+        let isVideoHovered = false;
+
+        const scrollToVideo = (index) => {
+            const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
+            videoGrid.scrollTo({
+                left: index * cardWidth,
+                behavior: 'smooth'
+            });
+        };
+
+        const startVideoAutoScroll = () => {
+            clearInterval(videoAutoScrollTimer);
+            videoAutoScrollTimer = setInterval(() => {
+                if (!isVideoHovered) {
+                    const isMobile = window.innerWidth <= 768;
+                    const itemsPerPage = isMobile ? 1 : 4;
+                    const totalPages = videoDots.length; // Use the number of dots as total pages
+                    
+                    if (totalPages > 1) {
+                        videoCurrentIndex = (videoCurrentIndex + 1) % totalPages;
+                        scrollToVideo(videoCurrentIndex * itemsPerPage);
+                    }
+                }
+            }, 3000);
+        };
+
+        // Hover handling
+        videoGrid.addEventListener('mouseenter', () => isVideoHovered = true);
+        videoGrid.addEventListener('mouseleave', () => isVideoHovered = false);
+
         // Dot Click to Scroll
         videoDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const index = parseInt(dot.getAttribute('data-index') || Array.from(videoDots).indexOf(dot));
-                const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
-                videoGrid.scrollTo({
-                    left: index * cardWidth,
-                    behavior: 'smooth'
-                });
+                const isMobile = window.innerWidth <= 768;
+                const itemsPerPage = isMobile ? 1 : 4;
+                videoCurrentIndex = index;
+                scrollToVideo(index * itemsPerPage);
+                startVideoAutoScroll();
             });
         });
 
@@ -160,16 +192,22 @@ document.addEventListener('DOMContentLoaded', () => {
         videoGrid.addEventListener('scroll', () => {
             const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20;
             const scrollPos = videoGrid.scrollLeft;
-            const activeIndex = Math.round(scrollPos / cardWidth);
+            const activeCardIndex = Math.round(scrollPos / cardWidth);
+            const isMobile = window.innerWidth <= 768;
+            const itemsPerPage = isMobile ? 1 : 4;
+            const activeDotIndex = Math.round(activeCardIndex / itemsPerPage);
 
             videoDots.forEach((dot, idx) => {
-                if (idx === activeIndex) {
+                if (idx === activeDotIndex) {
                     dot.classList.add('active');
                 } else {
                     dot.classList.remove('active');
                 }
             });
         });
+
+        // Initialize
+        startVideoAutoScroll();
     }
 
     // Sleep Challenge Carousel Logic
@@ -387,14 +425,8 @@ document.addEventListener('DOMContentLoaded', () => {
             containerSelector: '.testimonials .testi-grid',
             itemSelector: '.testi-card',
             dotsSelector: '.testimonials .carousel-dots, .carousel-dots.testi-dots',
-            desktopItems: 4,
-            mobileItems: 1,
-            activeDisplay: 'block'
-        },
-        {
-            containerSelector: '.about-videos .video-cards-grid',
-            itemSelector: '.video-card',
-            dotsSelector: '.about-videos .carousel-dots',
+            prevArrowSelector: '.testi-header .arrow-btn:first-child',
+            nextArrowSelector: '.testi-header .arrow-btn:last-child',
             desktopItems: 4,
             mobileItems: 1,
             activeDisplay: 'block'
@@ -428,19 +460,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let items = Array.from(container.querySelectorAll(config.itemSelector));
             if (items.length === 0) return;
 
-            // Duplicate data in all components
+            // No need to duplicate items since we are toggling display property
             let currentItems = [...items];
-            const isSleepChallenge = config.containerSelector.includes('.sleep-challenge');
-            const isWhyChooseUs = config.containerSelector.includes('.why-choose-us');
-            const cloneCount = (isSleepChallenge || isWhyChooseUs) ? 0 : 2;
-
-            for (let i = 0; i < cloneCount; i++) {
-                currentItems.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    container.appendChild(clone);
-                    items.push(clone);
-                });
-            }
 
             let currentPageIndex = 0;
             let autoScrollTimer;
@@ -508,6 +529,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            if (config.prevArrowSelector) {
+                const prevArrow = document.querySelector(config.prevArrowSelector);
+                if (prevArrow) {
+                    prevArrow.addEventListener('click', () => {
+                        const isMobile = window.innerWidth <= 768;
+                        const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                        const totalPages = Math.ceil(items.length / itemsPerPage);
+                        if (totalPages > 1) {
+                            currentPageIndex = (currentPageIndex - 1 + totalPages) % totalPages;
+                            goToPage(currentPageIndex);
+                            startAutoScroll();
+                        }
+                    });
+                }
+            }
+
+            if (config.nextArrowSelector) {
+                const nextArrow = document.querySelector(config.nextArrowSelector);
+                if (nextArrow) {
+                    nextArrow.addEventListener('click', () => {
+                        const isMobile = window.innerWidth <= 768;
+                        const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                        const totalPages = Math.ceil(items.length / itemsPerPage);
+                        if (totalPages > 1) {
+                            currentPageIndex = (currentPageIndex + 1) % totalPages;
+                            goToPage(currentPageIndex);
+                            startAutoScroll();
+                        }
+                    });
+                }
+            }
+
             updateCarousel();
             let resizeTimer;
             window.addEventListener('resize', () => {
@@ -516,4 +569,50 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    /* ==========================================================================
+       PILLOW CAROUSEL AUTO-SCROLL
+       ========================================================================== */
+    const pillowCarousel = document.getElementById('pillow-carousel');
+    if (pillowCarousel) {
+        const slides = pillowCarousel.querySelectorAll('.pillow-carousel__slide');
+        const dots = pillowCarousel.querySelectorAll('.product-details__dot');
+        let pillowCurrentIndex = 0;
+        let pillowTimer;
+        let isPillowHovered = false;
+
+        function goToPillowSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('product-details__dot--active'));
+            pillowCurrentIndex = index;
+            slides[index].classList.add('active');
+            dots[index].classList.add('product-details__dot--active');
+        }
+
+        function startPillowAutoScroll() {
+            clearInterval(pillowTimer);
+            pillowTimer = setInterval(() => {
+                if (!isPillowHovered) {
+                    const nextIndex = (pillowCurrentIndex + 1) % slides.length;
+                    goToPillowSlide(nextIndex);
+                }
+            }, 3000);
+        }
+
+        // Dot click navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.getAttribute('data-slide'));
+                goToPillowSlide(idx);
+                startPillowAutoScroll();
+            });
+        });
+
+        // Pause on hover
+        pillowCarousel.addEventListener('mouseenter', () => isPillowHovered = true);
+        pillowCarousel.addEventListener('mouseleave', () => isPillowHovered = false);
+
+        // Initialize
+        startPillowAutoScroll();
+    }
 });
