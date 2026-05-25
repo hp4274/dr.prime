@@ -223,7 +223,7 @@ ul {
     background-color: #2b1d52;
     color: var(--white);
     padding: 12px 0;
-    font-size: 13px;
+    font-size: 16px;
     letter-spacing: 1px;
     overflow: hidden;
     white-space: nowrap;
@@ -245,10 +245,25 @@ ul {
     /* Must equal gap for seamless loop */
 }
 
+.top-banner.single-text {
+    justify-content: flex-start;
+}
+
 .top-banner.single-text .top-banner-content {
-    gap: 120px;
-    padding-right: 120px;
-    /* Must equal gap for seamless loop */
+    display: inline-block;
+    padding: 0;
+    width: fit-content;
+    animation: marquee-single 15s linear infinite;
+}
+
+@keyframes marquee-single {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 .top-banner p,
@@ -812,6 +827,14 @@ ul {
     align-items: center;
     text-align: left;
     z-index: 3;
+    opacity: 0;
+    animation: fadeInPointer 0.5s ease forwards 2s;
+}
+
+@keyframes fadeInPointer {
+    to {
+        opacity: 1;
+    }
 }
 
 .product-showcase .p-1 {
@@ -1293,9 +1316,10 @@ ul {
     height: 400px;
 }
 
-.challenge-card {
+.sleep-challenge .challenge-card {
     position: relative;
-    flex: 1;
+    flex-grow: 1;
+    flex-basis: 0;
     min-width: 0;
     background: var(--white);
     border-radius: 24px;
@@ -1305,11 +1329,13 @@ ul {
     align-items: center;
     overflow: hidden;
     cursor: pointer;
-    transition: flex 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: flex-grow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+                opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.challenge-card:hover {
-    flex: 2.8;
+.sleep-challenge .challenge-card:hover {
+    flex-grow: 2.8;
 }
 
 .challenge-card img {
@@ -1335,7 +1361,7 @@ ul {
     justify-content: center;
     opacity: 0;
     transform: translateX(100%);
-    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease-out;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .challenge-card:hover .challenge-text-box {
@@ -6304,6 +6330,212 @@ body.theme-grey .product-details__pillow-img {
     }
 }
 
+.product-showcase .dot {
+    animation: pulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+/* Page Load Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Initial Loaded Animation States */
+.hero-content,
+.about-hero h1,
+.about-hero p,
+.about-hero-images,
+.product-hero__gallery,
+.product-hero__info,
+.contact-image-wrapper,
+.contact-info,
+.contact-form-container,
+.faq-image-wrapper {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+}
+
+.top-banner {
+    opacity: 0;
+    animation: fadeInDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.navbar {
+    opacity: 0;
+    animation: fadeInDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
+}
+
+/* Scroll Reveal base utility classes */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+}
+
+.reveal-up {
+    transform: translateY(30px);
+}
+
+.reveal-down {
+    transform: translateY(-30px);
+}
+
+.reveal-left {
+    transform: translateX(-35px);
+}
+
+.reveal-right {
+    transform: translateX(35px);
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Staggered reveals for grid containers */
+.reveal-stagger {
+    will-change: transform, opacity;
+}
+
+.reveal-stagger>* {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-stagger.in-view>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-stagger.in-view>*:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.reveal-stagger.in-view>*:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.reveal-stagger.in-view>*:nth-child(3) {
+    transition-delay: 0.25s;
+}
+
+.reveal-stagger.in-view>*:nth-child(4) {
+    transition-delay: 0.35s;
+}
+
+.reveal-stagger.in-view>*:nth-child(5) {
+    transition-delay: 0.45s;
+}
+
+.reveal-stagger.in-view>*:nth-child(6) {
+    transition-delay: 0.55s;
+}
+
+.reveal-stagger.in-view>*:nth-child(7) {
+    transition-delay: 0.65s;
+}
+
+.reveal-stagger.in-view>*:nth-child(8) {
+    transition-delay: 0.75s;
+}
+
+/* ==========================================================================
+   THEME GREY IMAGE OVERRIDES
+   ========================================================================== */
+body.theme-grey .product-body-design {
+    margin: 40px auto 0px;
+    max-width: 600px;
+    padding-top: 0;
+}
+
+body.theme-grey .product-details__pillow-img {
+    max-width: 400px;
+}
+
+/* ==========================================================================
+   CTA IMAGE FLOATING ANIMATION
+   ========================================================================== */
+@keyframes slowFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.product-body-design {
+    animation: slowFloat 4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MAIN PILLOW FLOATING ANIMATION (PRESERVES CENTERING)
+   ========================================================================== */
+@keyframes slowFloatCentered {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, calc(-50% - 15px));
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
 .product-showcase .main-pillow {
     animation: slowFloatCentered 4s ease-in-out infinite;
+}
+/* Curve Path Animation */
+@keyframes drawCurve {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.curve-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawCurve 5s forwards;
 }

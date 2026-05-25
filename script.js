@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
             banner.classList.add('single-text');
             const mainText = textSpans[0].textContent.trim();
 
-            // Rebuild content with cleaner normalized structure: Text followed by a dot-separator
-            content.innerHTML = `<span>${mainText}</span><span class="dot-separator"></span>`;
-
-            // Repeat the item enough times (e.g., 10 times) to guarantee it spans beyond any screen width smoothly
-            const repeatedHTML = content.innerHTML.repeat(5);
-            content.innerHTML = repeatedHTML;
+            content.innerHTML = `<span>${mainText}</span>`;
+            
+            // For single text, we don't need a seamless duplicate track, just animate the single content
+            banner.innerHTML = '';
+            banner.appendChild(content);
+            return; // Skip the multi-item seamless loop logic
         }
 
-        // Create the scrolling track
+        // Create the scrolling track for multi-item banners
         const track = document.createElement('div');
         track.className = 'top-banner-track';
 
@@ -429,14 +429,39 @@ document.addEventListener('DOMContentLoaded', () => {
             if (items.length === 0) return;
 
             // Duplicate data in all components
-            const cloneCount = 2;
-            const originalItems = [...items];
+            let currentItems = [...items];
+            const isSleepChallenge = config.containerSelector.includes('.sleep-challenge');
+            const isWhyChooseUs = config.containerSelector.includes('.why-choose-us');
+            const cloneCount = (isSleepChallenge || isWhyChooseUs) ? 0 : 2;
+
             for (let i = 0; i < cloneCount; i++) {
-                originalItems.forEach(item => {
+                currentItems.forEach(item => {
                     const clone = item.cloneNode(true);
                     container.appendChild(clone);
                     items.push(clone);
                 });
+            }
+
+            let currentPageIndex = 0;
+            let autoScrollTimer;
+            let isHovered = false;
+
+            container.addEventListener('mouseenter', () => isHovered = true);
+            container.addEventListener('mouseleave', () => isHovered = false);
+
+            function startAutoScroll() {
+                clearInterval(autoScrollTimer);
+                autoScrollTimer = setInterval(() => {
+                    if (!isHovered) {
+                        const isMobile = window.innerWidth <= 768;
+                        const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                        const totalPages = Math.ceil(items.length / itemsPerPage);
+                        if (totalPages > 1) {
+                            currentPageIndex = (currentPageIndex + 1) % totalPages;
+                            goToPage(currentPageIndex);
+                        }
+                    }
+                }, 4000);
             }
 
             function updateCarousel() {
@@ -448,14 +473,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 0; i < totalPages; i++) {
                     const dot = document.createElement('span');
                     dot.className = i === 0 ? 'dot active' : 'dot';
-                    dot.addEventListener('click', () => goToPage(i));
+                    dot.addEventListener('click', () => {
+                        goToPage(i);
+                        startAutoScroll();
+                    });
                     dotsContainer.appendChild(dot);
                 }
 
                 goToPage(0);
+                startAutoScroll();
             }
 
             function goToPage(pageIndex) {
+                currentPageIndex = pageIndex;
                 const isMobile = window.innerWidth <= 768;
                 const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
 
