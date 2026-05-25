@@ -466,6 +466,23 @@ ul {
     display: block;
 }
 
+.sleep-capsule {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: var(--font-body);
+    z-index: 2;
+}
+
 .text-col {
     flex: 1;
     padding-top: 6px;
@@ -1548,12 +1565,23 @@ ul {
 }
 
 .accordion-body {
-    padding: 0 30px 30px;
-    display: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
     color: var(--text-light);
     font-size: 15px;
     line-height: 1.6;
     font-family: var(--font-body);
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 1000px;
+    opacity: 1;
+    padding-bottom: 30px;
 }
 
 /* CTA (Global/Index) */
@@ -3115,7 +3143,9 @@ ul {
     }
 
     .accordion-body {
-        padding: 0 20px 16px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 0;
         font-size: 13px;
         color: #667;
         line-height: 1.6;
@@ -3853,7 +3883,7 @@ ul {
 
 .contact-form-box {
     background-color: #F6F7FA;
-    padding: 50px;
+    padding: 50px 50px 40px 50px;
     border-radius: 20px;
 }
 
@@ -3917,7 +3947,8 @@ ul {
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 1px;
-    float: right;
+    display: block;
+    margin-left: auto;
     margin-top: 20px;
 }
 
@@ -4005,7 +4036,7 @@ ul {
 
 .c-faq-section {
     padding: 80px 0 120px;
-    background: #f8f8f8;
+    background: #ffffff;
 }
 
 .c-faq-section .faq-title {
@@ -4025,50 +4056,117 @@ ul {
     padding: 20px 35px;
 }
 
-.faq-tagline {
-    display: none;
+/* FAQ Layout */
+.c-faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
 }
 
-.faq-title .serif-text {
-    display: none;
+@media (max-width: 991px) {
+    .c-faq-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 }
 
-.faq-desc {
-    display: none;
+.c-faq-left-content {
+    display: flex;
+    flex-direction: column;
 }
 
-.help-card {
-    display: none;
+.faq-subtitle {
+    font-size: 16px;
+    color: #1d1c50;
+    margin-bottom: 10px;
 }
 
-.c-faq-left {
-    display: none;
+.faq-main-heading {
+    font-size: 46px;
+    color: #1d1c50;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    font-family: var(--font-heading);
+}
+
+.faq-main-heading .blue-text {
+    color: #1e6ea4;
+    font-weight: inherit;
+}
+
+.faq-desc-text {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.still-questions-card {
+    background-color: #f8f8f8;
+    padding: 35px;
+    border-radius: 12px;
+}
+
+.still-questions-card h3 {
+    font-size: 22px;
+    color: #1d1c50;
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.still-questions-card p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.faq-mail-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 1px solid #1d1c50;
+    border-radius: 6px;
+    color: #1d1c50;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: transparent;
+    text-align: center;
+    width: fit-content;
+}
+
+.faq-mail-btn:hover {
+    background-color: #1d1c50;
+    color: #fff;
 }
 
 /* Accordion Styling */
 .c-faq-right {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 15px;
     width: 100%;
 }
 
 .c-faq-right .accordion-item {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
+    background: #f8f8f8;
+    border: 1px solid transparent;
+    border-radius: 8px;
     padding: 0;
     transition: all 0.3s ease;
 }
 
 .c-faq-right .accordion-item:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid transparent;
+    /* Override previous last-child rule */
 }
 
 .c-faq-right .accordion-item.active {
-    border: none;
-    border-bottom: 1px solid #ddd;
+    background: #ffffff;
+    border: 1px solid #1e204c;
+    border-radius: 8px;
 }
 
 .c-faq-right .accordion-header {
@@ -4076,7 +4174,7 @@ ul {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 28px 0;
+    padding: 20px 25px;
     background: transparent;
     border: none;
     outline: none;
@@ -4084,7 +4182,7 @@ ul {
 }
 
 .c-faq-right .accordion-header h3 {
-    font-size: 22px;
+    font-size: 18px;
     color: #1d1c50;
     margin: 0;
     font-weight: 600;
@@ -4115,20 +4213,24 @@ ul {
 }
 
 .c-faq-right .accordion-body {
-    display: none;
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s ease;
-    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 0;
+    opacity: 0;
 }
 
 .c-faq-right .accordion-item.active .accordion-body {
-    display: block;
-    max-height: 200px;
+    opacity: 1;
+    max-height: 1000px;
+    /* Allows CSS to automatically handle the animation */
+    padding-bottom: 25px;
 }
 
 .c-faq-right .accordion-body p {
-    font-size: 17px;
+    font-size: 14px;
     color: #555;
     margin: 0;
     line-height: 1.8;
@@ -5562,7 +5664,7 @@ FAQ CATEGORY SECTION
 
 .faq-categories {
     padding: 100px 0 60px;
-    background: #f8f8f8;
+    background: #ffff;
 }
 
 .faq-main-title {
@@ -5953,20 +6055,7 @@ FAQ CATEGORY SECTION
     animation: pulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* FAQ answers smooth height transition */
-.c-faq-right .accordion-body {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-        opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-        padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
 
-.c-faq-right .accordion-item.active .accordion-body {
-    opacity: 1;
-    padding-top: 10px;
-}
 
 /* Page Load Keyframes */
 @keyframes fadeInUp {
