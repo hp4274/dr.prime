@@ -247,4 +247,41 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trigger once on load to set initial state
         window.dispatchEvent(new Event('scroll'));
     }
+
+        // Pause/resume marquee animations on touch devices for better UX
+        if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const setupMarqueeTouch = (wrapperSelector, contentSelector) => {
+                const wrapper = document.querySelector(wrapperSelector);
+                if (!wrapper) return;
+                const content = wrapper.querySelector(contentSelector);
+                if (!content) return;
+
+                wrapper.addEventListener('touchstart', () => {
+                    content.style.animationPlayState = 'paused';
+                }, { passive: true });
+
+                wrapper.addEventListener('touchend', () => {
+                    content.style.animationPlayState = 'running';
+                }, { passive: true });
+
+                wrapper.addEventListener('touchcancel', () => {
+                    content.style.animationPlayState = 'running';
+                }, { passive: true });
+            };
+
+            setupMarqueeTouch('.top-banner', '.top-banner-content');
+            setupMarqueeTouch('.marquee-section', '.marquee-content');
+        }
+
+        // Duplicate top-banner's inner children to create a seamless infinite loop (only once)
+        const topBanner = document.querySelector('.top-banner-content');
+        if (topBanner && !topBanner.dataset.cloned) {
+            const fragment = document.createDocumentFragment();
+            // clone each child node (not the container) to avoid nesting an animating container inside itself
+            Array.from(topBanner.children).forEach(child => {
+                fragment.appendChild(child.cloneNode(true));
+            });
+            topBanner.appendChild(fragment);
+            topBanner.dataset.cloned = 'true';
+        }
 });
