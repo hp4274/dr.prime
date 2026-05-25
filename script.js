@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Video Carousel Logic (About Page)
     const videoGrid = document.querySelector('.video-cards-grid');
-    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const videoDots = document.querySelectorAll('.about-videos .carousel-dots .dot');
 
-    if (videoGrid && dots.length > 0) {
+    if (videoGrid && videoDots.length > 0) {
         // Dot Click to Scroll
-        dots.forEach(dot => {
+        videoDots.forEach(dot => {
             dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
+                const index = parseInt(dot.getAttribute('data-index') || Array.from(videoDots).indexOf(dot));
                 const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
                 videoGrid.scrollTo({
                     left: index * cardWidth,
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPos = videoGrid.scrollLeft;
             const activeIndex = Math.round(scrollPos / cardWidth);
 
-            dots.forEach((dot, idx) => {
+            videoDots.forEach((dot, idx) => {
                 if (idx === activeIndex) {
                     dot.classList.add('active');
                 } else {
@@ -123,6 +123,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // Sleep Challenge Carousel Logic
+    const sleepPages = document.querySelectorAll('.sleep-challenge .sleep-page');
+    const sleepDots = document.querySelectorAll('.sleep-challenge .carousel-dots .dot');
+    const sleepCarousel = document.querySelector('.sleep-challenge-carousel');
+
+    if (sleepPages.length > 0 && sleepDots.length > 0) {
+        let sleepCurrentIndex = 0;
+        let sleepTimer;
+        let isSleepHovered = false;
+
+        const goToSleepPage = (index) => {
+            sleepCurrentIndex = index;
+            // Update pages visibility
+            sleepPages.forEach((page, i) => {
+                if (i === index) {
+                    page.style.opacity = '1';
+                    page.style.pointerEvents = 'auto';
+                    page.classList.add('active-page');
+                } else {
+                    page.style.opacity = '0';
+                    page.style.pointerEvents = 'none';
+                    page.classList.remove('active-page');
+                }
+            });
+            
+            // Update active dot
+            sleepDots.forEach(d => d.classList.remove('active'));
+            sleepDots[index].classList.add('active');
+        };
+
+        const startSleepTimer = () => {
+            clearTimeout(sleepTimer);
+            const delay = isSleepHovered ? 10000 : 5000;
+            sleepTimer = setTimeout(() => {
+                let nextIndex = (sleepCurrentIndex + 1) % sleepDots.length;
+                goToSleepPage(nextIndex);
+                startSleepTimer();
+            }, delay);
+        };
+
+        sleepDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSleepPage(index);
+                startSleepTimer();
+            });
+        });
+
+        if (sleepCarousel) {
+            sleepCarousel.addEventListener('mouseenter', () => {
+                isSleepHovered = true;
+                startSleepTimer();
+            });
+            
+            sleepCarousel.addEventListener('mouseleave', () => {
+                isSleepHovered = false;
+                startSleepTimer();
+            });
+        }
+
+        // Initialize
+        startSleepTimer();
     }
 
     /* ========================= FAQ ACCORDION========================= */
@@ -227,40 +290,29 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new Event('scroll'));
     }
 
-        // Pause/resume marquee animations on touch devices for better UX
-        if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            const setupMarqueeTouch = (wrapperSelector, contentSelector) => {
-                const wrapper = document.querySelector(wrapperSelector);
-                if (!wrapper) return;
-                const content = wrapper.querySelector(contentSelector);
-                if (!content) return;
-
-                wrapper.addEventListener('touchstart', () => {
-                    content.style.animationPlayState = 'paused';
-                }, { passive: true });
-
-                wrapper.addEventListener('touchend', () => {
-                    content.style.animationPlayState = 'running';
-                }, { passive: true });
-
-                wrapper.addEventListener('touchcancel', () => {
-                    content.style.animationPlayState = 'running';
-                }, { passive: true });
-            };
-
-            setupMarqueeTouch('.top-banner', '.top-banner-content');
-            setupMarqueeTouch('.marquee-section', '.marquee-content');
-        }
-
-        // Duplicate top-banner's inner children to create a seamless infinite loop (only once)
-        const topBanner = document.querySelector('.top-banner-content');
-        if (topBanner && !topBanner.dataset.cloned) {
-            const fragment = document.createDocumentFragment();
-            // clone each child node (not the container) to avoid nesting an animating container inside itself
-            Array.from(topBanner.children).forEach(child => {
-                fragment.appendChild(child.cloneNode(true));
-            });
-            topBanner.appendChild(fragment);
-            topBanner.dataset.cloned = 'true';
-        }
+    /* ==========================================================================
+       SUBSCRIBE FORM
+       ========================================================================== */
+    const subscribeForm = document.querySelector('.subscribe-form');
+    if (subscribeForm) {
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            
+            // Optionally clear the input field after subscribing
+            const input = subscribeForm.querySelector('input[type="email"]');
+            if (input && input.value.trim() !== '') {
+                input.value = '';
+                
+                // You can add a success message notification here if desired
+                const btnText = subscribeForm.querySelector('.btn-text');
+                if (btnText) {
+                    const originalText = btnText.textContent;
+                    btnText.textContent = 'Subscribed!';
+                    setTimeout(() => {
+                        btnText.textContent = originalText;
+                    }, 3000);
+                }
+            }
+        });
+    }
 });
