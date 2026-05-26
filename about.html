@@ -22,7 +22,7 @@
             </div>
             <div class="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html">home</a></li>
                     <li><a href="about.html" class="active">ABOUT US</a></li>
                     <li><a href="product.html">PRODUCTS</a></li>
                     <li><a href="faq.html">FAQs</a></li>
@@ -140,59 +140,26 @@
                     lazy mornings and pillow fights that got slightly out of control, better sleep looks different for
                     everyone. Dr.Prime is designed to make every version of bedtime feel more comfortable.</span></h2>
             <div class="video-cards-grid reveal reveal-stagger">
-                <div class="video-card">
+                <div class="video-card" data-video="assets/video1.mp4">
                     <img src="assets/vid1.png" alt="Video 1">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-video="assets/video2.mp4">
                     <img src="assets/vid2.png" alt="Video 2">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-video="assets/video1.mp4">
                     <img src="assets/vid3.png" alt="Video 3">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-video="assets/video2.mp4">
                     <img src="assets/vid4.png" alt="Video 4">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-video="assets/video1.mp4">
                     <img src="assets/vid4.png" alt="Video 5" style="object-position: top;">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <div class="video-card">
-                    <img src="assets/vid3.png" alt="Video 6" style="object-position: bottom;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid2.png" alt="Video 7" style="object-position: right;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid1.png" alt="Video 8" style="object-position: left;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid2.png" alt="Video 9" style="object-position: center;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid3.png" alt="Video 10" style="object-position: top left;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid4.png" alt="Video 11" style="object-position: bottom right;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="video-card">
-                    <img src="assets/vid1.png" alt="Video 12" style="object-position: right;">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-            </div>
-            <div class="carousel-dots mt-4">
-                <span class="dot active" data-index="0"></span>
-                <span class="dot" data-index="1"></span>
-                <span class="dot" data-index="2"></span>
             </div>
         </div>
     </section>
@@ -301,7 +268,7 @@
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">home</a></li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Ipsum</a></li>
                         <li><a href="#">Instant</a></li>
@@ -339,6 +306,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Video Modal Lightbox -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="video-modal-player">
+                <video id="modalVideo" src="" controls playsinline></video>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

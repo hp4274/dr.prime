@@ -422,7 +422,7 @@ ul {
     position: relative;
     z-index: 2;
     max-width: 800px;
-    top: -30px;
+    top: -100px;
 }
 
 .hero h1 {
@@ -510,7 +510,7 @@ ul {
 
 .content-section-1 .container {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 36px;
     position: relative;
 }
@@ -519,14 +519,27 @@ ul {
     flex: 1;
     position: relative;
     max-width: 610px;
+    display: flex;
 }
 
 
 .rounded-image {
     width: 100%;
+    height: 100%;
     border-radius: 16px;
     object-fit: cover;
     display: block;
+}
+
+.slide-transition {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-fade-out {
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .sleep-capsule {
@@ -548,16 +561,16 @@ ul {
 
 .text-col {
     flex: 1;
-    padding-top: 6px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .text-col h2 {
     font-size: 66px;
     line-height: 1.2;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     color: #1e2258;
     font-family: var(--font-heading);
     font-weight: 600;
@@ -570,6 +583,7 @@ ul {
     border-radius: 18px;
     position: relative;
     margin-left: -15%;
+    margin-top: -10px;
     max-width: 450px;
     z-index: 3;
     align-self: flex-start;
@@ -842,7 +856,7 @@ ul {
     z-index: 3;
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, transform;
 }
 
@@ -1124,7 +1138,7 @@ ul {
     opacity: 0;
     z-index: 2;
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: opacity, transform;
 }
 
@@ -1153,7 +1167,7 @@ ul {
     /* Re-enable clicks on content */
     opacity: 0;
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, transform;
 }
 
@@ -1308,7 +1322,7 @@ ul {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, transform;
 }
 
@@ -1819,10 +1833,10 @@ ul {
 
 .product-body-design {
     width: 850px;
-    max-width: 90%;
+    max-width: 95%;
     height: auto;
     display: block;
-    margin: -230px auto -160px;
+    margin: 15px auto;
     position: relative;
     z-index: 2;
 }
@@ -2231,9 +2245,7 @@ ul {
         flex-direction: column;
     }
 
-    .product-body-design {
-        padding-top: 100px;
-    }
+
 
 }
 
@@ -2368,6 +2380,8 @@ ul {
     .rounded-image {
         border-radius: 12px;
         width: 100%;
+        height: 280px;
+        object-fit: cover;
     }
 
     .text-col {
@@ -5142,7 +5156,7 @@ ul {
 }
 
 
-/* --- Body Design Features Section --- */
+/* --- body Design Features Section --- */
 .body-design-section {
     position: relative;
     height: 400vh;
@@ -5665,7 +5679,7 @@ ul {
         font-size: 24px;
     }
 
-    /* Body Design */
+    /* body Design */
     .body-design-section {
         height: auto !important;
         padding: 60px 20px;
@@ -6424,9 +6438,9 @@ FAQ CATEGORY SECTION
    THEME GREY IMAGE OVERRIDES
    ========================================================================== */
 body.theme-grey .product-body-design {
-    margin: 40px auto 0px;
-    max-width: 600px;
-    padding-top: 0;
+    margin: 15px auto;
+    width: 850px;
+    max-width: 95%;
 }
 
 body.theme-grey .product-details__pillow-img {
@@ -6619,9 +6633,9 @@ body.theme-grey .product-details__pillow-img {
    THEME GREY IMAGE OVERRIDES
    ========================================================================== */
 body.theme-grey .product-body-design {
-    margin: 40px auto 0px;
-    max-width: 600px;
-    padding-top: 0;
+    margin: 15px auto;
+    width: 850px;
+    max-width: 95%;
 }
 
 body.theme-grey .product-details__pillow-img {
@@ -6764,6 +6778,7 @@ body.theme-grey .product-details__pillow-img {
     display: flex;
     width: 100%;
 }
+
 .warranty-text-content {
     flex: 1;
     display: flex;
@@ -6771,6 +6786,7 @@ body.theme-grey .product-details__pillow-img {
     justify-content: center;
     padding: 60px 8%;
 }
+
 .warranty-text-content h1 {
     font-size: 54px;
     margin-bottom: 20px;
@@ -6779,15 +6795,18 @@ body.theme-grey .product-details__pillow-img {
     font-weight: 400;
     letter-spacing: 2px;
 }
+
 .warranty-text-content p {
     font-size: 16px;
     color: #e0e0e0;
     max-width: 480px;
     line-height: 1.6;
 }
+
 .warranty-image-wrapper {
     flex: 1;
 }
+
 .warranty-hero-image {
     width: 100%;
     height: 100%;
@@ -6815,20 +6834,24 @@ body.theme-grey .product-details__pillow-img {
     background-color: var(--white);
     text-align: center;
 }
+
 .warranty-benefits .section-header {
     margin-bottom: 60px;
 }
+
 .warranty-benefits .section-header h2 {
     font-size: 40px;
     color: #1d1c50;
     font-family: var(--font-heading);
     margin-bottom: 15px;
 }
+
 .warranty-benefits .section-header p {
     font-size: 18px;
     color: #555e7e;
     font-family: var(--font-body);
 }
+
 .benefits-row {
     display: flex;
     justify-content: center;
@@ -6838,6 +6861,7 @@ body.theme-grey .product-details__pillow-img {
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .benefit-step {
     flex: 1;
     min-width: 250px;
@@ -6846,6 +6870,7 @@ body.theme-grey .product-details__pillow-img {
     flex-direction: column;
     align-items: center;
 }
+
 .benefit-circle {
     width: 120px;
     height: 120px;
@@ -6857,14 +6882,17 @@ body.theme-grey .product-details__pillow-img {
     margin-bottom: 30px;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
+
 .benefit-circle:hover {
     transform: scale(1.05);
     background-color: #eef1f6;
 }
+
 .benefit-circle i {
     font-size: 40px;
     color: #1d1c50;
 }
+
 .benefit-step h3 {
     font-size: 20px;
     font-weight: 600;
@@ -6872,6 +6900,7 @@ body.theme-grey .product-details__pillow-img {
     margin-bottom: 12px;
     font-family: var(--font-heading);
 }
+
 .benefit-step p {
     font-size: 15px;
     color: #556;
@@ -6884,42 +6913,50 @@ body.theme-grey .product-details__pillow-img {
     padding: 80px 0;
     background-color: #f6f7fa;
 }
+
 .warranty-registration .section-header {
     text-align: center;
     margin-bottom: 60px;
 }
+
 .warranty-registration .section-header h2 {
     font-size: 40px;
     color: #1d1c50;
     font-family: var(--font-heading);
     margin-bottom: 15px;
 }
+
 .warranty-registration .section-header p {
     font-size: 18px;
     color: #555e7e;
     font-family: var(--font-body);
 }
+
 .warranty-form {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     margin-bottom: 50px;
 }
+
 .form-column {
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
+
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+
 .form-group label {
     font-size: 13px;
     font-weight: 600;
@@ -6927,6 +6964,7 @@ body.theme-grey .product-details__pillow-img {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .form-group input[type="text"],
 .form-group input[type="email"] {
     border: none;
@@ -6939,14 +6977,17 @@ body.theme-grey .product-details__pillow-img {
     transition: border-color 0.3s ease;
     font-family: var(--font-body);
 }
+
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus {
     border-bottom-color: #1d1c50;
 }
+
 .upload-group {
     display: flex;
     flex-direction: column;
 }
+
 .upload-label {
     font-size: 13px;
     font-weight: 600;
@@ -6956,6 +6997,7 @@ body.theme-grey .product-details__pillow-img {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .upload-box {
     border: 1px dashed #747494;
     border-radius: 12px;
@@ -6970,31 +7012,37 @@ body.theme-grey .product-details__pillow-img {
     text-align: center;
     padding: 20px;
 }
+
 .upload-box:hover {
     border-color: #1d1c50;
     background-color: #f8f9fc;
 }
+
 .upload-box i {
     font-size: 32px;
     color: #1d1c50;
     margin-bottom: 12px;
 }
+
 .upload-box span {
     font-size: 14px;
     font-weight: 500;
     color: #1d1c50;
     font-family: var(--font-body);
 }
+
 .upload-box .file-type {
     font-size: 12px;
     color: #747494;
     margin-top: 4px;
     font-family: var(--font-body);
 }
+
 .form-submit-container {
     display: flex;
     justify-content: center;
 }
+
 .btn-submit {
     background-color: #1d1c50;
     color: var(--white);
@@ -7008,6 +7056,7 @@ body.theme-grey .product-details__pillow-img {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .btn-submit:hover {
     background-color: #2b2a6d;
     transform: translateY(-2px);
@@ -7017,6 +7066,7 @@ body.theme-grey .product-details__pillow-img {
     .form-grid {
         gap: 40px;
     }
+
     .benefits-row {
         gap: 40px;
     }
@@ -7027,16 +7077,105 @@ body.theme-grey .product-details__pillow-img {
         grid-template-columns: 1fr;
         gap: 30px;
     }
+
     .warranty-text-content {
         padding: 50px 20px;
         text-align: center;
         align-items: center;
     }
+
     .warranty-text-content h1 {
         font-size: 36px;
     }
+
     .warranty-benefits .section-header h2,
     .warranty-registration .section-header h2 {
         font-size: 32px;
     }
+}
+
+/* Video Modal Lightbox Styles */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.video-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.video-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 32, 76, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
+    z-index: 2;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal.active .video-modal-content {
+    transform: scale(1);
+}
+
+.video-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.video-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.video-modal-player {
+    width: 100%;
+    height: 100%;
+}
+
+.video-modal-player video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    outline: none;
 }

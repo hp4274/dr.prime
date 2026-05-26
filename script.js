@@ -139,75 +139,104 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // Video Carousel Logic (About Page)
-    const videoGrid = document.querySelector('.video-cards-grid');
-    const videoDots = document.querySelectorAll('.about-videos .carousel-dots .dot');
 
-    if (videoGrid && videoDots.length > 0) {
-        let videoCurrentIndex = 0;
-        let videoAutoScrollTimer;
-        let isVideoHovered = false;
+    /* ==========================================================================
+       CONTENT SECTION 1 SLIDER
+       ========================================================================== */
+    const sliderImg = document.querySelector('.content-section-1 .rounded-image');
+    const sliderHeading = document.querySelector('.content-section-1 .text-col h2');
+    const sliderText = document.querySelector('.content-section-1 .blue-box p');
 
-        const scrollToVideo = (index) => {
-            const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20; // width + gap
-            videoGrid.scrollTo({
-                left: index * cardWidth,
-                behavior: 'smooth'
-            });
+    const slides = [
+        {
+            img: 'assets/slider1.png',
+            heading: 'Warning: <span class="blue-text">You May Oversleep</span>.',
+            text: 'The kind of comfort that turns “just five more minutes” into an entire morning mood. Designed to help you relax faster, sleep deeper, and wake up feeling like a functional human again instead of running on caffeine and regret.'
+        },
+        {
+            img: 'assets/slider2.png',
+            heading: 'Goodbye <span class="blue-text">Stiff Neck Energy</span>.',
+            text: 'Support that actually supports you. The ergonomic design helps reduce pressure on your neck and shoulders so you can stop waking up feeling like you lost a fight with your pillow overnight.'
+        },
+        {
+            img: 'assets/slider3.png',
+            heading: 'Your Bed’s <span class="blue-text">New Favorite Upgrade</span>.',
+            text: 'Soft enough to feel cozy. Supportive enough to make a difference. Built for people who love comfort but still want proper posture, better sleep, and mornings that feel slightly less offensive.'
+        }
+    ];
+
+    if (sliderImg && sliderHeading && sliderText) {
+        let currentSlideIndex = 0;
+        const slideDuration = 5000; // 5 seconds per slide
+
+        const changeSlide = () => {
+            // Step 1: Add fade-out class
+            sliderImg.classList.add('slide-fade-out');
+            sliderHeading.classList.add('slide-fade-out');
+            sliderText.classList.add('slide-fade-out');
+
+            // Step 2: Swap content after fade-out transition completes (500ms)
+            setTimeout(() => {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                const nextSlide = slides[currentSlideIndex];
+
+                sliderImg.src = nextSlide.img;
+                sliderHeading.innerHTML = nextSlide.heading;
+                sliderText.innerHTML = nextSlide.text;
+
+                // Step 3: Remove fade-out class to fade-in new content
+                sliderImg.classList.remove('slide-fade-out');
+                sliderHeading.classList.remove('slide-fade-out');
+                sliderText.classList.remove('slide-fade-out');
+            }, 500);
         };
 
-        const startVideoAutoScroll = () => {
-            clearInterval(videoAutoScrollTimer);
-            videoAutoScrollTimer = setInterval(() => {
-                if (!isVideoHovered) {
-                    const isMobile = window.innerWidth <= 768;
-                    const itemsPerPage = isMobile ? 1 : 4;
-                    const totalPages = videoDots.length; // Use the number of dots as total pages
-                    
-                    if (totalPages > 1) {
-                        videoCurrentIndex = (videoCurrentIndex + 1) % totalPages;
-                        scrollToVideo(videoCurrentIndex * itemsPerPage);
-                    }
+        // Start slide rotation
+        setInterval(changeSlide, slideDuration);
+    }
+
+    /* ==========================================================================
+       VIDEO MODAL LIGHTBOX (About Page)
+       ========================================================================== */
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.querySelector('.video-modal-close');
+    const modalBackdrop = document.querySelector('.video-modal-backdrop');
+    const videoCards = document.querySelectorAll('.video-card');
+
+    if (videoModal && modalVideo && videoCards.length > 0) {
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoSrc = card.getAttribute('data-video');
+                if (videoSrc) {
+                    modalVideo.src = videoSrc;
+                    videoModal.classList.add('active');
+                    modalVideo.play().catch(err => {
+                        console.log("Auto-play prevented or failed: ", err);
+                    });
                 }
-            }, 3000);
-        };
-
-        // Hover handling
-        videoGrid.addEventListener('mouseenter', () => isVideoHovered = true);
-        videoGrid.addEventListener('mouseleave', () => isVideoHovered = false);
-
-        // Dot Click to Scroll
-        videoDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index') || Array.from(videoDots).indexOf(dot));
-                const isMobile = window.innerWidth <= 768;
-                const itemsPerPage = isMobile ? 1 : 4;
-                videoCurrentIndex = index;
-                scrollToVideo(index * itemsPerPage);
-                startVideoAutoScroll();
             });
         });
 
-        // Scroll listener to update active dot
-        videoGrid.addEventListener('scroll', () => {
-            const cardWidth = videoGrid.querySelector('.video-card').offsetWidth + 20;
-            const scrollPos = videoGrid.scrollLeft;
-            const activeCardIndex = Math.round(scrollPos / cardWidth);
-            const isMobile = window.innerWidth <= 768;
-            const itemsPerPage = isMobile ? 1 : 4;
-            const activeDotIndex = Math.round(activeCardIndex / itemsPerPage);
+        const closeModal = () => {
+            videoModal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.src = '';
+        };
 
-            videoDots.forEach((dot, idx) => {
-                if (idx === activeDotIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeModal();
+            }
         });
-
-        // Initialize
-        startVideoAutoScroll();
     }
 
     // Sleep Challenge Carousel Logic
@@ -418,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (fabricSpacer && fabricSection && fpLeft && fpRight) {
         const SCROLL_EXTRA = window.innerHeight * 1.5; // Extra scroll zone height
-        
+
         function setFabricSpacer() {
             const sectionH = fabricSection.offsetHeight;
             fabricSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
@@ -435,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function animateCount(el) {
             if (el.dataset.animated === "true") return;
             el.dataset.animated = "true";
-            
+
             const target = parseInt(el.getAttribute('data-target'), 10);
             const suffix = el.getAttribute('data-suffix') || '';
             const duration = 1500; // Duration of animation in ms
@@ -445,13 +474,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (el.dataset.animated !== "true") return; // cancel animation if reset
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
+
                 // Ease out quad
                 const easeProgress = progress * (2 - progress);
                 const currentValue = Math.floor(easeProgress * target);
-                
+
                 el.textContent = currentValue + suffix;
-                
+
                 if (progress < 1) {
                     requestAnimationFrame(updateCount);
                 } else {
@@ -565,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       BODY DESIGN CIRCULAR SCROLL ANIMATION
+       body DESIGN CIRCULAR SCROLL ANIMATION
        ========================================================================== */
     const bodyDesignSection = document.getElementById('body-design');
     const featuresContainer = document.querySelector('.body-design__features');
