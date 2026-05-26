@@ -3446,12 +3446,13 @@ ul {
 }
 
 .about-title {
-    font-size: 54px;
+    font-size: 50px;
     font-weight: 500;
     max-width: 900px;
     margin: 0 auto 20px;
     line-height: 1.3;
     color: var(--white);
+    white-space: nowrap;
 }
 
 .about-subtitle {
@@ -3539,7 +3540,7 @@ ul {
 }
 
 .stats-header h2 {
-    font-size: 40px;
+    font-size: 30px;
     color: var(--primary-blue);
     max-width: 800px;
     line-height: 1.4;
@@ -3654,6 +3655,7 @@ ul {
 }
 
 .video-section-title {
+    color: #fff;
     font-size: 32px;
     max-width: 900px;
     margin: 0 auto 60px;
@@ -4488,7 +4490,7 @@ ul {
 
 .banner-content {
     position: absolute;
-    top: 170px;
+    top: 40px;
     left: 60px;
     max-width: 482px;
 }
@@ -4516,14 +4518,14 @@ ul {
 }
 
 .card-subtitle {
-    font-size: 25px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
     margin-top: 5px;
     font-family: var(--font-heading);
 }
 
 .card-value {
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1;
@@ -6620,4 +6622,68 @@ body.theme-grey .product-details__pillow-img {
 
 .center-pillow.reveal.in-view {
     transform: translate(-50%, -50%) !important;
+}
+
+/* About Hero Images */
+.about-hero-images {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 0 20px 60px 20px;
+}
+
+.about-hero-images>div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.about-hero-images img {
+    width: 100%;
+    height: auto;
+}
+
+/* Warranty Hero Grid */
+.warranty-hero-grid {
+    display: flex;
+    width: 100%;
+}
+.warranty-text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 8%;
+}
+.warranty-text-content h1 {
+    font-size: 54px;
+    margin-bottom: 20px;
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.warranty-text-content p {
+    font-size: 16px;
+    color: #e0e0e0;
+    max-width: 480px;
+    line-height: 1.6;
+}
+.warranty-image-wrapper {
+    flex: 1;
+}
+.warranty-hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .warranty-hero-grid {
+        flex-direction: column-reverse;
+    }
 }
