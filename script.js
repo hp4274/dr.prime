@@ -854,4 +854,88 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize
         startPillowAutoScroll();
     }
+
+    /* ==========================================================================
+       WARRANTY UPLOAD BOX INTERACTION & DRAG-AND-DROP
+       ========================================================================== */
+    const uploadBox = document.getElementById('upload-box');
+    const fileInput = document.getElementById('invoice-file');
+    const warrantyForm = document.querySelector('.warranty-form');
+
+    if (uploadBox && fileInput) {
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                const uploadText = uploadBox.querySelector('span');
+                const uploadIcon = uploadBox.querySelector('i');
+                if (uploadText) {
+                    uploadText.textContent = `Selected: ${fileName}`;
+                }
+                if (uploadIcon) {
+                    uploadIcon.className = 'fa-solid fa-file-circle-check';
+                    uploadIcon.style.color = '#2e7d32'; // green color
+                }
+            }
+        });
+
+        // Drag and drop event listeners
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = '#1d1c50';
+            uploadBox.style.backgroundColor = '#f0f2f5';
+        });
+
+        const resetUploadBoxStyle = () => {
+            uploadBox.style.borderColor = '#747494';
+            uploadBox.style.backgroundColor = 'var(--white)';
+        };
+
+        uploadBox.addEventListener('dragleave', resetUploadBoxStyle);
+        uploadBox.addEventListener('dragend', resetUploadBoxStyle);
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            resetUploadBoxStyle();
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+
+    if (warrantyForm) {
+        warrantyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle form submission (UI visual feedback)
+            const submitBtn = warrantyForm.querySelector('.btn-submit');
+            if (submitBtn) {
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'SUBMITTING...';
+                submitBtn.disabled = true;
+                setTimeout(() => {
+                    submitBtn.textContent = 'SUBMITTED SUCCESSFULLY!';
+                    submitBtn.style.backgroundColor = '#2e7d32'; // green success
+                    warrantyForm.reset();
+                    if (uploadBox) {
+                        const uploadText = uploadBox.querySelector('span');
+                        const uploadIcon = uploadBox.querySelector('i');
+                        if (uploadText) uploadText.textContent = 'Click to upload or drag and drop';
+                        if (uploadIcon) {
+                            uploadIcon.className = 'fa-solid fa-cloud-arrow-up';
+                            uploadIcon.style.color = '';
+                        }
+                    }
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, 1500);
+            }
+        });
+    }
 });

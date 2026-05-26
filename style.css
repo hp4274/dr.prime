@@ -6705,7 +6705,6 @@ body.theme-grey .product-details__pillow-img {
     transform: translate(-50%, -50%) !important;
 }
 
-<<<<<<< HEAD
 /* Sleep Challenge Responsive Overrides */
 @media (max-width: 768px) {
     .challenge-cards {
@@ -6736,7 +6735,9 @@ body.theme-grey .product-details__pillow-img {
         padding: 24px 20px !important;
         border-radius: 0 0 18px 18px !important;
         transition: none !important;
-=======
+    }
+}
+
 /* About Hero Images */
 .about-hero-images {
     display: flex;
@@ -6798,6 +6799,244 @@ body.theme-grey .product-details__pillow-img {
 @media (max-width: 768px) {
     .warranty-hero-grid {
         flex-direction: column-reverse;
->>>>>>> khushi
+    }
+}
+
+/* Warranty Hero Section */
+.warranty-hero {
+    background-color: var(--dreamy-blue);
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Warranty Benefits Section */
+.warranty-benefits {
+    padding: 80px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+.warranty-benefits .section-header {
+    margin-bottom: 60px;
+}
+.warranty-benefits .section-header h2 {
+    font-size: 40px;
+    color: #1d1c50;
+    font-family: var(--font-heading);
+    margin-bottom: 15px;
+}
+.warranty-benefits .section-header p {
+    font-size: 18px;
+    color: #555e7e;
+    font-family: var(--font-body);
+}
+.benefits-row {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.benefit-step {
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.benefit-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f6f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.benefit-circle:hover {
+    transform: scale(1.05);
+    background-color: #eef1f6;
+}
+.benefit-circle i {
+    font-size: 40px;
+    color: #1d1c50;
+}
+.benefit-step h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d1c50;
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+.benefit-step p {
+    font-size: 15px;
+    color: #556;
+    line-height: 1.6;
+    font-family: var(--font-body);
+}
+
+/* Warranty Registration Form Section */
+.warranty-registration {
+    padding: 80px 0;
+    background-color: #f6f7fa;
+}
+.warranty-registration .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.warranty-registration .section-header h2 {
+    font-size: 40px;
+    color: #1d1c50;
+    font-family: var(--font-heading);
+    margin-bottom: 15px;
+}
+.warranty-registration .section-header p {
+    font-size: 18px;
+    color: #555e7e;
+    font-family: var(--font-body);
+}
+.warranty-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 50px;
+}
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(29, 28, 80, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    border: none;
+    border-bottom: 1px solid #747494;
+    background: transparent;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #1d1c50;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-family: var(--font-body);
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus {
+    border-bottom-color: #1d1c50;
+}
+.upload-group {
+    display: flex;
+    flex-direction: column;
+}
+.upload-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(29, 28, 80, 0.7);
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.upload-box {
+    border: 1px dashed #747494;
+    border-radius: 12px;
+    height: 148px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--white);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    text-align: center;
+    padding: 20px;
+}
+.upload-box:hover {
+    border-color: #1d1c50;
+    background-color: #f8f9fc;
+}
+.upload-box i {
+    font-size: 32px;
+    color: #1d1c50;
+    margin-bottom: 12px;
+}
+.upload-box span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1d1c50;
+    font-family: var(--font-body);
+}
+.upload-box .file-type {
+    font-size: 12px;
+    color: #747494;
+    margin-top: 4px;
+    font-family: var(--font-body);
+}
+.form-submit-container {
+    display: flex;
+    justify-content: center;
+}
+.btn-submit {
+    background-color: #1d1c50;
+    color: var(--white);
+    padding: 12px 50px;
+    border-radius: 75px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-submit:hover {
+    background-color: #2b2a6d;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .form-grid {
+        gap: 40px;
+    }
+    .benefits-row {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .warranty-text-content {
+        padding: 50px 20px;
+        text-align: center;
+        align-items: center;
+    }
+    .warranty-text-content h1 {
+        font-size: 36px;
+    }
+    .warranty-benefits .section-header h2,
+    .warranty-registration .section-header h2 {
+        font-size: 32px;
     }
 }

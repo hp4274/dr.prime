@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <!-- Removed external Google Fonts to enforce only custom local fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.1.0/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-straight/css/uicons-solid-straight.css'>
 </head>
 
 <body>
@@ -25,7 +30,7 @@
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="product.html">PRODUCTS</a></li>
-                    <li><a href="faq.html" class="active">FAQs</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="contact.html" class="contact-link">CONTACT US</a>
@@ -41,12 +46,100 @@
     <!-- Top Banner -->
     <div class="top-banner section">
         <div class="top-banner-content">
-            <span class="dot-separator"></span>
             <span>Get Upto 30% flat on first order</span>
-            <span class="dot-separator"></span>
+
         </div>
     </div>
 
+    <!-- Warranty Hero Section -->
+    <section class="warranty-hero">
+        <div class="warranty-hero-grid">
+            <div class="warranty-text-content">
+                <h1>Warranty</h1>
+                <p>An exceptional experience! Always goes above and beyond. An exceptional experience! Always goes above
+                    and beyond.</p>
+            </div>
+            <div class="warranty-image-wrapper">
+                <img src="assets/about_body1.png" alt="Dr. Prime Warranty" class="warranty-hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Warranty Benefits Section -->
+    <section class="warranty-benefits reveal reveal-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Registrations Benefits</h2>
+                <p>We make it simple and hassle-free.</p>
+            </div>
+            <div class="benefits-row">
+                <div class="benefit-step">
+                    <div class="benefit-circle">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <h3>Register</h3>
+                    <p>Fill in your details and upload product photos.</p>
+                </div>
+                <div class="benefit-step">
+                    <div class="benefit-circle">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3>Review</h3>
+                    <p>Our team reviews and verifies your claim.</p>
+                </div>
+                <div class="benefit-step">
+                    <div class="benefit-circle">
+                        <i class="fa-regular fa-circle-check"></i>
+                    </div>
+                    <h3>Complete</h3>
+                    <p>Enjoy hassle-free support and better sleep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warranty Registration Section -->
+    <section class="warranty-registration reveal reveal-up">
+        <div class="container">
+            <div class="section-header">
+                <h2>Warranty Registration</h2>
+                <p>Please fill the form below to register your warranty claim.</p>
+            </div>
+            <form class="warranty-form">
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="warranty-fullname">FULL NAME* :</label>
+                            <input type="text" id="warranty-fullname" name="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="warranty-email">EMAIL* :</label>
+                            <input type="email" id="warranty-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="warranty-orderid">Order ID/Invoice ID* :</label>
+                            <input type="text" id="warranty-orderid" name="orderid" required>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="upload-group">
+                            <span class="upload-label">Upload Invoice* :</span>
+                            <div class="upload-box" id="upload-box">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Click to upload or drag and drop</span>
+                                <span class="file-type">JPG, PNG or PDF</span>
+                                <input type="file" id="invoice-file" name="invoice" accept=".jpg,.jpeg,.png,.pdf"
+                                    style="display: none;" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-submit-container">
+                    <button type="submit" class="btn-submit">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -55,8 +148,8 @@
                 <div class="footer-brand">
                     <img src="assets/logo.png" alt="Dr. Prime" class="footer-logo"
                         style="filter: brightness(0) invert(1);">
-                    <p>Making it look like readable English. Many desktop publishing packages and web page editors now
-                        use Lorem Ipsum as their default model text when an unknown printer took a galley.</p>
+                    <p>Better sleep starts with better support. Helping people sleep better, wake up happier, and stop
+                        fighting their pillow every single night..</p>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/drprime.store/"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/company/mydrprime/"><i
@@ -80,8 +173,8 @@
                 <div class="footer-links">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="#">Warranty</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="warranty.html">Warranty</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
                         <li><a href="#">Return Policy</a></li>
                         <li><a href="#">Accessibility</a></li>
                         <li><a href="#">Poclisers</a></li>
