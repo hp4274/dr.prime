@@ -318,6 +318,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
+       PRODUCT SHOWCASE CURVE SCROLL ANIMATION
+       ========================================================================== */
+    const showcaseSection = document.querySelector('.product-showcase');
+    const curvePath = document.querySelector('.curve-path');
+
+    if (showcaseSection && curvePath) {
+        window.addEventListener('scroll', () => {
+            const rect = showcaseSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate progress: 0 when top enters viewport, 1 when bottom leaves viewport
+            const totalDistance = rect.height + windowHeight;
+            const scrolledDistance = windowHeight - rect.top;
+            
+            let progress = scrolledDistance / totalDistance;
+            progress = Math.max(0, Math.min(1, progress));
+            
+            // Path length is 100, so dashoffset goes from 100 to 0
+            curvePath.style.strokeDashoffset = 100 - (progress * 100);
+        }, { passive: true });
+        
+        // Initial setup
+        window.dispatchEvent(new Event('scroll'));
+    }
+
+    /* ==========================================================================
        BODY DESIGN CIRCULAR SCROLL ANIMATION
        ========================================================================== */
     const bodyDesignSection = document.getElementById('body-design');
