@@ -318,29 +318,250 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       PRODUCT SHOWCASE CURVE SCROLL ANIMATION
+       PRODUCT SHOWCASE — SCROLL-PINNED ANIMATION
+       Scrolling pauses when the curve-container reaches the stop point.
+       Animation is driven entirely by scroll progress within the spacer.
+       Structure: stop-point detection → scroll pause (sticky) → animation.
        ========================================================================== */
+    const scrollSpacer = document.querySelector('.showcase-scroll-spacer');
     const showcaseSection = document.querySelector('.product-showcase');
-    const curvePath = document.querySelector('.curve-path');
+    const curvePath = document.getElementById('showcase-curve');
+    const pointer1 = document.querySelector('.product-showcase .p-1');
+    const pointer2 = document.querySelector('.product-showcase .p-2');
 
-    if (showcaseSection && curvePath) {
-        window.addEventListener('scroll', () => {
-            const rect = showcaseSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Calculate progress: 0 when top enters viewport, 1 when bottom leaves viewport
-            const totalDistance = rect.height + windowHeight;
-            const scrolledDistance = windowHeight - rect.top;
-            
-            let progress = scrolledDistance / totalDistance;
-            progress = Math.max(0, Math.min(1, progress));
-            
-            // Path length is 100, so dashoffset goes from 100 to 0
+    if (scrollSpacer && showcaseSection && curvePath && pointer1 && pointer2) {
+
+        // --- 1. STOP-POINT DETECTION: Set spacer height to create scroll zone ---
+        const SCROLL_EXTRA = window.innerHeight * 1.5; // Extra scroll distance for animation
+        function setSpacer() {
+            const sectionH = showcaseSection.offsetHeight;
+            scrollSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
+        }
+        setSpacer();
+
+        // --- Configuration ---
+        // Pointer 1 destination threshold (previously Dot 1 arrival)
+        // Pointer 2 destination threshold (previously Dot 2 arrival)
+        const DOT1_END = 0.45;
+        const DOT2_END = 0.75;
+        const ARRIVAL_TOLERANCE = 0.02;
+
+        // --- 2 & 3. SCROLL PAUSE + ANIMATION TRIGGER WITH LERPING ---
+        let targetProgress = 0;
+        let currentProgress = 0;
+        const LERP_FACTOR = 0.08; // Control transition speed (lower = smoother / more lag, higher = snappier)
+        let isRunning = false;
+
+        function updateAnimationValues(progress) {
+            // --- Curve stroke drawing (0→1 maps to dashoffset 100→0) ---
             curvePath.style.strokeDashoffset = 100 - (progress * 100);
-        }, { passive: true });
+
+            // --- Pointer 1: reveal when curve reaches target location ---
+            if (progress < DOT1_END - ARRIVAL_TOLERANCE) {
+                pointer1.classList.remove('pointer-arrived');
+            } else {
+                pointer1.classList.add('pointer-arrived');
+            }
+
+            // --- Pointer 2: reveal when curve reaches target location ---
+            if (progress < DOT2_END - ARRIVAL_TOLERANCE) {
+                pointer2.classList.remove('pointer-arrived');
+            } else {
+                pointer2.classList.add('pointer-arrived');
+            }
+        }
+
+        function tick() {
+            const diff = targetProgress - currentProgress;
+            if (Math.abs(diff) > 0.0001) {
+                currentProgress += diff * LERP_FACTOR;
+                updateAnimationValues(currentProgress);
+                requestAnimationFrame(tick);
+            } else {
+                currentProgress = targetProgress;
+                updateAnimationValues(currentProgress);
+                isRunning = false;
+            }
+        }
+
+        function onScroll() {
+            const spacerRect = scrollSpacer.getBoundingClientRect();
+            const scrolled = -spacerRect.top - 200;
+            let progress = scrolled / SCROLL_EXTRA;
+            targetProgress = Math.max(0, Math.min(1, progress));
+
+            if (!isRunning) {
+                isRunning = true;
+                requestAnimationFrame(tick);
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', () => {
+            setSpacer();
+            onScroll();
+        });
+
+        // Initial setup and render
+        onScroll();
+    }
+
+    /* ==========================================================================
+       FABRIC DETAIL — SCROLL-PINNED ANIMATION
+       ========================================================================== */
+    const fabricSpacer = document.querySelector('.fabric-scroll-spacer');
+    const fabricSection = document.querySelector('.fabric-scroll-spacer .fabric-detail');
+    const centerPillow = document.querySelector('.fabric-scroll-spacer .center-pillow');
+    const fpLeft = document.querySelector('.fabric-scroll-spacer .fp-left');
+    const fpRight = document.querySelector('.fabric-scroll-spacer .fp-right');
+    const statBoxes = document.querySelectorAll('.fabric-scroll-spacer .stat-box');
+
+    if (fabricSpacer && fabricSection && fpLeft && fpRight) {
+        const SCROLL_EXTRA = window.innerHeight * 1.5; // Extra scroll zone height
         
-        // Initial setup
-        window.dispatchEvent(new Event('scroll'));
+        function setFabricSpacer() {
+            const sectionH = fabricSection.offsetHeight;
+            fabricSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
+        }
+        setFabricSpacer();
+
+        // Reveal thresholds
+        const SHOW_PILLOW = 0.05;
+        const SHOW_LEFT = 0.25;
+        const SHOW_RIGHT = 0.55;
+        const SHOW_STAT1 = 0.75;
+        const SHOW_STAT2 = 0.90;
+
+        function animateCount(el) {
+            if (el.dataset.animated === "true") return;
+            el.dataset.animated = "true";
+            
+            const target = parseInt(el.getAttribute('data-target'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 1500; // Duration of animation in ms
+            const startTime = performance.now();
+
+            function updateCount(currentTime) {
+                if (el.dataset.animated !== "true") return; // cancel animation if reset
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out quad
+                const easeProgress = progress * (2 - progress);
+                const currentValue = Math.floor(easeProgress * target);
+                
+                el.textContent = currentValue + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    el.textContent = target + suffix;
+                }
+            }
+            requestAnimationFrame(updateCount);
+        }
+
+        function resetCount(el) {
+            el.dataset.animated = "false";
+            const suffix = el.getAttribute('data-suffix') || '';
+            el.textContent = "0" + suffix;
+        }
+
+        let targetFabricProgress = 0;
+        let currentFabricProgress = 0;
+        const LERP_FACTOR = 0.08;
+        let isFabricRunning = false;
+
+        function updateFabricAnimation(progress) {
+            // Center pillow reveal
+            if (centerPillow) {
+                if (progress >= SHOW_PILLOW) {
+                    centerPillow.classList.add('visible');
+                } else {
+                    centerPillow.classList.remove('visible');
+                }
+            }
+
+            // Left pointer reveal
+            if (progress >= SHOW_LEFT) {
+                fpLeft.classList.add('visible');
+            } else {
+                fpLeft.classList.remove('visible');
+            }
+
+            // Right pointer reveal
+            if (progress >= SHOW_RIGHT) {
+                fpRight.classList.add('visible');
+            } else {
+                fpRight.classList.remove('visible');
+            }
+
+            // Stat Box 1 reveal
+            if (statBoxes[0]) {
+                const countEl = statBoxes[0].querySelector('h2');
+                if (progress >= SHOW_STAT1) {
+                    if (!statBoxes[0].classList.contains('visible')) {
+                        statBoxes[0].classList.add('visible');
+                        if (countEl) animateCount(countEl);
+                    }
+                } else {
+                    if (statBoxes[0].classList.contains('visible')) {
+                        statBoxes[0].classList.remove('visible');
+                        if (countEl) resetCount(countEl);
+                    }
+                }
+            }
+
+            // Stat Box 2 reveal
+            if (statBoxes[1]) {
+                const countEl = statBoxes[1].querySelector('h2');
+                if (progress >= SHOW_STAT2) {
+                    if (!statBoxes[1].classList.contains('visible')) {
+                        statBoxes[1].classList.add('visible');
+                        if (countEl) animateCount(countEl);
+                    }
+                } else {
+                    if (statBoxes[1].classList.contains('visible')) {
+                        statBoxes[1].classList.remove('visible');
+                        if (countEl) resetCount(countEl);
+                    }
+                }
+            }
+        }
+
+        function tickFabric() {
+            const diff = targetFabricProgress - currentFabricProgress;
+            if (Math.abs(diff) > 0.0001) {
+                currentFabricProgress += diff * LERP_FACTOR;
+                updateFabricAnimation(currentFabricProgress);
+                requestAnimationFrame(tickFabric);
+            } else {
+                currentFabricProgress = targetFabricProgress;
+                updateFabricAnimation(currentFabricProgress);
+                isFabricRunning = false;
+            }
+        }
+
+        function onFabricScroll() {
+            const spacerRect = fabricSpacer.getBoundingClientRect();
+            const scrolled = -spacerRect.top;
+            let progress = scrolled / SCROLL_EXTRA;
+            targetFabricProgress = Math.max(0, Math.min(1, progress));
+
+            if (!isFabricRunning) {
+                isFabricRunning = true;
+                requestAnimationFrame(tickFabric);
+            }
+        }
+
+        window.addEventListener('scroll', onFabricScroll, { passive: true });
+        window.addEventListener('resize', () => {
+            setFabricSpacer();
+            onFabricScroll();
+        });
+
+        // Initialize
+        onFabricScroll();
     }
 
     /* ==========================================================================
@@ -431,14 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
        GENERIC CAROUSEL LOGIC & DATA DUPLICATION
        ========================================================================== */
     const carouselConfigs = [
-        {
-            containerSelector: '.sleep-challenge .challenge-cards',
-            itemSelector: '.challenge-card',
-            dotsSelector: '.sleep-challenge .carousel-dots',
-            desktopItems: 3,
-            mobileItems: 1,
-            activeDisplay: 'flex'
-        },
         {
             containerSelector: '.why-choose-us .grid-container',
             itemSelector: '.grid-card',
