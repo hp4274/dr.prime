@@ -143,52 +143,20 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        CONTENT SECTION 1 SLIDER
        ========================================================================== */
-    const sliderImg = document.querySelector('.content-section-1 .rounded-image');
-    const sliderHeading = document.querySelector('.content-section-1 .text-col h2');
-    const sliderText = document.querySelector('.content-section-1 .blue-box p');
-
-    const slides = [
-        {
-            img: 'assets/slider1.png',
-            heading: 'Warning: <span class="blue-text">You May Oversleep</span>.',
-            text: 'The kind of comfort that turns “just five more minutes” into an entire morning mood. Designed to help you relax faster, sleep deeper, and wake up feeling like a functional human again instead of running on caffeine and regret.'
-        },
-        {
-            img: 'assets/slider2.png',
-            heading: 'Goodbye <span class="blue-text">Stiff Neck Energy</span>.',
-            text: 'Support that actually supports you. The ergonomic design helps reduce pressure on your neck and shoulders so you can stop waking up feeling like you lost a fight with your pillow overnight.'
-        },
-        {
-            img: 'assets/slider3.png',
-            heading: 'Your Bed’s <span class="blue-text">New Favorite Upgrade</span>.',
-            text: 'Soft enough to feel cozy. Supportive enough to make a difference. Built for people who love comfort but still want proper posture, better sleep, and mornings that feel slightly less offensive.'
-        }
-    ];
-
-    if (sliderImg && sliderHeading && sliderText) {
+    const contentSlides = document.querySelectorAll('.content-section-1 .content-slide');
+    if (contentSlides.length > 0) {
         let currentSlideIndex = 0;
         const slideDuration = 5000; // 5 seconds per slide
 
         const changeSlide = () => {
-            // Step 1: Add fade-out class
-            sliderImg.classList.add('slide-fade-out');
-            sliderHeading.classList.add('slide-fade-out');
-            sliderText.classList.add('slide-fade-out');
+            // Remove active class from current slide
+            contentSlides[currentSlideIndex].classList.remove('active');
 
-            // Step 2: Swap content after fade-out transition completes (500ms)
-            setTimeout(() => {
-                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-                const nextSlide = slides[currentSlideIndex];
+            // Move to next slide
+            currentSlideIndex = (currentSlideIndex + 1) % contentSlides.length;
 
-                sliderImg.src = nextSlide.img;
-                sliderHeading.innerHTML = nextSlide.heading;
-                sliderText.innerHTML = nextSlide.text;
-
-                // Step 3: Remove fade-out class to fade-in new content
-                sliderImg.classList.remove('slide-fade-out');
-                sliderHeading.classList.remove('slide-fade-out');
-                sliderText.classList.remove('slide-fade-out');
-            }, 500);
+            // Add active class to next slide
+            contentSlides[currentSlideIndex].classList.add('active');
         };
 
         // Start slide rotation
@@ -321,6 +289,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ========================= FAQ CATEGORY FILTER ========================= */
+    const faqCategoryCards = document.querySelectorAll('.faq-category-card[data-category]');
+    const faqAccordionItems = document.querySelectorAll('.c-faq-right .accordion-item[data-category]');
+    const faqAnswersSection = document.getElementById('faq-answers');
+
+    if (faqCategoryCards.length > 0 && faqAccordionItems.length > 0) {
+        // Helper function to apply the filter logic
+        const applyCategoryFilter = (category, shouldScroll = true) => {
+            // Show/hide accordion items by category
+            faqAccordionItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (itemCategory === category) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+                // Reset all accordion states
+                item.classList.remove('active');
+                const icon = item.querySelector('.icon');
+                if (icon) icon.textContent = '+';
+            });
+
+            // Auto-open the first visible accordion item in the selected category
+            const firstVisible = document.querySelector(`.c-faq-right .accordion-item[data-category="${category}"]`);
+            if (firstVisible) {
+                firstVisible.classList.add('active');
+                const icon = firstVisible.querySelector('.icon');
+                if (icon) icon.textContent = '-';
+            }
+
+            // Scroll to the FAQ answers section if requested
+            if (shouldScroll && faqAnswersSection) {
+                faqAnswersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+
+        faqCategoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+
+                // Highlight active category card
+                faqCategoryCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+
+                // Apply filter and scroll
+                applyCategoryFilter(category, true);
+            });
+        });
+
+        // Initialize: Trigger filtering on page load for whichever card has the 'active' class (default: Warranty)
+        const defaultActiveCard = document.querySelector('.faq-category-card.active[data-category]') || faqCategoryCards[0];
+        if (defaultActiveCard) {
+            const defaultCategory = defaultActiveCard.getAttribute('data-category');
+            applyCategoryFilter(defaultCategory, false); // Initialize without scrolling
+        }
+    }
+
     /* ==========================================================================
        SCROLL REVEAL INTERSECTION OBSERVER
        ========================================================================== */
@@ -361,7 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollSpacer && showcaseSection && curvePath && pointer1 && pointer2) {
 
         // --- 1. STOP-POINT DETECTION: Set spacer height to create scroll zone ---
-        const SCROLL_EXTRA = window.innerHeight * 1.5; // Extra scroll distance for animation
+        // Reduce extra scroll distance heavily on mobile to prevent huge empty scroll gaps
+        const isMobile = window.innerWidth <= 768;
+        const SCROLL_EXTRA = isMobile ? window.innerHeight * 0.5 : window.innerHeight * 1.5;
         function setSpacer() {
             const sectionH = showcaseSection.offsetHeight;
             scrollSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
@@ -446,11 +473,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const statBoxes = document.querySelectorAll('.fabric-scroll-spacer .stat-box');
 
     if (fabricSpacer && fabricSection && fpLeft && fpRight) {
-        const SCROLL_EXTRA = window.innerHeight * 1.5; // Extra scroll zone height
+        const isMobileFabric = window.innerWidth <= 768;
+        const SCROLL_EXTRA = isMobileFabric ? 0 : window.innerHeight * 1.5; // Extra scroll zone height
 
         function setFabricSpacer() {
-            const sectionH = fabricSection.offsetHeight;
-            fabricSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
+            if (isMobileFabric) {
+                fabricSpacer.style.height = 'auto';
+            } else {
+                const sectionH = fabricSection.offsetHeight;
+                fabricSpacer.style.height = (sectionH + SCROLL_EXTRA) + 'px';
+            }
         }
         setFabricSpacer();
 
@@ -571,26 +603,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function onFabricScroll() {
-            const spacerRect = fabricSpacer.getBoundingClientRect();
-            const scrolled = -spacerRect.top;
-            let progress = scrolled / SCROLL_EXTRA;
-            targetFabricProgress = Math.max(0, Math.min(1, progress));
+        if (isMobileFabric) {
+            // Mobile: Auto start when visible, no scroll linking
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    targetFabricProgress = 1; // Play all the way to 100%
+                    if (!isFabricRunning) {
+                        isFabricRunning = true;
+                        requestAnimationFrame(tickFabric);
+                    }
+                    observer.disconnect(); // Only play once
+                }
+            }, { threshold: 0.1 });
+            observer.observe(fabricSection);
+        } else {
+            // Desktop: Scroll linked
+            function onFabricScroll() {
+                const spacerRect = fabricSpacer.getBoundingClientRect();
+                const scrolled = -spacerRect.top;
+                let progress = scrolled / SCROLL_EXTRA;
+                targetFabricProgress = Math.max(0, Math.min(1, progress));
 
-            if (!isFabricRunning) {
-                isFabricRunning = true;
-                requestAnimationFrame(tickFabric);
+                if (!isFabricRunning) {
+                    isFabricRunning = true;
+                    requestAnimationFrame(tickFabric);
+                }
             }
-        }
 
-        window.addEventListener('scroll', onFabricScroll, { passive: true });
-        window.addEventListener('resize', () => {
-            setFabricSpacer();
+            window.addEventListener('scroll', onFabricScroll, { passive: true });
+            window.addEventListener('resize', () => {
+                setFabricSpacer();
+                onFabricScroll();
+            });
+
+            // Initialize
             onFabricScroll();
-        });
-
-        // Initialize
-        onFabricScroll();
+        }
     }
 
     /* ==========================================================================

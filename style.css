@@ -531,15 +531,25 @@ ul {
     display: block;
 }
 
-.slide-transition {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    opacity: 1;
-    transform: translateY(0);
+.content-slide {
+    display: none;
 }
 
-.slide-fade-out {
-    opacity: 0;
-    transform: translateY(10px);
+.content-slide.active {
+    display: block;
+    animation: slideFadeIn 0.6s forwards;
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .sleep-capsule {
@@ -1172,7 +1182,7 @@ ul {
 }
 
 .fp-left {
-    top: 22%;
+    top: 18%;
     left: 0%;
     transform: translateX(-40px);
 }
@@ -2812,11 +2822,9 @@ ul {
         grid-row: 1;
         position: relative;
         transform: none;
-        top: auto;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        width: 140px;
+        top: 90px;
+        left: 90px;
+        width: 190px;
         z-index: 2;
         margin: 0;
     }
@@ -2837,24 +2845,24 @@ ul {
     .fp-left {
         grid-column: 1;
         grid-row: 1;
-        top: 0px;
+        top: 5px;
         left: auto;
-        right: 5px;
+        right: 10px;
         bottom: auto;
     }
 
     .fp-right {
         grid-column: 3;
         grid-row: 1;
-        top: 30px;
+        top: 45px;
         left: auto;
         right: auto;
         bottom: auto;
     }
 
     .circle-img {
-        width: 55px;
-        height: 55px;
+        width: 75px;
+        height: 75px;
         margin: 0 auto 10px;
         position: relative;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -7178,4 +7186,239 @@ body.theme-grey .product-details__pillow-img {
     height: 100%;
     object-fit: contain;
     outline: none;
+}
+
+/* ==========================================================================
+   MOBILE VIEW FIXES
+   ========================================================================== */
+.mobile-only {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    html,
+    body {
+        overflow-x: clip;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero-content {
+        top: 0 !important;
+        margin-top: 20px;
+    }
+
+    /* 1. Why Choose Us Grid: 2 card pair slider handled by JS, force 2 columns */
+    .why-choose-us .grid-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
+    }
+
+    /* Adjust pointers to not cut off on mobile and keep them on the curve */
+    .product-showcase .p-1 {
+        left: 25% !important;
+        top: 85px !important;
+    }
+
+    .product-showcase .p-2 {
+        left: 75% !important;
+        top: 235px !important;
+    }
+
+    /* 2. Showcase Scroll Spacer Sticky Fix */
+    .showcase-scroll-spacer {
+        background-color: var(--primary-blue);
+    }
+    .showcase-scroll-spacer .product-showcase {
+        top: 0 !important;
+    }
+
+    .product-showcase .main-pillow {
+        max-width: 90%;
+    }
+
+    /* 3. Fabric Detail Section Sticky Fix */
+    .fabric-scroll-spacer .fabric-detail {
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .fabric-detail .relative-container {
+        height: auto !important;
+    }
+
+    .stats-row {
+        flex-direction: row;
+        gap: 20px;
+        bottom: 5%;
+    }
+
+    /* 4. Sleep Challenges Slider */
+    .challenge-cards {
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 20px !important;
+        padding-bottom: 20px;
+    }
+
+    .sleep-challenge .challenge-card {
+        flex: 0 0 calc(100% - 40px) !important;
+        scroll-snap-align: center;
+        height: auto !important;
+    }
+
+    .challenge-cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 5. Testimonials Slider handled by JS, force 1 column */
+    .testimonials .testi-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* Sleep Guide Styles */
+.sleep-guide-header {
+    background-color: var(--dreamy-blue);
+    color: #fff;
+    padding: 100px 0 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sleep-guide-header h1 {
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.sleep-guide-header p {
+    font-size: 18px;
+    color: #fff;
+    opacity: 0.8;
+    max-width: 600px;
+}
+
+.sleep-guide-hero-img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45%;
+    max-width: 600px;
+}
+
+.sleep-guide-hero-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.sleep-guide-content {
+    background-color: #f6f7fa;
+    padding: 80px 0;
+}
+
+.sg-section {
+    margin-bottom: 80px;
+}
+
+.sg-section h2 {
+    font-size: 28px;
+    color: var(--dreamy-blue);
+    margin-bottom: 40px;
+}
+
+.sg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.sg-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sg-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.sg-card h3 {
+    font-size: 22px;
+    color: var(--dreamy-blue);
+    margin-bottom: 15px;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+.sg-card p, .sg-card ul {
+    font-size: 18px;
+    color: var(--dreamy-blue);
+    opacity: 0.7;
+    line-height: 1.5;
+}
+
+.sg-card ul {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.sg-card ul li {
+    margin-bottom: 10px;
+}
+
+.sg-wide-card {
+    grid-column: 1 / -1;
+}
+
+.sg-images {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.sg-images img {
+    flex: 1;
+    min-width: 0;
+    border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+    .sleep-guide-header {
+        padding: 60px 0;
+    }
+    .sleep-guide-hero-img {
+        position: relative;
+        top: 0;
+        transform: none;
+        width: 100%;
+        margin-top: 30px;
+    }
+    .sg-grid {
+        grid-template-columns: 1fr;
+    }
+    .sg-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .sg-images {
+        flex-direction: column;
+    }
 }
