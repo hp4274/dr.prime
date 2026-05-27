@@ -123,17 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         colorNameSpan.textContent = 'Blue';
                         document.body.classList.remove('theme-grey');
 
-                        if (mainImage) mainImage.src = 'assets/product-display.png';
-                        if (pillowImg) pillowImg.src = 'assets/body_design2.png';
-                        if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2.png';
+                        if (mainImage) mainImage.src = 'assets/product1.png';
+                        if (pillowImg) pillowImg.src = 'assets/pillow2.png';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow2.png';
 
                     } else if (this.classList.contains('color-grey')) {
                         colorNameSpan.textContent = 'Grey';
                         document.body.classList.add('theme-grey');
 
-                        if (mainImage) mainImage.src = 'assets/product-display-grey.png';
-                        if (pillowImg) pillowImg.src = 'assets/body_design2-grey.png';
-                        if (bodyDesignImg) bodyDesignImg.src = 'assets/body_design2-grey.png';
+                        if (mainImage) mainImage.src = 'assets/product1-grey.png';
+                        if (pillowImg) pillowImg.src = 'assets/pillow1-grey.png';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow1-grey.png';
                     }
                 }
             });
