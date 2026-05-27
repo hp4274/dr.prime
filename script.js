@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.classList.add('active');
 
                 const mainImage = document.querySelector('.product-hero__main-image img');
-                const pillowImg = document.querySelector('.product-details__pillow-img');
                 const bodyDesignImg = document.querySelector('.product-body-design');
 
                 // Update text based on color and handle image swapping
@@ -124,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.body.classList.remove('theme-grey');
 
                         if (mainImage) mainImage.src = 'assets/product1.png';
-                        if (pillowImg) pillowImg.src = 'assets/pillow2.png';
                         if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow2.png';
 
                     } else if (this.classList.contains('color-grey')) {
@@ -132,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.body.classList.add('theme-grey');
 
                         if (mainImage) mainImage.src = 'assets/product1-grey.png';
-                        if (pillowImg) pillowImg.src = 'assets/pillow1-grey.png';
                         if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow1-grey.png';
                     }
                 }
@@ -930,6 +927,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize
         startPillowAutoScroll();
+    }
+
+    /* ==========================================================================
+       ABOUT PAGE VIDEO SLIDER AUTO-SCROLL & DOTS (MOBILE/TABLET)
+       ========================================================================== */
+    const videoSlider = document.querySelector('.about-videos .video-cards-grid');
+    const videoDots = document.querySelectorAll('.video-slider-dots .dot');
+    if (videoSlider) {
+        let videoScrollTimer;
+        let isVideoSliderPaused = false;
+        
+        const updateVideoDots = (activeIndex) => {
+            if (videoDots.length > 0) {
+                videoDots.forEach(dot => dot.classList.remove('active'));
+                if (videoDots[activeIndex]) {
+                    videoDots[activeIndex].classList.add('active');
+                }
+            }
+        };
+
+        const startVideoAutoScroll = () => {
+            clearInterval(videoScrollTimer);
+            videoScrollTimer = setInterval(() => {
+                if (window.innerWidth <= 992 && !isVideoSliderPaused) {
+                    const cardWidth = videoSlider.querySelector('.video-card').offsetWidth;
+                    const gap = 20; // from CSS gap: 20px
+                    const scrollAmount = cardWidth + gap;
+                    
+                    // If scrolled to the end (allow small margin for rounding errors), scroll back to start
+                    if (videoSlider.scrollLeft + videoSlider.clientWidth >= videoSlider.scrollWidth - 10) {
+                        videoSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        videoSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }
+            }, 3000);
+        };
+        
+        // Pause scrolling on hover or touch
+        videoSlider.addEventListener('mouseenter', () => isVideoSliderPaused = true);
+        videoSlider.addEventListener('mouseleave', () => isVideoSliderPaused = false);
+        
+        videoSlider.addEventListener('touchstart', () => isVideoSliderPaused = true, {passive: true});
+        videoSlider.addEventListener('touchend', () => {
+            isVideoSliderPaused = false;
+            startVideoAutoScroll();
+        }, {passive: true});
+
+        // Add scroll listener to update active dot
+        videoSlider.addEventListener('scroll', () => {
+            const cardWidth = videoSlider.querySelector('.video-card').offsetWidth;
+            const gap = 20;
+            const scrollAmount = cardWidth + gap;
+            let activeIndex = Math.round(videoSlider.scrollLeft / scrollAmount);
+            if (activeIndex >= videoDots.length) activeIndex = videoDots.length - 1;
+            updateVideoDots(activeIndex);
+        });
+
+        // Make dots clickable
+        videoDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const cardWidth = videoSlider.querySelector('.video-card').offsetWidth;
+                const gap = 20;
+                const scrollAmount = cardWidth + gap;
+                videoSlider.scrollTo({ left: index * scrollAmount, behavior: 'smooth' });
+                startVideoAutoScroll();
+            });
+        });
+
+        // Pause scrolling when the video modal is open
+        const videoModal = document.getElementById('videoModal');
+        if (videoModal) {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        isVideoSliderPaused = videoModal.classList.contains('active');
+                    }
+                });
+            });
+            observer.observe(videoModal, { attributes: true });
+        }
+
+        startVideoAutoScroll();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                clearInterval(videoScrollTimer);
+                // Optionally reset scroll on desktop
+                videoSlider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                startVideoAutoScroll();
+            }
+        });
     }
 
     /* ==========================================================================

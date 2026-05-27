@@ -3783,6 +3783,14 @@ ul {
     /* Hide scrollbar for Chrome, Safari and Opera */
 }
 
+/* Hide dots on desktop */
+.video-slider-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
 .video-card {
     position: relative;
     border-radius: 20px;
@@ -3873,9 +3881,13 @@ ul {
         /* No change needed for tablet, default flex behavior handles it */
     }
 
+    .video-slider-dots {
+        display: flex;
+    }
+
     .video-card {
-        flex: 0 0 calc(50% - 10px);
-        /* Show 2 videos at a time on tablet */
+        flex: 0 0 100%;
+        /* Show 1 video at a time on tablet/mobile */
     }
 
     .bottom-marquee-text {
@@ -7407,7 +7419,7 @@ body.theme-grey .product-details__pillow-img {
     min-width: 0;
     border-radius: 10px;
     object-fit: cover;
-    aspect-ratio: 16/9;
+    aspect-ratio: 3/4;
 }
 
 @media (max-width: 768px) {
