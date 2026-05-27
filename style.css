@@ -498,6 +498,41 @@ ul {
 .content-section-1 {
     padding: 90px 0 70px;
     background-color: #F6F7FA;
+    position: relative;
+}
+
+.content-slider-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 10;
+    pointer-events: none;
+}
+.cs1-nav-btn {
+    pointer-events: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #1e2258;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+.cs1-nav-btn:hover {
+    transform: scale(1.1);
+    background-color: #1e2258;
+    color: #fff;
 }
 
 .content-section-1 .container {
@@ -511,6 +546,7 @@ ul {
     flex: 1;
     position: relative;
     max-width: 610px;
+    height: 500px;
     display: flex;
 }
 
@@ -566,7 +602,7 @@ ul {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .text-col h2 {
@@ -585,7 +621,7 @@ ul {
     border-radius: 18px;
     position: relative;
     margin-left: -15%;
-    margin-top: -10px;
+    margin-top: 90px;
     max-width: 450px;
     z-index: 3;
     align-self: flex-start;
@@ -2312,6 +2348,7 @@ ul {
 
     .hero-content {
         max-width: 100%;
+        top: -140px;
     }
 
     .hero h1 {
@@ -2379,6 +2416,15 @@ ul {
 
     .image-col {
         max-width: 100%;
+        height: auto;
+    }
+    .content-slider-nav {
+        padding: 0 10px;
+    }
+    .cs1-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
 
     .rounded-image {
@@ -4323,6 +4369,7 @@ ul {
     background-color: #f8f8f8;
     padding: 35px;
     border-radius: 12px;
+    margin-left: -10px;
 }
 
 .still-questions-card h3 {

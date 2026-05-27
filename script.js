@@ -141,23 +141,53 @@ document.addEventListener('DOMContentLoaded', () => {
        CONTENT SECTION 1 SLIDER
        ========================================================================== */
     const contentSlides = document.querySelectorAll('.content-section-1 .content-slide');
+    const cs1Prev = document.getElementById('cs1-prev');
+    const cs1Next = document.getElementById('cs1-next');
+    
     if (contentSlides.length > 0) {
         let currentSlideIndex = 0;
-        const slideDuration = 5000; // 5 seconds per slide
+        const slideDuration = 5000;
+        let slideInterval;
 
-        const changeSlide = () => {
-            // Remove active class from current slide
-            contentSlides[currentSlideIndex].classList.remove('active');
-
-            // Move to next slide
-            currentSlideIndex = (currentSlideIndex + 1) % contentSlides.length;
-
-            // Add active class to next slide
-            contentSlides[currentSlideIndex].classList.add('active');
+        const updateSlides = () => {
+            contentSlides.forEach((slide, index) => {
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
         };
 
-        // Start slide rotation
-        setInterval(changeSlide, slideDuration);
+        const changeSlide = (next = true) => {
+            if (next) {
+                currentSlideIndex = (currentSlideIndex + 1) % contentSlides.length;
+            } else {
+                currentSlideIndex = (currentSlideIndex - 1 + contentSlides.length) % contentSlides.length;
+            }
+            updateSlides();
+        };
+
+        const startInterval = () => {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => changeSlide(true), slideDuration);
+        };
+
+        if (cs1Next) {
+            cs1Next.addEventListener('click', () => {
+                changeSlide(true);
+                startInterval();
+            });
+        }
+
+        if (cs1Prev) {
+            cs1Prev.addEventListener('click', () => {
+                changeSlide(false);
+                startInterval();
+            });
+        }
+
+        startInterval();
     }
 
     /* ==========================================================================
