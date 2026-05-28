@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (colorCircles.length > 0) {
         colorCircles.forEach(circle => {
-            circle.addEventListener('click', function () {
+            circle.addEventListener('click', function (e) {
+                e.preventDefault();
                 // Remove active class from all
                 colorCircles.forEach(c => c.classList.remove('active'));
 
@@ -122,15 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         colorNameSpan.textContent = 'Blue';
                         document.body.classList.remove('theme-grey');
 
-                        if (mainImage) mainImage.src = 'assets/product1.png';
-                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow2.png';
+                        if (mainImage) mainImage.src = 'assets/product1.webp';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow2.webp';
 
                     } else if (this.classList.contains('color-grey')) {
                         colorNameSpan.textContent = 'Grey';
                         document.body.classList.add('theme-grey');
 
-                        if (mainImage) mainImage.src = 'assets/product1-grey.png';
-                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow1-grey.png';
+                        if (mainImage) mainImage.src = 'assets/product1-grey.webp';
+                        if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow1-grey.webp';
                     }
                 }
             });
@@ -187,6 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Add Swipe Support
+        const cs1Container = contentSlides[0].parentElement;
+        if (cs1Container) {
+            let touchstartX = 0;
+            let touchendX = 0;
+            cs1Container.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, {passive: true});
+            cs1Container.addEventListener('touchend', e => {
+                touchendX = e.changedTouches[0].screenX;
+                if (touchstartX - touchendX > 50) { changeSlide(true); startInterval(); }
+                if (touchendX - touchstartX > 50) { changeSlide(false); startInterval(); }
+            }, {passive: true});
+        }
+
         startInterval();
     }
 
@@ -204,18 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('click', () => {
                 const videoSrc = card.getAttribute('data-video');
                 if (videoSrc) {
-                    modalVideo.src = videoSrc;
+                    modalVideo.src = `https://www.youtube.com/embed/${videoSrc}?autoplay=1&rel=0`;
                     videoModal.classList.add('active');
-                    modalVideo.play().catch(err => {
-                        console.log("Auto-play prevented or failed: ", err);
-                    });
                 }
             });
         });
 
         const closeModal = () => {
             videoModal.classList.remove('active');
-            modalVideo.pause();
             modalVideo.src = '';
         };
 
@@ -234,68 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sleep Challenge Carousel Logic
-    const sleepPages = document.querySelectorAll('.sleep-challenge .sleep-page');
-    const sleepDots = document.querySelectorAll('.sleep-challenge .carousel-dots .dot');
-    const sleepCarousel = document.querySelector('.sleep-challenge-carousel');
 
-    if (sleepPages.length > 0 && sleepDots.length > 0) {
-        let sleepCurrentIndex = 0;
-        let sleepTimer;
-        let isSleepHovered = false;
-
-        const goToSleepPage = (index) => {
-            sleepCurrentIndex = index;
-            // Update pages visibility
-            sleepPages.forEach((page, i) => {
-                if (i === index) {
-                    page.style.opacity = '1';
-                    page.style.pointerEvents = 'auto';
-                    page.classList.add('active-page');
-                } else {
-                    page.style.opacity = '0';
-                    page.style.pointerEvents = 'none';
-                    page.classList.remove('active-page');
-                }
-            });
-
-            // Update active dot
-            sleepDots.forEach(d => d.classList.remove('active'));
-            sleepDots[index].classList.add('active');
-        };
-
-        const startSleepTimer = () => {
-            clearTimeout(sleepTimer);
-            const delay = isSleepHovered ? 10000 : 5000;
-            sleepTimer = setTimeout(() => {
-                let nextIndex = (sleepCurrentIndex + 1) % sleepDots.length;
-                goToSleepPage(nextIndex);
-                startSleepTimer();
-            }, delay);
-        };
-
-        sleepDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSleepPage(index);
-                startSleepTimer();
-            });
-        });
-
-        if (sleepCarousel) {
-            sleepCarousel.addEventListener('mouseenter', () => {
-                isSleepHovered = true;
-                startSleepTimer();
-            });
-
-            sleepCarousel.addEventListener('mouseleave', () => {
-                isSleepHovered = false;
-                startSleepTimer();
-            });
-        }
-
-        // Initialize
-        startSleepTimer();
-    }
 
     /* ========================= FAQ ACCORDION========================= */
 
@@ -757,6 +706,14 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const carouselConfigs = [
         {
+            containerSelector: '.sleep-challenge .challenge-cards',
+            itemSelector: '.challenge-card',
+            dotsSelector: '.sleep-challenge .carousel-dots',
+            desktopItems: 3,
+            mobileItems: 1,
+            activeDisplay: 'flex'
+        },
+        {
             containerSelector: '.why-choose-us .grid-container',
             itemSelector: '.grid-card',
             dotsSelector: '.why-choose-us .carousel-dots',
@@ -834,14 +791,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const totalPages = Math.ceil(items.length / itemsPerPage);
 
                 dotsContainer.innerHTML = '';
-                for (let i = 0; i < totalPages; i++) {
-                    const dot = document.createElement('span');
-                    dot.className = i === 0 ? 'dot active' : 'dot';
-                    dot.addEventListener('click', () => {
-                        goToPage(i);
-                        startAutoScroll();
-                    });
-                    dotsContainer.appendChild(dot);
+                
+                if (totalPages <= 1) {
+                    dotsContainer.style.display = 'none';
+                } else {
+                    dotsContainer.style.display = '';
+                    for (let i = 0; i < totalPages; i++) {
+                        const dot = document.createElement('span');
+                        dot.className = i === 0 ? 'dot active' : 'dot';
+                        dot.addEventListener('click', () => {
+                            goToPage(i);
+                            startAutoScroll();
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
                 }
 
                 goToPage(0);
@@ -904,6 +867,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Add Swipe Support
+            let touchstartX = 0;
+            let touchendX = 0;
+            container.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, {passive: true});
+            container.addEventListener('touchend', e => {
+                touchendX = e.changedTouches[0].screenX;
+                const isMobile = window.innerWidth <= 768;
+                const itemsPerPage = isMobile ? config.mobileItems : config.desktopItems;
+                const totalPages = Math.ceil(items.length / itemsPerPage);
+                
+                if (totalPages > 1) {
+                    if (touchstartX - touchendX > 50) { 
+                        currentPageIndex = (currentPageIndex + 1) % totalPages;
+                        goToPage(currentPageIndex);
+                        startAutoScroll();
+                    }
+                    if (touchendX - touchstartX > 50) { 
+                        currentPageIndex = (currentPageIndex - 1 + totalPages) % totalPages;
+                        goToPage(currentPageIndex);
+                        startAutoScroll();
+                    }
+                }
+            }, {passive: true});
+
             updateCarousel();
             let resizeTimer;
             window.addEventListener('resize', () => {
@@ -954,6 +941,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Pause on hover
         pillowCarousel.addEventListener('mouseenter', () => isPillowHovered = true);
         pillowCarousel.addEventListener('mouseleave', () => isPillowHovered = false);
+
+        // Add Swipe Support
+        let touchstartX = 0;
+        let touchendX = 0;
+        pillowCarousel.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, {passive: true});
+        pillowCarousel.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            if (touchstartX - touchendX > 50) { 
+                goToPillowSlide((pillowCurrentIndex + 1) % slides.length);
+                startPillowAutoScroll();
+            }
+            if (touchendX - touchstartX > 50) { 
+                goToPillowSlide((pillowCurrentIndex - 1 + slides.length) % slides.length);
+                startPillowAutoScroll();
+            }
+        }, {passive: true});
 
         // Initialize
         startPillowAutoScroll();
