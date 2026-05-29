@@ -5753,15 +5753,11 @@ FAQ CATEGORY SECTION
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.feature-item:hover {
-    transform: translateY(-3px);
-}
-
 .feature-icon-circle {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
 }
 
-.feature-item:hover .feature-icon-circle {
+.feature-icon-circle:hover {
     transform: scale(1.1) rotate(5deg);
 }
 
