@@ -760,9 +760,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let items = Array.from(container.querySelectorAll(config.itemSelector));
             if (items.length === 0) return;
 
-            // No need to duplicate items since we are toggling display property
-            let currentItems = [...items];
-
             let currentPageIndex = 0;
             let autoScrollTimer;
             let isHovered = false;
@@ -1139,9 +1136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
-
-
     /* ==========================================================================
        DYNAMIC COPYRIGHT YEAR
        ========================================================================== */
@@ -1149,3 +1143,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+});

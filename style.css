@@ -130,25 +130,8 @@ h6 {
     margin-bottom: 3rem;
 }
 
-.mt-4 {
-    margin-top: 2rem;
-}
-
-.mt-5 {
-    margin-top: 3rem;
-}
-
-.pt-3 {
-    padding-top: 1rem;
-}
-
 .relative-container {
     position: relative;
-}
-
-.light-text {
-    font-weight: 400;
-    color: #888;
 }
 
 .blue-text {
@@ -198,24 +181,6 @@ ul {
 
 .btn-primary:hover {
     background-color: var(--light-blue);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--primary-blue);
-    border-color: #ddd;
-    border-radius: 5px;
-}
-
-.btn-outline-dark {
-    background-color: transparent;
-    color: var(--text-dark);
-    border-color: var(--text-dark);
-}
-
-.btn-dark {
-    background-color: var(--primary-blue);
-    color: var(--white);
 }
 
 /* Top Banner */
@@ -477,6 +442,7 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: invert(12%) sepia(34%) saturate(2250%) hue-rotate(218deg) brightness(91%) contrast(93%);
 }
 
 .feature-item h3 {
@@ -580,23 +546,6 @@ ul {
     }
 }
 
-.sleep-capsule {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 400;
-    font-family: var(--font-body);
-    z-index: 2;
-}
-
 .text-col {
     flex: 1;
     padding-top: 20px;
@@ -638,44 +587,6 @@ ul {
 }
 
 /* Content Section 2 */
-.content-section-2 {
-    padding: 78px 0 74px;
-    background-color: #f2f2f5;
-}
-
-.content2-header {
-    display: grid;
-    grid-template-columns: 1.75fr 1fr;
-    align-items: start;
-    gap: 52px;
-    margin-bottom: 38px;
-}
-
-.content2-header h2 {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: 45px;
-    line-height: 1.18;
-    color: #1f2558;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-    max-width: 880px;
-}
-
-.content2-header p {
-    margin: 10px 0 0;
-    max-width: 370px;
-    color: #2f396d;
-    font-size: 16px;
-    line-height: 1.52;
-}
-
-.content2-image {
-    width: 100%;
-    border-radius: 18px;
-    display: block;
-    object-fit: cover;
-}
 
 /* Why Choose Us Grid */
 .why-choose-us {
@@ -723,14 +634,6 @@ ul {
     margin-bottom: 15px;
 }
 
-.read-more {
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    margin-top: auto;
-}
-
 .text-card p {
     font-size: 13px;
     color: #666;
@@ -764,10 +667,6 @@ ul {
     color: #1f2558;
 }
 
-.dark-bg:hover .read-more {
-    color: #1f2558;
-}
-
 .light-bg:hover {
     background-color: #ffffff;
 }
@@ -777,10 +676,6 @@ ul {
 }
 
 .light-bg:hover h3 {
-    color: #1f2558;
-}
-
-.light-bg:hover .read-more {
     color: #1f2558;
 }
 
@@ -794,18 +689,6 @@ ul {
 
 .white-bg:hover h3 {
     color: #ffffff;
-}
-
-.white-bg:hover .read-more {
-    color: #ffffff;
-}
-
-.read-more {
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: underline;
 }
 
 /* Dark Theme Section */
@@ -1012,17 +895,6 @@ ul {
 
 .product-showcase .invest-text h2.text-white {
     color: #ffffff;
-}
-
-.product-showcase .invest-desc {
-    position: absolute;
-    bottom: 2%;
-    left: 50%;
-    max-width: 380px;
-    text-align: left;
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .curve-container {
@@ -1345,16 +1217,6 @@ ul {
     line-height: 1.6;
 }
 
-.stats-row {
-    position: absolute;
-    bottom: 5%;
-    left: 0%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 80px;
-    z-index: 10;
-}
-
 .stat-box {
     text-align: left;
     color: var(--white);
@@ -1400,7 +1262,7 @@ ul {
 .bg-watermark {
     position: absolute;
     bottom: -10%;
-    right: -10%;
+    right: 50%;
     font-size: 150px;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -1522,14 +1384,6 @@ ul {
     line-height: 1.6;
 }
 
-.explore-link {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 700;
-    color: #6a6f85;
-    text-decoration: none;
-}
-
 /* Dots */
 .carousel-dots {
     display: flex;
@@ -1572,11 +1426,6 @@ ul {
 
 .testi-header h2 {
     font-size: 36px;
-}
-
-.nav-arrows {
-    display: flex;
-    gap: 15px;
 }
 
 .arrow-btn {
@@ -1698,43 +1547,6 @@ ul {
     line-height: 1.6;
     max-width: 397px;
     font-family: var(--font-body);
-}
-
-.question-box {
-    background-color: #f7f8fa;
-    padding: 40px;
-    border-radius: 20px;
-    max-height: 200px;
-}
-
-.question-box h3 {
-    font-size: 10px;
-    margin-bottom: 5px;
-}
-
-.question-box p {
-    font-size: 10px;
-    color: var(--text-light);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.question-box .btn-outline-dark {
-    display: inline-block;
-    padding: 10px 23px;
-    border: 1px solid #1a1a3a;
-    border-radius: 999px;
-    color: #1a1a3a;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-    background: #fff;
-    transition: all 0.3s ease;
-}
-
-.question-box .btn-outline-dark:hover {
-    background: #1a1a3a;
-    color: #fff;
 }
 
 .faq-right {
@@ -2228,27 +2040,6 @@ ul {
         font-size: 44px;
     }
 
-    .product-showcase .invest-desc {
-        right: 8%;
-    }
-
-    .content2-header {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        margin-bottom: 24px;
-    }
-
-    .content2-header h2 {
-        font-size: 40px;
-        max-width: none;
-    }
-
-    .content2-header p {
-        font-size: 17px;
-        max-width: none;
-        margin-top: 0;
-    }
-
     .grid-container,
     .testi-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -2275,10 +2066,6 @@ ul {
 
     .blue-box p {
         font-size: 18px;
-    }
-
-    .sleep-tag {
-        font-size: 14px;
     }
 
     .challenge-cards {
@@ -2460,34 +2247,6 @@ ul {
     }
 
     /* ===== CONTENT SECTION 2 ===== */
-    .content-section-2 {
-        padding: 32px 0 24px;
-    }
-
-    .content2-header {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-bottom: 16px;
-        padding: 0 16px;
-    }
-
-    .content2-header h2 {
-        font-size: 20px;
-        max-width: 100%;
-        line-height: 1.3;
-    }
-
-    .content2-header p {
-        font-size: 12px;
-        margin-top: 0;
-        line-height: 1.5;
-        max-width: 100%;
-    }
-
-    .content2-image {
-        width: 100%;
-        border-radius: 12px;
-    }
 
     /* ===== WHY CHOOSE US ===== */
     .why-choose-us {
@@ -2560,13 +2319,6 @@ ul {
         color: #667;
         margin-bottom: 30px;
         line-height: 1.6;
-    }
-
-    .why-choose-us .read-more {
-        font-size: 12px;
-        color: #1a1a3a;
-        text-decoration: underline;
-        font-weight: 600;
     }
 
     .why-choose-us .carousel-dots {
@@ -2961,18 +2713,6 @@ ul {
         padding: 0 5px;
     }
 
-    .stats-row {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        position: static;
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        padding-top: 40px;
-        justify-content: space-between;
-        width: 100%;
-    }
-
     .stat-box {
         text-align: left;
         flex: 1;
@@ -3005,8 +2745,8 @@ ul {
         grid-row: 3;
         display: block;
         position: absolute;
-        bottom: -20px;
-        right: -10px;
+        bottom: -50px;
+        right: 25%;
         font-size: 65px;
         color: rgba(255, 255, 255, 0.03);
         font-weight: 900;
@@ -3101,12 +2841,6 @@ ul {
         color: #667;
     }
 
-    .explore-link {
-        font-size: 12px;
-        font-weight: 600;
-        color: #556;
-    }
-
     .sleep-challenge .carousel-dots {
         margin-top: 24px;
         display: flex;
@@ -3146,11 +2880,6 @@ ul {
     .testi-header h2 {
         font-size: 26px;
         color: #1a1a3a;
-    }
-
-    .testi-header .nav-arrows {
-        display: none;
-        /* Hide arrows on mobile */
     }
 
     .testi-grid {
@@ -3298,40 +3027,6 @@ ul {
     .faq-right {
         order: 4;
         width: 100%;
-    }
-
-    .question-box {
-        order: 5;
-        background: #fff;
-        padding: 24px;
-        border-radius: 16px;
-        margin-top: 30px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-
-    .question-box h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-        color: #1a1a3a;
-    }
-
-    .question-box p {
-        font-size: 13px;
-        line-height: 1.6;
-        color: #667;
-        margin-bottom: 20px;
-    }
-
-    .question-box .btn-outline-dark {
-        display: inline-flex;
-        align-items: center;
-        padding: 10px 24px;
-        border-radius: 999px;
-        border: 1px solid #E5E7EB;
-        color: #1a1a3a;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
     }
 
     .accordion-item {
@@ -3715,7 +3410,7 @@ ul {
 
 .stat-divider {
     width: 2px;
-    height: 120px;
+    height: 200px;
     background-color: var(--primary-blue);
     opacity: 0.2;
 }
@@ -3915,10 +3610,6 @@ ul {
     .stat-divider {
         width: 100%;
         height: 2px;
-    }
-
-    .video-cards-grid {
-        /* No change needed for tablet, default flex behavior handles it */
     }
 
     .video-slider-dots {
@@ -4172,6 +3863,10 @@ ul {
     flex-direction: column;
 }
 
+.contact-form .form-group:last-of-type {
+    margin-bottom: 0;
+}
+
 .contact-form label {
     font-size: 14px;
     color: rgba(29, 28, 80, 0.7);
@@ -4185,7 +3880,7 @@ ul {
     border: none;
     background: transparent;
     border-bottom: 1px solid rgba(29, 28, 80, 0.2);
-    padding: 10px 0;
+    padding: 10px 0 4px 0;
     font-size: 16px;
     color: var(--primary-blue);
     font-family: var(--font-body);
@@ -4200,7 +3895,7 @@ ul {
 
 .contact-form textarea {
     resize: none;
-    min-height: 120px;
+    min-height: 40px;
 }
 
 .contact-form .submit-btn {
@@ -4251,10 +3946,6 @@ ul {
         padding-bottom: 60px;
     }
 
-    .contact-relative-container {
-        border: none;
-    }
-
     .contact-pill {
         border-top: none;
         z-index: 100;
@@ -4301,23 +3992,6 @@ ul {
     background: #ffffff;
 }
 
-.c-faq-section .faq-title {
-    text-align: center;
-    font-size: 60px;
-    color: #1d1c50;
-    margin-bottom: 50px;
-    font-weight: 700;
-    font-family: var(--font-heading);
-}
-
-.c-faq-grid {
-    max-width: 850px;
-    margin: auto;
-    background: #f3f3f7;
-    border-radius: 20px;
-    padding: 20px 35px;
-}
-
 /* FAQ Layout */
 .c-faq-layout {
     display: grid;
@@ -4337,12 +4011,6 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.faq-subtitle {
-    font-size: 16px;
-    color: #1d1c50;
-    margin-bottom: 10px;
 }
 
 .faq-main-heading {
@@ -4433,10 +4101,6 @@ ul {
     border-bottom: none;
 }
 
-.c-faq-right .accordion-item.active {
-    /* Retain the bottom border and transparent background from .accordion-item */
-}
-
 .c-faq-right .accordion-header {
     display: flex;
     justify-content: space-between;
@@ -4516,12 +4180,6 @@ ul {
         padding: 70px 20px 40px;
     }
 
-    .faq-main-title {
-        font-size: 34px;
-        margin-bottom: 45px;
-        line-height: 1.2;
-    }
-
     .faq-category-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 35px 20px;
@@ -4547,17 +4205,6 @@ ul {
     /* FAQ Accordion Section */
     .faq-section {
         padding: 50px 20px 90px;
-    }
-
-    .faq-title {
-        font-size: 40px;
-        margin-bottom: 35px;
-    }
-
-    .faq-wrapper {
-        width: 100%;
-        border-radius: 18px;
-        padding: 8px 18px;
     }
 
     .faq-question {
@@ -4605,18 +4252,6 @@ ul {
 
     .faq-category-grid {
         grid-template-columns: 1fr;
-    }
-
-    .faq-main-title {
-        font-size: 30px;
-    }
-
-    .faq-title {
-        font-size: 34px;
-    }
-
-    .faq-wrapper {
-        padding: 5px 16px;
     }
 
     .faq-question {
@@ -5019,9 +4654,10 @@ ul {
     line-height: 1.5;
 }
 
-.product-hero__features li i {
-    color: var(--dreamy-blue);
-    opacity: 1;
+.product-hero__features li img {
+    width: 28px;
+    flex-shrink: 0;
+    object-fit: contain;
 }
 
 /* Media query for responsive hero */
@@ -5394,6 +5030,16 @@ ul {
     border-radius: 0 0 0 180px;
 }
 
+.photo-gallery__card-heading {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+
 .photo-gallery__card-label {
     font-family: var(--font-body);
     font-size: 16px;
@@ -5404,10 +5050,12 @@ ul {
     z-index: 2;
 }
 
+.photo-gallery__card--light .photo-gallery__card-heading,
 .photo-gallery__card--light .photo-gallery__card-label {
     color: #1d1c50;
 }
 
+.photo-gallery__card--dark .photo-gallery__card-heading,
 .photo-gallery__card--dark .photo-gallery__card-label {
     color: #ffffff;
 }
@@ -5469,7 +5117,8 @@ ul {
 .wash-instructions__grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 60px 22px;
+    justify-content: center;
+    gap: 24px 22px;
 }
 
 .wash-instructions__item {
@@ -5477,14 +5126,10 @@ ul {
     align-items: center;
     gap: 15px;
     width: calc(33.33% - 15px);
-}
-
-.wash-instructions__icon-box {
-    width: 140px;
-    height: 100px;
-    background-color: #afafaf;
-    border-radius: 12px;
-    flex-shrink: 0;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .wash-instructions__text {
@@ -5493,133 +5138,23 @@ ul {
 
 .wash-instructions__text h4 {
     font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
     color: #1d1c50;
     margin-bottom: 8px;
 }
 
 .wash-instructions__text p {
     font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.43;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
     color: #1d1c50;
-    max-width: 231px;
 }
 
 
 /* --- Product FAQ Overrides --- */
-.product-faq {
-    background: #ffffff;
-    padding: 80px 0 60px;
-}
-
-.product-faq .faq-left h2 {
-    font-family: var(--font-heading);
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: #1d1c50;
-}
-
-.product-faq .faq-left h2 .light-text {
-    color: rgba(29, 28, 80, 0.5);
-    font-weight: 400;
-}
-
-.product-faq .faq-left .subtitle {
-    font-family: var(--font-heading);
-    font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-    color: #1d1c50;
-    margin-bottom: 12px;
-}
-
-.product-faq .faq-left>p:not(.subtitle) {
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #605a83;
-    max-width: 460px;
-}
-
-.product-faq .question-box {
-    background-color: #f6f7fa;
-    border-radius: 9px;
-    padding: 30px;
-    max-height: 300px;
-    margin-top: auto;
-}
-
-.product-faq .question-box h3 {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 400;
-    color: #1d1c50;
-    margin-bottom: 15px;
-}
-
-.product-faq .question-box p {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.67;
-    color: #1d1c50;
-    margin-bottom: 30px;
-    max-width: 557px;
-}
-
-.product-faq .question-box .btn-outline-dark {
-    border-radius: 10px;
-    padding: 10px 30px;
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 500;
-    border-color: #1d1c50;
-    color: #1d1c50;
-}
-
-.product-faq .accordion-item {
-    background: #f6f7fa;
-    border: none;
-    border-radius: 9px;
-    margin-bottom: 20px;
-}
-
-.product-faq .accordion-item.active {
-    border: 1px solid #1d1c50;
-}
-
-.product-faq .accordion-header h3 {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 400;
-    color: #1d1c50;
-}
-
-.product-faq .accordion-body {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.67;
-    color: #1d1c50;
-}
-
-.product-faq .accordion-header .icon {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 300;
-}
 
 
 /* ============================================
@@ -5669,24 +5204,6 @@ ul {
         padding: 40px 20px;
         min-height: auto;
         text-align: center;
-    }
-
-    .product-hero__content {
-        max-width: 100%;
-        margin-bottom: 40px;
-    }
-
-    .product-hero__content h1 {
-        font-size: 26px;
-    }
-
-    .product-hero__content p {
-        font-size: 15px;
-    }
-
-    .product-hero__image {
-        width: 80%;
-        max-width: 350px;
     }
 
     .product-hero__main-image {
@@ -5808,13 +5325,6 @@ ul {
         transform: none !important;
     }
 
-    .body-design__purple-circle {
-        width: 200px;
-        height: 200px;
-        top: 60px;
-        transform: none;
-    }
-
     /* Photo Gallery */
     .photo-gallery {
         padding: 40px 0;
@@ -5854,18 +5364,6 @@ ul {
     }
 
     /* FAQ */
-    .product-faq {
-        padding: 40px 0;
-    }
-
-    .product-faq .faq-layout {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .product-faq .faq-left h2 {
-        font-size: 32px;
-    }
 
     .product-cta-section .desc {
         font-size: 20px;
@@ -5874,9 +5372,6 @@ ul {
 }
 
 @media (max-width: 480px) {
-    .product-hero__content h1 {
-        font-size: 22px;
-    }
 
     .product-details__feature-text h3,
     .body-design__feature-content h3 {
@@ -5890,11 +5385,6 @@ ul {
 
     .photo-gallery__card {
         height: 350px;
-    }
-
-    .wash-instructions__icon-box {
-        width: 100px;
-        height: 80px;
     }
 }
 
@@ -5979,15 +5469,6 @@ FAQ CATEGORY SECTION
     background: #ffff;
 }
 
-.faq-main-title {
-    text-align: center;
-    font-size: 52px;
-    color: #1d1c50;
-    margin-bottom: 80px;
-    font-weight: 700;
-    font-family: var(--font-heading);
-}
-
 .faq-category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6000,6 +5481,11 @@ FAQ CATEGORY SECTION
     text-align: center;
     cursor: pointer;
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .faq-icon:hover {
@@ -6020,11 +5506,20 @@ FAQ CATEGORY SECTION
     transition: 0.3s ease;
 }
 
+.faq-icon img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    transition: 0.3s ease;
+    filter: invert(12%) sepia(34%) saturate(2250%) hue-rotate(218deg) brightness(91%) contrast(93%);
+}
+
 .faq-category-card h3 {
     font-size: 20px;
     color: #1d1c50;
     font-weight: 600;
     font-family: var(--font-heading);
+    margin: 0;
 }
 
 .faq-category-card.active .faq-icon {
@@ -6032,10 +5527,18 @@ FAQ CATEGORY SECTION
     color: white;
 }
 
+.faq-category-card.active .faq-icon img {
+    filter: brightness(0) invert(1);
+}
+
 .faq-category-card .faq-icon:hover {
     background: #1d1c50;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-5px);
+}
+
+.faq-category-card .faq-icon:hover img {
+    filter: brightness(0) invert(1);
 }
 
 
@@ -6046,23 +5549,6 @@ FAQ CATEGORY SECTION
 .faq-section {
     padding: 80px 0 120px;
     background: #f8f8f8;
-}
-
-.faq-title {
-    text-align: center;
-    font-size: 60px;
-    color: #1d1c50;
-    margin-bottom: 50px;
-    font-weight: 700;
-    font-family: var(--font-heading);
-}
-
-.faq-wrapper {
-    max-width: 850px;
-    margin: auto;
-    background: #f3f3f7;
-    border-radius: 20px;
-    padding: 20px 35px;
 }
 
 .faq-item {
@@ -6135,12 +5621,6 @@ FAQ CATEGORY SECTION
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .faq-main-title,
-    .faq-title,
-    .c-faq-section .faq-title {
-        font-size: 42px;
-    }
-
     .faq-question,
     .c-faq-right .accordion-header h3 {
         font-size: 18px;
@@ -6152,15 +5632,6 @@ FAQ CATEGORY SECTION
     .faq-category-grid {
         grid-template-columns: 1fr;
         gap: 40px;
-    }
-
-    .faq-main-title,
-    .faq-title {
-        font-size: 34px;
-    }
-
-    .faq-wrapper {
-        padding: 10px 20px;
     }
 
     .faq-question {
@@ -6182,7 +5653,6 @@ FAQ CATEGORY SECTION
 .btn-buy-now,
 .arrow-btn,
 .btn-subscribe,
-.read-more,
 .social-icons a,
 .social-icons-wrapper a,
 .play-btn,
@@ -6446,18 +5916,6 @@ FAQ CATEGORY SECTION
     transform: translateY(30px);
 }
 
-.reveal-down {
-    transform: translateY(-30px);
-}
-
-.reveal-left {
-    transform: translateX(-35px);
-}
-
-.reveal-right {
-    transform: translateX(35px);
-}
-
 .reveal.in-view {
     opacity: 1;
     transform: translate(0, 0);
@@ -6565,198 +6023,6 @@ body.theme-grey .product-details__pillow-img {
 
 .product-showcase .dot {
     animation: pulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-
-
-/* Page Load Keyframes */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Initial Loaded Animation States */
-.hero-content,
-.about-hero h1,
-.about-hero p,
-.about-hero-images,
-.product-hero__gallery,
-.product-hero__info,
-.contact-image-wrapper,
-.contact-info,
-.contact-form-container,
-.faq-image-wrapper {
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
-}
-
-.top-banner {
-    opacity: 0;
-    animation: fadeInDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.navbar {
-    opacity: 0;
-    animation: fadeInDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
-}
-
-/* Scroll Reveal base utility classes */
-.reveal {
-    opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform, opacity;
-}
-
-.reveal-up {
-    transform: translateY(30px);
-}
-
-.reveal-down {
-    transform: translateY(-30px);
-}
-
-.reveal-left {
-    transform: translateX(-35px);
-}
-
-.reveal-right {
-    transform: translateX(35px);
-}
-
-.reveal.in-view {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
-/* Staggered reveals for grid containers */
-.reveal-stagger {
-    will-change: transform, opacity;
-}
-
-.reveal-stagger>* {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.reveal-stagger.in-view>* {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-stagger.in-view>*:nth-child(1) {
-    transition-delay: 0.05s;
-}
-
-.reveal-stagger.in-view>*:nth-child(2) {
-    transition-delay: 0.15s;
-}
-
-.reveal-stagger.in-view>*:nth-child(3) {
-    transition-delay: 0.25s;
-}
-
-.reveal-stagger.in-view>*:nth-child(4) {
-    transition-delay: 0.35s;
-}
-
-.reveal-stagger.in-view>*:nth-child(5) {
-    transition-delay: 0.45s;
-}
-
-.reveal-stagger.in-view>*:nth-child(6) {
-    transition-delay: 0.55s;
-}
-
-.reveal-stagger.in-view>*:nth-child(7) {
-    transition-delay: 0.65s;
-}
-
-.reveal-stagger.in-view>*:nth-child(8) {
-    transition-delay: 0.75s;
-}
-
-/* ==========================================================================
-   THEME GREY IMAGE OVERRIDES
-   ========================================================================== */
-body.theme-grey .product-body-design {
-    margin: 15px auto;
-    width: 850px;
-    max-width: 95%;
-}
-
-body.theme-grey .product-details__pillow-img {
-    max-width: 400px;
-}
-
-/* ==========================================================================
-   CTA IMAGE FLOATING ANIMATION
-   ========================================================================== */
-@keyframes slowFloat {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.product-body-design {
-    animation: slowFloat 4s ease-in-out infinite;
-}
-
-/* ==========================================================================
-   MAIN PILLOW FLOATING ANIMATION (PRESERVES CENTERING)
-   ========================================================================== */
-@keyframes slowFloatCentered {
-    0% {
-        transform: translate(-50%, -50%);
-    }
-
-    50% {
-        transform: translate(-50%, calc(-50% - 15px));
-    }
-
-    100% {
-        transform: translate(-50%, -50%);
-    }
-}
 
 .product-showcase .main-pillow {
     animation: slowFloatCentered 4s ease-in-out infinite;
@@ -6776,17 +6042,6 @@ body.theme-grey .product-details__pillow-img {
 }
 
 /* Custom Animation Delays */
-.anim-delay-1 {
-    transition-delay: 0.2s !important;
-}
-
-.anim-delay-2 {
-    transition-delay: 0.6s !important;
-}
-
-.anim-delay-3 {
-    transition-delay: 1.0s !important;
-}
 
 /* Fix for center-pillow transform overwrite during reveal */
 .center-pillow.reveal {
@@ -7048,7 +6303,7 @@ body.theme-grey .product-details__pillow-img {
     border: none;
     border-bottom: 1px solid #747494;
     background: transparent;
-    padding: 10px 0;
+    padding: 10px 0 4px 0;
     font-size: 16px;
     color: #1d1c50;
     outline: none;
@@ -7327,12 +6582,6 @@ body.theme-grey .product-details__pillow-img {
         height: auto !important;
     }
 
-    .stats-row {
-        flex-direction: row;
-        gap: 20px;
-        bottom: 5%;
-    }
-
     /* 4. Sleep Challenges Slider */
     .challenge-cards {
         flex-direction: row !important;
@@ -7513,4 +6762,5 @@ body.theme-grey .product-details__pillow-img {
     .sg-section:last-child {
         margin-bottom: 0;
     }
+}
 }
