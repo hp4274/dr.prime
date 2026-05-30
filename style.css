@@ -474,8 +474,8 @@ ul {
 }
 
 .feature-icon-circle img {
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -1400,7 +1400,7 @@ ul {
 .bg-watermark {
     position: absolute;
     bottom: -10%;
-    right: -10%;
+    left: -10%;
     font-size: 150px;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -3006,7 +3006,7 @@ ul {
         display: block;
         position: absolute;
         bottom: -20px;
-        right: -10px;
+        left: -10px;
         font-size: 65px;
         color: rgba(255, 255, 255, 0.03);
         font-weight: 900;
@@ -4604,7 +4604,7 @@ ul {
 @media (max-width: 480px) {
 
     .faq-category-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .faq-main-title {
@@ -5024,6 +5024,12 @@ ul {
     opacity: 1;
 }
 
+.product-hero__features li .feature-svg-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
 /* Media query for responsive hero */
 @media (max-width: 991px) {
     .product-hero__wrapper {
@@ -5146,6 +5152,7 @@ ul {
     border-radius: 0 0 400px 400px;
     width: 452px;
     height: 496px;
+    margin-top: -100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -5643,6 +5650,7 @@ ul {
     .product-details__pillow-container {
         width: 320px;
         height: 400px;
+        margin-top: -60px;
     }
 
     .body-design-section {
@@ -5669,6 +5677,19 @@ ul {
         padding: 40px 20px;
         min-height: auto;
         text-align: center;
+    }
+
+    .product-hero__features li {
+        font-size: 14px;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .product-hero__features li .feature-svg-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        margin-top: 2px;
     }
 
     .product-hero__content {
@@ -5736,6 +5757,7 @@ ul {
         max-width: 300px;
         height: 360px;
         position: relative;
+        margin-top: 0;
     }
 
     .product-details__dots {
@@ -6150,7 +6172,7 @@ FAQ CATEGORY SECTION
 @media (max-width: 576px) {
 
     .faq-category-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 40px;
     }
 
@@ -7156,6 +7178,14 @@ body.theme-grey .product-details__pillow-img {
         gap: 30px;
     }
 
+    .benefits-row {
+        gap: 30px;
+    }
+    
+    .benefit-step {
+        max-width: 100%;
+    }
+
     .warranty-text-content {
         padding: 50px 20px;
         text-align: center;
@@ -7266,6 +7296,11 @@ body.theme-grey .product-details__pillow-img {
 }
 
 @media (max-width: 768px) {
+    .feature-icon-circle img {
+        width: 48px;
+        height: 48px;
+    }
+
     .mobile-only {
         display: flex !important;
         justify-content: center;
@@ -7282,7 +7317,7 @@ body.theme-grey .product-details__pillow-img {
 
     .hero-content {
         top: 0 !important;
-        margin-top: 20px;
+        margin-top: -25%;
     }
 
     /* 1. Why Choose Us Grid: 2 card pair slider handled by JS, force 2 columns */
@@ -7294,7 +7329,7 @@ body.theme-grey .product-details__pillow-img {
     /* Adjust pointers to not cut off on mobile and keep them on the curve */
     .product-showcase .p-1 {
         left: 25% !important;
-        top: 85px !important;
+        top: 88px !important;
     }
 
     .product-showcase .p-2 {
