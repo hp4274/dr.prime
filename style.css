@@ -7342,7 +7342,7 @@ body.theme-grey .product-details__pillow-img {
         background-color: var(--primary-blue);
     }
     .showcase-scroll-spacer .product-showcase {
-        top: 0 !important;
+        top: 80px !important;
     }
 
     .product-showcase .main-pillow {
