@@ -48,12 +48,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const accordions = document.querySelectorAll('.accordion-item');
 
+    // Helper: set icon element to either Flaticon class or fallback inline SVG
+    function setIconState(iconEl, isUp) {
+        if (!iconEl) return;
+        const upClass = 'fi fi-rs-angle-small-up';
+        const downClass = 'fi fi-rs-angle-small-down';
+
+        // Try using Flaticon classes first
+        iconEl.className = isUp ? upClass : downClass;
+        iconEl.innerHTML = '';
+
+        // After a short delay check if the font applied; if not, inject SVG fallback
+        setTimeout(() => {
+            const ff = window.getComputedStyle(iconEl).fontFamily || '';
+            const looksLikeIconFont = /uicons|flaticon|fi-|uicons-regular|uicons-solid/i.test(ff);
+            if (!looksLikeIconFont) {
+                // Fallback SVGs (small chevrons)
+                if (isUp) {
+                    iconEl.className = '';
+                    iconEl.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                } else {
+                    iconEl.className = '';
+                    iconEl.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 9l-6 6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                }
+            }
+        }, 80);
+    }
+
     // Initialize accordion states smoothly
     accordions.forEach(acc => {
         const body = acc.querySelector('.accordion-body');
         if (body) {
             body.style.display = ''; // Clear inline display styles from HTML
             body.style.maxHeight = ''; // Remove any lingering JS inline styles
+        }
+    });
+
+    accordions.forEach(acc => {
+        const icon = acc.querySelector('.accordion-header .icon');
+        if (icon) {
+            let iconEl = icon.querySelector('i');
+            if (!iconEl) {
+                iconEl = document.createElement('i');
+                icon.appendChild(iconEl);
+            }
+            setIconState(iconEl, acc.classList.contains('active'));
         }
     });
 
@@ -65,8 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Close all accordions
             accordions.forEach(item => {
                 item.classList.remove('active');
-                const icon = item.querySelector('.icon');
-                if (icon) icon.textContent = '+';
+                const iconEl = item.querySelector('.accordion-header .icon i');
+                if (iconEl) {
+                    setIconState(iconEl, false);
+                }
                 const body = item.querySelector('.accordion-body');
                 if (body) body.style.maxHeight = ''; // Clean up any old inline styles
             });
@@ -74,8 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open clicked accordion if it wasn't active
             if (!isActive) {
                 acc.classList.add('active');
-                const icon = acc.querySelector('.icon');
-                if (icon) icon.textContent = '-';
+                const iconEl = acc.querySelector('.accordion-header .icon i');
+                if (iconEl) {
+                    setIconState(iconEl, true);
+                }
             }
         });
     });
@@ -284,7 +327,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset all accordion states
                 item.classList.remove('active');
                 const icon = item.querySelector('.icon');
-                if (icon) icon.textContent = '+';
+                if (icon) {
+                    let iconEl = icon.querySelector('i');
+                    if (!iconEl) {
+                        iconEl = document.createElement('i');
+                        icon.appendChild(iconEl);
+                    }
+                    iconEl.className = 'fi fi-rs-angle-small-down';
+                }
             });
 
             // Auto-open the first visible accordion item in the selected category
@@ -292,7 +342,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (firstVisible) {
                 firstVisible.classList.add('active');
                 const icon = firstVisible.querySelector('.icon');
-                if (icon) icon.textContent = '-';
+                if (icon) {
+                    let iconEl = icon.querySelector('i');
+                    if (!iconEl) {
+                        iconEl = document.createElement('i');
+                        icon.appendChild(iconEl);
+                    }
+                    iconEl.className = 'fi fi-ss-up';
+                    iconEl.classList.remove('rotated');
+                }
             }
 
             // Scroll to the FAQ answers section if requested
