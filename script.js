@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             accordions.forEach(item => {
                 item.classList.remove('active');
                 const icon = item.querySelector('.icon');
-                if (icon) icon.textContent = '+';
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-down"></i>';
                 const body = item.querySelector('.accordion-body');
                 if (body) body.style.maxHeight = ''; // Clean up any old inline styles
             });
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isActive) {
                 acc.classList.add('active');
                 const icon = acc.querySelector('.icon');
-                if (icon) icon.textContent = '-';
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-up"></i>';
             }
         });
     });
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset all accordion states
                 item.classList.remove('active');
                 const icon = item.querySelector('.icon');
-                if (icon) icon.textContent = '+';
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-down"></i>';
             });
 
             // Auto-open the first visible accordion item in the selected category
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (firstVisible) {
                 firstVisible.classList.add('active');
                 const icon = firstVisible.querySelector('.icon');
-                if (icon) icon.textContent = '-';
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-up"></i>';
             }
 
             // Scroll to the FAQ answers section if requested

@@ -513,6 +513,7 @@ ul {
     z-index: 10;
     pointer-events: none;
 }
+
 .cs1-nav-btn {
     pointer-events: auto;
     width: 50px;
@@ -521,7 +522,7 @@ ul {
     background-color: #fff;
     color: #1e2258;
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -529,6 +530,7 @@ ul {
     font-size: 20px;
     transition: transform 0.3s, background-color 0.3s;
 }
+
 .cs1-nav-btn:hover {
     transform: scale(1.1);
     background-color: #1e2258;
@@ -832,7 +834,7 @@ ul {
     background:
         radial-gradient(circle at 60% 42%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 10%, transparent 28%),
         radial-gradient(circle at 85% 78%, rgba(24, 33, 110, 0.65) 0%, transparent 45%),
-        #1c1f60;
+        #1d1c50;
     padding-top: 76px;
 }
 
@@ -1107,7 +1109,7 @@ ul {
     align-items: center;
     padding-bottom: 0;
     padding-top: 0;
-    background-color: #1b1c3c;
+    background-color: #1d1c50;
     color: var(--white);
     overflow: hidden;
 }
@@ -1772,6 +1774,18 @@ ul {
 .icon {
     font-size: 20px;
     font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    margin-top: 2px;
+    /* Slight adjustment for visual centering of angle icons */
 }
 
 .accordion-body {
@@ -1796,7 +1810,7 @@ ul {
 
 /* CTA (Global/Index) */
 .cta-section {
-    background-color: #1e6ea4;
+    background-color: #8fbfef;
     background-image: url('assets/vectorlogo.webp');
     background-size: cover;
     background-position: center;
@@ -1838,7 +1852,7 @@ ul {
 
 /* Product Page Specific CTA */
 .product-cta-section {
-    background-color: #8CC2F2;
+    background-color: #8fbfef;
     padding: 100px 0;
     position: relative;
     z-index: 1;
@@ -1876,7 +1890,7 @@ ul {
     max-width: 95%;
     height: auto;
     display: block;
-    margin: 15px auto;
+    margin: -150px auto -70px auto;
     position: relative;
     z-index: 2;
 }
@@ -1920,8 +1934,8 @@ ul {
 
 .btn-white-solid {
     background-color: #ffffff;
-    color: #0070A9;
-    padding: 15px 40px;
+    color: #8fbfef;
+    padding: 8px 18px;
     border-radius: 30px;
     border: 1px solid var(--white);
     font-family: var(--font-body);
@@ -1939,7 +1953,7 @@ ul {
 .btn-white-outline {
     background-color: transparent;
     color: var(--white);
-    padding: 15px 40px;
+    padding: 8px 18px;
     border-radius: 30px;
     border: 1px solid var(--white);
     font-family: var(--font-body);
@@ -2084,12 +2098,12 @@ ul {
 
 /* Footer */
 .footer {
-    background:
+    /*background:
         radial-gradient(circle at 25% 100%, rgba(168, 85, 247, 0.18) 0%, transparent 30%),
         radial-gradient(circle at 100% 50%, rgba(147, 51, 234, 0.16) 0%, transparent 30%),
-        linear-gradient(135deg, #181833 0%, #212143 50%, #2b2b57 100%);
+        linear-gradient(135deg, #181833 0%, #212143 50%, #2b2b57 100%); */
 
-    background-color: #181833;
+    background-color: #1d1c50;
     color: var(--white);
     padding: 60px 0 30px;
 }
@@ -2418,9 +2432,11 @@ ul {
         max-width: 100%;
         height: auto;
     }
+
     .content-slider-nav {
         padding: 0 10px;
     }
+
     .cs1-nav-btn {
         width: 40px;
         height: 40px;
@@ -3584,7 +3600,7 @@ ul {
     padding-top: 100px;
     height: 920px;
     overflow: hidden;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     color: var(--white);
 }
 
@@ -3676,9 +3692,13 @@ ul {
 }
 
 .stats-label {
-    font-size: 20px;
+    font-size: 40px;
     color: var(--primary-blue);
-    opacity: 0.7;
+    font-weight: 600;
+    opacity: 1;
+    padding: 5px 15px;
+    border-radius: 8px;
+    display: inline-block;
     margin-top: 20px;
 }
 
@@ -3793,7 +3813,7 @@ ul {
 
 /* About Videos */
 .about-videos {
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     padding: 100px 0;
 }
 
@@ -4006,7 +4026,7 @@ ul {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     overflow: hidden;
 }
 
@@ -4049,6 +4069,64 @@ ul {
     border-radius: 50px;
     font-size: 14px;
     font-family: var(--font-body);
+}
+
+.snooze-questions-section {
+    padding: 80px 20px 20px;
+    color: var(--primary-blue);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.snooze-questions-section h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.snooze-questions-section .snooze-subtitle {
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+}
+
+.snooze-questions-section .snooze-contact-block {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-family: var(--font-body);
+    color: var(--primary-blue);
+}
+
+.snooze-questions-section .snooze-contact-block strong {
+    font-weight: 600;
+    display: block;
+}
+
+.snooze-questions-section .snooze-afterhours-block {
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: var(--font-body);
+    color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .snooze-questions-section {
+        padding: 50px 20px 10px;
+    }
+
+    .snooze-questions-section h2 {
+        font-size: 28px;
+    }
+
+    .snooze-questions-section .snooze-subtitle {
+        font-size: 18px;
+    }
 }
 
 .contact-content-section {
@@ -4266,7 +4344,7 @@ ul {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     overflow: hidden;
 }
 
@@ -4673,7 +4751,7 @@ ul {
     right: 80px;
     width: 350px;
     height: 220px;
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     border-radius: 20px;
     padding: 30px;
     color: #FFF;
@@ -5261,7 +5339,7 @@ ul {
     width: 480px;
     height: 480px;
     border-radius: 50%;
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     z-index: 0;
     pointer-events: none;
 }
@@ -6881,10 +6959,14 @@ body.theme-grey .product-details__pillow-img {
 
 .warranty-text-content {
     flex: 1;
+    background-color: #1d1c50;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 8%;
+    align-items: center;
+    text-align: center;
+    padding: 200px 50px;
+    margin-top: -300px;
 }
 
 .warranty-text-content h1 {
@@ -6926,6 +7008,7 @@ body.theme-grey .product-details__pillow-img {
     background-color: var(--dreamy-blue);
     overflow: hidden;
     padding: 0;
+    max-height: 350px;
 }
 
 /* Warranty Benefits Section */
@@ -7181,7 +7264,7 @@ body.theme-grey .product-details__pillow-img {
     .benefits-row {
         gap: 30px;
     }
-    
+
     .benefit-step {
         max-width: 100%;
     }
@@ -7341,6 +7424,7 @@ body.theme-grey .product-details__pillow-img {
     .showcase-scroll-spacer {
         background-color: var(--primary-blue);
     }
+
     .showcase-scroll-spacer .product-showcase {
         top: 80px !important;
     }
@@ -7395,6 +7479,7 @@ body.theme-grey .product-details__pillow-img {
         grid-template-columns: 1fr !important;
     }
 }
+
 /* Sleep Guide Styles */
 .sleep-guide-header {
     background-color: var(--dreamy-blue);
@@ -7472,7 +7557,8 @@ body.theme-grey .product-details__pillow-img {
     font-weight: 600;
 }
 
-.sg-card p, .sg-card ul {
+.sg-card p,
+.sg-card ul {
     font-size: 18px;
     color: var(--dreamy-blue);
     opacity: 0.7;
@@ -7511,6 +7597,7 @@ body.theme-grey .product-details__pillow-img {
     .sleep-guide-header {
         padding: 60px 0;
     }
+
     .sleep-guide-hero-img {
         position: relative;
         top: 0;
@@ -7518,33 +7605,36 @@ body.theme-grey .product-details__pillow-img {
         width: 100%;
         margin-top: 30px;
     }
+
     .sg-grid {
         grid-template-columns: 1fr;
     }
+
     .sg-grid-3 {
         grid-template-columns: 1fr;
     }
+
     .sg-images {
         flex-direction: column;
     }
-    
+
     .sg-mobile-positions {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .sg-mobile-positions img {
         width: 100%;
         border-radius: 10px;
         object-fit: cover;
         aspect-ratio: 3/4;
     }
-    
+
     .sleep-guide-content {
         padding-bottom: 50px;
     }
-    
+
     .sg-section:last-child {
         margin-bottom: 0;
     }
