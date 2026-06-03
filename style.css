@@ -6064,6 +6064,17 @@ FAQ CATEGORY SECTION
     transform: scale(1.1);
 }
 
+.faq-icon img {
+    width: 1em;
+    height: 1em;
+    transition: filter 0.3s;
+}
+
+.faq-category-card.active .faq-icon img,
+.faq-category-card .faq-icon:hover img {
+    filter: brightness(0) invert(1);
+}
+
 
 /* =========================
    FAQ ACCORDION SECTION
