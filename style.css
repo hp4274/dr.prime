@@ -3433,12 +3433,13 @@ ul {
     }
 
     .footer-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 36px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 20px;
     }
 
     .footer-brand {
+        grid-column: 1 / -1;
         margin-bottom: 0;
     }
 
@@ -4635,7 +4636,7 @@ ul {
 
 /* About Bottom Banner */
 .about-bottom-banner {
-    padding-bottom: 40px;
+    padding-bottom: 0;
     padding-top: 80px;
 }
 
@@ -4647,6 +4648,9 @@ ul {
 }
 
 .bottom-banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -4733,7 +4737,7 @@ ul {
 
 @media (max-width: 768px) {
     .about-bottom-banner {
-        padding-bottom: 60px;
+        padding-bottom: 0;
     }
 
     .banner-image-wrapper {
@@ -5799,6 +5803,14 @@ ul {
         gap: 40px;
     }
 
+    .body-design__outline-circle {
+        width: 400px;
+        height: 400px;
+        left: -200px;
+        top: 20px;
+        transform: none;
+    }
+
     .body-design__image {
         flex: none;
         width: 100%;
@@ -5892,6 +5904,18 @@ ul {
 
     .product-faq .faq-left h2 {
         font-size: 32px;
+    }
+
+    .product-cta-section {
+        padding: 60px 0;
+    }
+
+    .product-cta-section h2 {
+        font-size: 40px;
+    }
+
+    .product-cta-section .product-body-design {
+        margin: -70px auto -40px auto;
     }
 
     .product-cta-section .desc {
