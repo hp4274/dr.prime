@@ -5748,13 +5748,14 @@ ul {
     }
 
     .product-details__feature--left {
-        grid-row: 1;
+        grid-row: 2;
+        margin-bottom: 30px;
     }
 
     .product-details__center {
         grid-column: 1;
-        grid-row: 2;
-        margin: 30px 0;
+        grid-row: 1;
+        margin: 0 0 30px 0;
     }
 
     .product-details__feature--right {
@@ -5764,9 +5765,9 @@ ul {
     .product-details__pillow-container {
         width: 100%;
         max-width: 300px;
-        height: 360px;
+        height: 400px;
         position: relative;
-        margin-top: 0;
+        margin-top: -40px;
     }
 
     .product-details__dots {
