@@ -2331,6 +2331,7 @@ ul {
     .cs1-nav-btn {
         width: 40px;
         height: 40px;
+        margin-bottom: 200px;
         font-size: 16px;
     }
 
@@ -2466,7 +2467,7 @@ ul {
     /* ===== PRODUCT SHOWCASE (DARK) ===== */
     .product-showcase {
         padding: 50px 0 30px;
-        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%), #1c1f60;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%), #1d1c50;
     }
 
     .product-showcase h2 {
@@ -2706,7 +2707,7 @@ ul {
     /* ===== FABRIC DETAIL (DARK) ===== */
     .fabric-detail {
         padding: 20px 0 20px;
-        background: #1c1f60;
+        background: #1d1c50;
         overflow: hidden;
     }
 
@@ -3104,7 +3105,7 @@ ul {
     /* ===== CTA SECTION ===== */
     .cta-section {
         padding: 60px 20px;
-        background-color: #1e6ea4;
+        background-color: #8fbfef;
         text-align: center;
     }
 
@@ -3137,7 +3138,7 @@ ul {
 
     .btn-white-solid {
         background: #fff;
-        color: #1E6EA4;
+        color: #8fbfef;
         padding: 14px 36px;
         font-size: 14px;
         font-weight: 600;
@@ -3211,7 +3212,7 @@ ul {
     /* ===== FOOTER ===== */
     .footer {
         padding: 50px 20px 30px;
-        background-color: #1a1a3a;
+        background-color: #1d1c50;
         background-image: none;
         color: #fff;
     }
@@ -3393,7 +3394,7 @@ ul {
 }
 
 .about-stats {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .stats-header-container {
@@ -3453,7 +3454,7 @@ ul {
 
 /* Buy Now Section */
 .about-buy-now {
-    padding: 120px 0 60px;
+    padding: 60px 0 30px;
     background-color: var(--white);
     position: relative;
 }
