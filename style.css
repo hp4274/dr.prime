@@ -1900,7 +1900,7 @@ ul {
     font-size: 60px;
     font-weight: 400;
     margin-bottom: 0px;
-    color: #1e204c;
+    color: #1d1c50;
     letter-spacing: -0.5px;
     line-height: 1.1;
 }
@@ -1920,7 +1920,7 @@ ul {
     font-size: 14px;
     max-width: 600px;
     margin: 0 auto 30px;
-    color: #1e204c;
+    color: #1d1c50;
     line-height: 1.6;
     font-weight: 400;
 }
@@ -1932,7 +1932,7 @@ ul {
 }
 
 .btn-navy-solid {
-    background-color: #1E204C;
+    background-color: #1d1c50;
     color: var(--white);
     padding: 12px 60px;
     border-radius: 30px;
