@@ -534,6 +534,7 @@ ul {
     z-index: 10;
     pointer-events: none;
 }
+
 .cs1-nav-btn {
     pointer-events: auto;
     width: 50px;
@@ -542,7 +543,7 @@ ul {
     background-color: #fff;
     color: #1e2258;
     border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -550,6 +551,7 @@ ul {
     font-size: 20px;
     transition: transform 0.3s, background-color 0.3s;
 }
+
 .cs1-nav-btn:hover {
     transform: scale(1.1);
     background-color: #1e2258;
@@ -770,7 +772,7 @@ ul {
     background:
         radial-gradient(circle at 60% 42%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 10%, transparent 28%),
         radial-gradient(circle at 85% 78%, rgba(24, 33, 110, 0.65) 0%, transparent 45%),
-        #1c1f60;
+        #1d1c50;
     padding-top: 76px;
 }
 
@@ -1043,7 +1045,7 @@ ul {
     align-items: center;
     padding-bottom: 0;
     padding-top: 0;
-    background-color: #1b1c3c;
+    background-color: #1d1c50;
     color: var(--white);
     overflow: hidden;
 }
@@ -1510,21 +1512,42 @@ ul {
     color: var(--white);
 }
 
-.testi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* Testimonial Slider */
+.testi-slider {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.testi-track {
+    display: flex;
     gap: 20px;
+    animation: testiScroll 30s linear infinite;
+    width: max-content;
+}
+
+.testi-slider:hover .testi-track {
+    animation-play-state: paused;
+}
+
+@keyframes testiScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .testi-card {
     background: var(--white);
     padding: 20px 20px 50px 20px;
-    /* Extra padding at bottom for the pill */
     border-radius: 16px;
-    /* box-shadow removed */
     position: relative;
     margin-bottom: 20px;
-    /* Space for the overlapping pill */
+    min-width: 300px;
+    max-width: 320px;
+    flex-shrink: 0;
 }
 
 .quote-icon {
@@ -1536,7 +1559,6 @@ ul {
 .testi-card p {
     font-size: 14px;
     margin-bottom: 0;
-    /* Removed margin since we use padding on card */
     min-height: 60px;
     line-height: 1.6;
 }
@@ -1648,6 +1670,18 @@ ul {
 .icon {
     font-size: 20px;
     font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    margin-top: 2px;
+    /* Slight adjustment for visual centering of angle icons */
 }
 
 .accordion-body {
@@ -1672,7 +1706,7 @@ ul {
 
 /* CTA (Global/Index) */
 .cta-section {
-    background-color: #1e6ea4;
+    background-color: #8fbfef;
     background-image: url('assets/vectorlogo.webp');
     background-size: cover;
     background-position: center;
@@ -1714,7 +1748,7 @@ ul {
 
 /* Product Page Specific CTA */
 .product-cta-section {
-    background-color: #8CC2F2;
+    background-color: #8fbfef;
     padding: 100px 0;
     position: relative;
     z-index: 1;
@@ -1752,7 +1786,7 @@ ul {
     max-width: 95%;
     height: auto;
     display: block;
-    margin: 15px auto;
+    margin: -150px auto -70px auto;
     position: relative;
     z-index: 2;
 }
@@ -1796,8 +1830,8 @@ ul {
 
 .btn-white-solid {
     background-color: #ffffff;
-    color: #0070A9;
-    padding: 15px 40px;
+    color: #8fbfef;
+    padding: 8px 18px;
     border-radius: 30px;
     border: 1px solid var(--white);
     font-family: var(--font-body);
@@ -1815,7 +1849,7 @@ ul {
 .btn-white-outline {
     background-color: transparent;
     color: var(--white);
-    padding: 15px 40px;
+    padding: 8px 18px;
     border-radius: 30px;
     border: 1px solid var(--white);
     font-family: var(--font-body);
@@ -1963,9 +1997,9 @@ ul {
     /*background:
         radial-gradient(circle at 25% 100%, rgba(168, 85, 247, 0.18) 0%, transparent 30%),
         radial-gradient(circle at 100% 50%, rgba(147, 51, 234, 0.16) 0%, transparent 30%),
-        linear-gradient(135deg, #181833 0%, #212143 50%, #2b2b57 100%);*/
+        linear-gradient(135deg, #181833 0%, #212143 50%, #2b2b57 100%); */
 
-    background-color:  #1D1C50;
+    background-color: #1d1c50;
     color: var(--white);
     padding: 60px 0 30px;
 }
@@ -2104,8 +2138,28 @@ ul {
         font-size: 44px;
     }
 
-    .grid-container,
-    .testi-grid {
+    .product-showcase .invest-desc {
+        right: 8%;
+    }
+
+    .content2-header {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 24px;
+    }
+
+    .content2-header h2 {
+        font-size: 40px;
+        max-width: none;
+    }
+
+    .content2-header p {
+        font-size: 17px;
+        max-width: none;
+        margin-top: 0;
+    }
+
+    .grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -2269,9 +2323,11 @@ ul {
         max-width: 100%;
         height: auto;
     }
+
     .content-slider-nav {
         padding: 0 10px;
     }
+
     .cs1-nav-btn {
         width: 40px;
         height: 40px;
@@ -2926,19 +2982,16 @@ ul {
         background-color: #5E5E7E;
     }
 
-    /* ===== TESTIMONIALS ===== */
+    /* ===== TESTIMONIALS SLIDER ===== */
     .testimonials {
-        display: block;
-        padding: 40px 0;
-        background-color: #f7f8fa;
-        /* Matching the background from image */
+        padding: 30px 0;
     }
 
     .testi-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 
     .testi-header h2 {
@@ -2946,103 +2999,18 @@ ul {
         color: #1a1a3a;
     }
 
-    .testi-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-        /* Removing gap since we only show one card */
+    .testi-track {
+        animation-duration: 20s;
     }
 
     .testi-card {
-        display: none;
-        /* Hide all cards by default */
-        padding: 30px 20px;
-        border-radius: 16px;
-        /* box-shadow removed */
-        position: relative;
-    }
-
-    .testi-card:first-child {
-        display: block;
-        /* Show only the first card to act as a slider */
-    }
-
-    .testi-card {
-        display: none;
-        padding: 30px 20px 50px 20px;
-        /* Extra padding at bottom for the pill */
-        border-radius: 16px;
-        /* box-shadow removed */
-        position: relative;
-        background: white;
+        min-width: 260px;
+        max-width: 280px;
+        padding: 25px 18px 45px 18px;
     }
 
     .testi-card p {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #1a1a3a;
-        font-weight: 500;
-        margin-bottom: 0;
-        /* Removed margin since we use padding on card */
-    }
-
-    .testi-card .quote-icon {
-        color: #aab2cd;
-        font-size: 32px;
-        margin-bottom: 15px;
-    }
-
-    .testi-card .client-info {
-        background-color: #f7f8fa;
-        padding: 6px 16px 6px 6px;
-        /* Less padding on left to hug the image */
-        border-radius: 50px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        position: absolute;
-        bottom: -20px;
-        /* Sticks out of the bottom of the card */
-        left: 0;
-    }
-
-    .testi-card .client-info img {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-    }
-
-    .testi-card .client-info h4 {
-        font-size: 12px;
-        color: #1a1a3a;
-        margin-bottom: 2px;
-    }
-
-    .testi-card .client-info span {
-        font-size: 9px;
-        color: #667;
-    }
-
-    .testi-dots {
-        display: block !important;
-        text-align: center !important;
-        width: 100% !important;
-        margin: 30px auto 0 !important;
-        padding: 0 !important;
-    }
-
-    .testi-dots .dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 3px;
-        background-color: #cdd2de;
-        opacity: 1;
-        margin: 0 3px !important;
-        display: inline-block;
-    }
-
-    .testi-dots .dot.active {
-        width: 14px;
-        background-color: #5E5E7E;
+        font-size: 14px;
     }
 
     /* ===== FAQ ===== */
@@ -3343,7 +3311,7 @@ ul {
     padding-top: 100px;
     height: 920px;
     overflow: hidden;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     color: var(--white);
 }
 
@@ -3435,9 +3403,13 @@ ul {
 }
 
 .stats-label {
-    font-size: 20px;
+    font-size: 40px;
     color: var(--primary-blue);
-    opacity: 0.7;
+    font-weight: 600;
+    opacity: 1;
+    padding: 5px 15px;
+    border-radius: 8px;
+    display: inline-block;
     margin-top: 20px;
 }
 
@@ -3552,7 +3524,7 @@ ul {
 
 /* About Videos */
 .about-videos {
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     padding: 100px 0;
 }
 
@@ -3761,7 +3733,7 @@ ul {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     overflow: hidden;
 }
 
@@ -3804,6 +3776,64 @@ ul {
     border-radius: 50px;
     font-size: 14px;
     font-family: var(--font-body);
+}
+
+.snooze-questions-section {
+    padding: 80px 20px 20px;
+    color: var(--primary-blue);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.snooze-questions-section h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.snooze-questions-section .snooze-subtitle {
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+}
+
+.snooze-questions-section .snooze-contact-block {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-family: var(--font-body);
+    color: var(--primary-blue);
+}
+
+.snooze-questions-section .snooze-contact-block strong {
+    font-weight: 600;
+    display: block;
+}
+
+.snooze-questions-section .snooze-afterhours-block {
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: var(--font-body);
+    color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .snooze-questions-section {
+        padding: 50px 20px 10px;
+    }
+
+    .snooze-questions-section h2 {
+        font-size: 28px;
+    }
+
+    .snooze-questions-section .snooze-subtitle {
+        font-size: 18px;
+    }
 }
 
 .contact-content-section {
@@ -4021,7 +4051,7 @@ ul {
     position: relative;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-color: var(--primary-blue);
+    background-color: #1d1c50;
     overflow: hidden;
 }
 
@@ -4387,7 +4417,7 @@ ul {
     right: 80px;
     width: 350px;
     height: 220px;
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     border-radius: 20px;
     padding: 30px;
     color: #FFF;
@@ -4975,7 +5005,7 @@ ul {
     width: 480px;
     height: 480px;
     border-radius: 50%;
-    background-color: #1E6EA4;
+    background-color: #8fbfef;
     z-index: 0;
     pointer-events: none;
 }
@@ -5652,9 +5682,16 @@ FAQ CATEGORY SECTION
 .faq-category-card .faq-icon:hover {
     background: #1d1c50;
     color: white;
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.1);
 }
 
+.faq-icon img {
+    width: 1em;
+    height: 1em;
+    transition: filter 0.3s;
+}
+
+.faq-category-card.active .faq-icon img,
 .faq-category-card .faq-icon:hover img {
     filter: brightness(0) invert(1);
 }
@@ -6228,10 +6265,14 @@ body.theme-grey .product-details__pillow-img {
 
 .warranty-text-content {
     flex: 1;
+    background-color: #1d1c50;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 8%;
+    align-items: center;
+    text-align: center;
+    padding: 200px 50px;
+    margin-top: -300px;
 }
 
 .warranty-text-content h1 {
@@ -6273,6 +6314,7 @@ body.theme-grey .product-details__pillow-img {
     background-color: var(--dreamy-blue);
     overflow: hidden;
     padding: 0;
+    max-height: 350px;
 }
 
 /* Warranty Benefits Section */
@@ -6528,7 +6570,7 @@ body.theme-grey .product-details__pillow-img {
     .benefits-row {
         gap: 30px;
     }
-    
+
     .benefit-step {
         max-width: 100%;
     }
@@ -6688,6 +6730,7 @@ body.theme-grey .product-details__pillow-img {
     .showcase-scroll-spacer {
         background-color: var(--primary-blue);
     }
+
     .showcase-scroll-spacer .product-showcase {
         top: 80px !important;
     }
@@ -6731,11 +6774,8 @@ body.theme-grey .product-details__pillow-img {
         display: none;
     }
 
-    /* 5. Testimonials Slider handled by JS, force 1 column */
-    .testimonials .testi-grid {
-        grid-template-columns: 1fr !important;
-    }
 }
+
 /* Sleep Guide Styles */
 .sleep-guide-header {
     background-color: var(--dreamy-blue);
@@ -6813,7 +6853,8 @@ body.theme-grey .product-details__pillow-img {
     font-weight: 600;
 }
 
-.sg-card p, .sg-card ul {
+.sg-card p,
+.sg-card ul {
     font-size: 18px;
     color: var(--dreamy-blue);
     opacity: 0.7;
@@ -6852,6 +6893,7 @@ body.theme-grey .product-details__pillow-img {
     .sleep-guide-header {
         padding: 60px 0;
     }
+
     .sleep-guide-hero-img {
         position: relative;
         top: 0;
@@ -6859,35 +6901,37 @@ body.theme-grey .product-details__pillow-img {
         width: 100%;
         margin-top: 30px;
     }
+
     .sg-grid {
         grid-template-columns: 1fr;
     }
+
     .sg-grid-3 {
         grid-template-columns: 1fr;
     }
+
     .sg-images {
         flex-direction: column;
     }
-    
+
     .sg-mobile-positions {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .sg-mobile-positions img {
         width: 100%;
         border-radius: 10px;
         object-fit: cover;
         aspect-ratio: 3/4;
     }
-    
+
     .sleep-guide-content {
         padding-bottom: 50px;
     }
-    
+
     .sg-section:last-child {
         margin-bottom: 0;
     }
-}
 }

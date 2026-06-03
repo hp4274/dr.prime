@@ -104,10 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Close all accordions
             accordions.forEach(item => {
                 item.classList.remove('active');
-                const iconEl = item.querySelector('.accordion-header .icon i');
-                if (iconEl) {
-                    setIconState(iconEl, false);
-                }
+                const icon = item.querySelector('.icon');
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-down"></i>';
                 const body = item.querySelector('.accordion-body');
                 if (body) body.style.maxHeight = ''; // Clean up any old inline styles
             });
@@ -115,10 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open clicked accordion if it wasn't active
             if (!isActive) {
                 acc.classList.add('active');
-                const iconEl = acc.querySelector('.accordion-header .icon i');
-                if (iconEl) {
-                    setIconState(iconEl, true);
-                }
+                const icon = acc.querySelector('.icon');
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-up"></i>';
             }
         });
     });
@@ -327,14 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset all accordion states
                 item.classList.remove('active');
                 const icon = item.querySelector('.icon');
-                if (icon) {
-                    let iconEl = icon.querySelector('i');
-                    if (!iconEl) {
-                        iconEl = document.createElement('i');
-                        icon.appendChild(iconEl);
-                    }
-                    iconEl.className = 'fi fi-rs-angle-small-down';
-                }
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-down"></i>';
             });
 
             // Auto-open the first visible accordion item in the selected category
@@ -342,15 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (firstVisible) {
                 firstVisible.classList.add('active');
                 const icon = firstVisible.querySelector('.icon');
-                if (icon) {
-                    let iconEl = icon.querySelector('i');
-                    if (!iconEl) {
-                        iconEl = document.createElement('i');
-                        icon.appendChild(iconEl);
-                    }
-                    iconEl.className = 'fi fi-ss-up';
-                    iconEl.classList.remove('rotated');
-                }
+                if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-up"></i>';
             }
 
             // Scroll to the FAQ answers section if requested
@@ -777,16 +758,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dotsSelector: '.why-choose-us .carousel-dots',
             desktopItems: 8,
             mobileItems: 2,
-            activeDisplay: 'block'
-        },
-        {
-            containerSelector: '.testimonials .testi-grid',
-            itemSelector: '.testi-card',
-            dotsSelector: '.testimonials .carousel-dots, .carousel-dots.testi-dots',
-            prevArrowSelector: '.testi-header .arrow-btn:first-child',
-            nextArrowSelector: '.testi-header .arrow-btn:last-child',
-            desktopItems: 4,
-            mobileItems: 1,
             activeDisplay: 'block'
         }
     ];
