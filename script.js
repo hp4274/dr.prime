@@ -720,16 +720,6 @@ document.addEventListener('DOMContentLoaded', () => {
             desktopItems: 8,
             mobileItems: 2,
             activeDisplay: 'block'
-        },
-        {
-            containerSelector: '.testimonials .testi-grid',
-            itemSelector: '.testi-card',
-            dotsSelector: '.testimonials .carousel-dots, .carousel-dots.testi-dots',
-            prevArrowSelector: '.testi-header .arrow-btn:first-child',
-            nextArrowSelector: '.testi-header .arrow-btn:last-child',
-            desktopItems: 4,
-            mobileItems: 1,
-            activeDisplay: 'block'
         }
     ];
 

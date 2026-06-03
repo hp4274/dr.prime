@@ -1599,21 +1599,42 @@ ul {
     color: var(--white);
 }
 
-.testi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* Testimonial Slider */
+.testi-slider {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.testi-track {
+    display: flex;
     gap: 20px;
+    animation: testiScroll 30s linear infinite;
+    width: max-content;
+}
+
+.testi-slider:hover .testi-track {
+    animation-play-state: paused;
+}
+
+@keyframes testiScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .testi-card {
     background: var(--white);
     padding: 20px 20px 50px 20px;
-    /* Extra padding at bottom for the pill */
     border-radius: 16px;
-    /* box-shadow removed */
     position: relative;
     margin-bottom: 20px;
-    /* Space for the overlapping pill */
+    min-width: 300px;
+    max-width: 320px;
+    flex-shrink: 0;
 }
 
 .quote-icon {
@@ -1625,7 +1646,6 @@ ul {
 .testi-card p {
     font-size: 14px;
     margin-bottom: 0;
-    /* Removed margin since we use padding on card */
     min-height: 60px;
     line-height: 1.6;
 }
@@ -2263,8 +2283,7 @@ ul {
         margin-top: 0;
     }
 
-    .grid-container,
-    .testi-grid {
+    .grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -3144,19 +3163,16 @@ ul {
         background-color: #5E5E7E;
     }
 
-    /* ===== TESTIMONIALS ===== */
+    /* ===== TESTIMONIALS SLIDER ===== */
     .testimonials {
-        display: block;
-        padding: 40px 0;
-        background-color: #f7f8fa;
-        /* Matching the background from image */
+        padding: 30px 0;
     }
 
     .testi-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 
     .testi-header h2 {
@@ -3164,108 +3180,18 @@ ul {
         color: #1a1a3a;
     }
 
-    .testi-header .nav-arrows {
-        display: none;
-        /* Hide arrows on mobile */
-    }
-
-    .testi-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-        /* Removing gap since we only show one card */
+    .testi-track {
+        animation-duration: 20s;
     }
 
     .testi-card {
-        display: none;
-        /* Hide all cards by default */
-        padding: 30px 20px;
-        border-radius: 16px;
-        /* box-shadow removed */
-        position: relative;
-    }
-
-    .testi-card:first-child {
-        display: block;
-        /* Show only the first card to act as a slider */
-    }
-
-    .testi-card {
-        display: none;
-        padding: 30px 20px 50px 20px;
-        /* Extra padding at bottom for the pill */
-        border-radius: 16px;
-        /* box-shadow removed */
-        position: relative;
-        background: white;
+        min-width: 260px;
+        max-width: 280px;
+        padding: 25px 18px 45px 18px;
     }
 
     .testi-card p {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #1a1a3a;
-        font-weight: 500;
-        margin-bottom: 0;
-        /* Removed margin since we use padding on card */
-    }
-
-    .testi-card .quote-icon {
-        color: #aab2cd;
-        font-size: 32px;
-        margin-bottom: 15px;
-    }
-
-    .testi-card .client-info {
-        background-color: #f7f8fa;
-        padding: 6px 16px 6px 6px;
-        /* Less padding on left to hug the image */
-        border-radius: 50px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        position: absolute;
-        bottom: -20px;
-        /* Sticks out of the bottom of the card */
-        left: 0;
-    }
-
-    .testi-card .client-info img {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-    }
-
-    .testi-card .client-info h4 {
-        font-size: 12px;
-        color: #1a1a3a;
-        margin-bottom: 2px;
-    }
-
-    .testi-card .client-info span {
-        font-size: 9px;
-        color: #667;
-    }
-
-    .testi-dots {
-        display: block !important;
-        text-align: center !important;
-        width: 100% !important;
-        margin: 30px auto 0 !important;
-        padding: 0 !important;
-    }
-
-    .testi-dots .dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 3px;
-        background-color: #cdd2de;
-        opacity: 1;
-        margin: 0 3px !important;
-        display: inline-block;
-    }
-
-    .testi-dots .dot.active {
-        width: 14px;
-        background-color: #5E5E7E;
+        font-size: 14px;
     }
 
     /* ===== FAQ ===== */
@@ -7474,10 +7400,6 @@ body.theme-grey .product-details__pillow-img {
         display: none;
     }
 
-    /* 5. Testimonials Slider handled by JS, force 1 column */
-    .testimonials .testi-grid {
-        grid-template-columns: 1fr !important;
-    }
 }
 
 /* Sleep Guide Styles */
