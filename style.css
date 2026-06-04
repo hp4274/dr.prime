@@ -384,6 +384,8 @@ ul {
 
 .nav-actions .btn-primary i {
     margin-right: 8px;
+    font-size: 16px;
+    vertical-align: middle;
 }
 
 .nav-actions .btn-primary:hover {
@@ -1353,7 +1355,7 @@ ul {
 
 .stats-row {
     position: absolute;
-    bottom: 5%;
+    bottom: 0%;
     left: 0%;
     display: flex;
     justify-content: flex-start;
@@ -1405,8 +1407,8 @@ ul {
 
 .bg-watermark {
     position: absolute;
-    bottom: -10%;
-    left: -10%;
+    bottom: -15%;
+    right: -10%;
     font-size: 150px;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -3011,15 +3013,15 @@ ul {
         position: static;
         display: flex;
         flex-direction: row;
-        gap: 16px;
+        gap: 20px;
         padding-top: 40px;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 100%;
     }
 
     .stat-box {
         text-align: left;
-        flex: 1;
+        max-width: 140px;
     }
 
     .stat-box h2 {
@@ -3050,7 +3052,7 @@ ul {
         display: block;
         position: absolute;
         bottom: -20px;
-        left: -10px;
+        right: -10px;
         font-size: 65px;
         color: rgba(255, 255, 255, 0.03);
         font-weight: 900;
