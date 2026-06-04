@@ -382,6 +382,10 @@ ul {
     border-color: #1d2050;
 }
 
+.nav-actions .btn-primary i {
+    margin-right: 8px;
+}
+
 .nav-actions .btn-primary:hover {
     background-color: #171a43;
     border-color: #171a43;
