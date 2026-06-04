@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     banners.forEach(banner => {
         let content = banner.querySelector('.top-banner-content');
 
-        // If content wrapper doesn't exist, create it (handles product.html etc.)
+        // If content wrapper doesn't exist, create it (handles pillow.html etc.)
         if (!content) {
             const inner = banner.innerHTML;
             banner.innerHTML = `<div class="top-banner-content">${inner}</div>`;
