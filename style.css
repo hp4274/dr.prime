@@ -3725,11 +3725,6 @@ ul {
     line-height: 1.6;
 }
 
-.buy-btn {
-    padding: 10px 10px;
-    font-size: 16px;
-    border-radius: 40px;
-}
 
 .bottom-marquee-text {
     display: flex;
@@ -4037,18 +4032,6 @@ ul {
     pointer-events: none;
 }
 
-.contact-pill {
-    position: absolute;
-    bottom: -3px;
-    right: 60px;
-    background-color: var(--primary-blue);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-family: var(--font-body);
-}
-
 .snooze-questions-section {
     padding: 80px 20px 20px;
     color: var(--primary-blue);
@@ -4309,11 +4292,6 @@ ul {
 
     .contact-relative-container {
         border: none;
-    }
-
-    .contact-pill {
-        border-top: none;
-        z-index: 100;
     }
 }
 
