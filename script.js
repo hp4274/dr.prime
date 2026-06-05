@@ -134,6 +134,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (bodyDesignImg) bodyDesignImg.src = 'assets/pillow1-grey.webp';
                     }
                 }
+
+                // Scroll to top on mobile view with a premium smooth animation
+                if (window.innerWidth <= 991) {
+                    const startPosition = window.pageYOffset;
+                    const duration = 800; // 800ms for a luxurious smooth scroll
+                    let startTime = null;
+
+                    function animation(currentTime) {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        // Ease In Out Cubic
+                        const progress = timeElapsed / duration;
+                        const ease = progress < 0.5 
+                            ? 4 * progress * progress * progress 
+                            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                        
+                        window.scrollTo(0, startPosition * (1 - ease));
+                        
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        } else {
+                            window.scrollTo(0, 0);
+                        }
+                    }
+                    requestAnimationFrame(animation);
+                }
             });
         });
     }
@@ -297,7 +323,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Scroll to the FAQ answers section if requested
             if (shouldScroll && faqAnswersSection) {
-                faqAnswersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const targetPosition = faqAnswersSection.getBoundingClientRect().top + window.pageYOffset - 100;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const duration = 800; // Smooth 800ms duration
+
+                    let t = timeElapsed / (duration / 2);
+                    let run = 0;
+                    if (t < 1) run = (distance / 2) * t * t + startPosition;
+                    else {
+                        t--;
+                        run = (-distance / 2) * (t * (t - 2) - 1) + startPosition;
+                    }
+
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                    else window.scrollTo(0, targetPosition);
+                }
+
+                requestAnimationFrame(animation);
             }
         };
 
@@ -634,8 +683,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let progress = -rect.top / scrollDistance;
             progress = Math.max(0, Math.min(1, progress));
 
-            const radius = 550; // Radius of the dashed circle (1099 / 2 = 549.5)
-            const angleSpacing = 25; // Degrees between each item
+            const isMobile = window.innerWidth <= 991;
+            const radius = isMobile ? 200 : 550; // Radius of the dashed circle
+            const angleSpacing = isMobile ? 35 : 25; // Degrees between each item
             const totalRotation = (featureItems.length - 1) * angleSpacing; // Total rotation needed to bring last item to 0deg
 
             let closestItemIndex = 0;
