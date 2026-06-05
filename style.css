@@ -2157,25 +2157,26 @@ ul {
 
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 12px;
 }
 
 .social-icons a {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    background: var(--white);
-    color: #212143;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
+    color: #fff;
     font-size: 14px;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .social-icons a:hover {
-    background: #eef0fa;
+    background: rgba(255, 255, 255, 0.18);
+    color: #212143;
     transform: translateY(-2px);
 }
 
@@ -4092,7 +4093,7 @@ ul {
 
 .contact-content-section {
     position: relative;
-    padding: 50px 0 50px;
+    padding: 50px 0 10px;
     background-color: white;
 }
 
@@ -4163,11 +4164,11 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     background-color: rgba(29, 28, 80, 0.1);
     color: var(--primary-blue);
-    border-radius: 5px;
+    border-radius: 50%;
     font-size: 16px;
     transition: var(--transition);
 }
@@ -4287,7 +4288,7 @@ ul {
     }
 
     .contact-form-container {
-        padding-bottom: 60px;
+        padding-bottom: 20px;
     }
 
     .contact-relative-container {
@@ -6231,6 +6232,11 @@ FAQ CATEGORY SECTION
     .c-faq-section .faq-title {
         font-size: 42px;
     }
+        .c-faq-section {
+    padding: 80px 0 80px;
+    background: #ffffff;
+}
+
 
     .faq-question,
     .c-faq-right .accordion-header h3 {
