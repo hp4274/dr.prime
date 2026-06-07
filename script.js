@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
+       ANIMATED NAVBAR — SCROLL-DRIVEN TRANSPARENCY & GAP
+       ========================================================================== */
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        const SCROLL_THRESHOLD = 50; // px scrolled before navbar becomes solid
+        let ticking = false;
+
+        const updateNavbar = () => {
+            if (window.scrollY > SCROLL_THRESHOLD) {
+                navbar.classList.add('navbar--scrolled');
+            } else {
+                navbar.classList.remove('navbar--scrolled');
+            }
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Set initial state on load
+        updateNavbar();
+    }
+
+    /* ==========================================================================
        TOP BANNER INFINITE SCROLL
        ========================================================================== */
     const banners = document.querySelectorAll('.top-banner');
@@ -759,6 +787,8 @@ document.addEventListener('DOMContentLoaded', () => {
             containerSelector: '.sleep-challenge .challenge-cards',
             itemSelector: '.challenge-card',
             dotsSelector: '.sleep-challenge .carousel-dots',
+            prevArrowSelector: '#sc-prev',
+            nextArrowSelector: '#sc-next',
             desktopItems: 3,
             mobileItems: 1,
             activeDisplay: 'flex'
@@ -834,8 +864,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (totalPages <= 1) {
                     dotsContainer.style.display = 'none';
+                    if (config.prevArrowSelector) {
+                        const prev = document.querySelector(config.prevArrowSelector);
+                        if (prev) prev.style.display = 'none';
+                    }
+                    if (config.nextArrowSelector) {
+                        const next = document.querySelector(config.nextArrowSelector);
+                        if (next) next.style.display = 'none';
+                    }
                 } else {
                     dotsContainer.style.display = '';
+                    if (config.prevArrowSelector) {
+                        const prev = document.querySelector(config.prevArrowSelector);
+                        if (prev) prev.style.display = '';
+                    }
+                    if (config.nextArrowSelector) {
+                        const next = document.querySelector(config.nextArrowSelector);
+                        if (next) next.style.display = '';
+                    }
                     for (let i = 0; i < totalPages; i++) {
                         const dot = document.createElement('span');
                         dot.className = i === 0 ? 'dot active' : 'dot';
