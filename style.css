@@ -459,7 +459,7 @@ body {
     position: relative;
     z-index: 2;
     max-width: 800px;
-    top: -80px;
+    top: -20px;
 }
 
 .hero-content h1 {
@@ -476,6 +476,59 @@ body {
     max-width: 500px;
     margin: 0 auto;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 200px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+}
+
+.hero-buttons .btn {
+    width: 190px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.btn-hero-primary {
+    background-color: #b3d9f2;
+    color: var(--primary-blue);
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-primary:hover {
+    background-color: #9ecde8;
+    transform: translateY(-2px);
+}
+
+.btn-hero-outline {
+    background-color: rgba(179, 217, 242, 0.12);
+    color: #b3d9f2;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid rgba(179, 217, 242, 0.25);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-hero-outline:hover {
+    background-color: rgba(179, 217, 242, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--white);
+    transform: translateY(-2px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Features Row */
@@ -7333,11 +7386,37 @@ body.theme-grey .product-details__pillow-img {
     }
 
     .benefits-row {
-        gap: 30px;
+        gap: 16px;
+        flex-wrap: nowrap;
+        overflow-x: visible;
+        justify-content: space-between;
     }
 
     .benefit-step {
-        max-width: 100%;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .benefit-circle {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+    }
+
+    .benefit-circle i {
+        font-size: 28px;
+    }
+
+    .benefit-step h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .benefit-step p {
+        font-size: 14px;
+        line-height: 1.4;
+        max-width: 220px;
     }
 
     .warranty-text-content {
