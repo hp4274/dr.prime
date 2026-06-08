@@ -2491,7 +2491,7 @@ body {
     }
 
     .logo img {
-        height: 26px;
+        height: 16px;
     }
 
     .nav-links {
@@ -8289,9 +8289,9 @@ body.theme-grey .product-details__pillow-img {
     left: 0;
     right: 0;
     border-radius: 12px;
-    background: rgba(230, 225, 215, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px) saturate(180%) brightness(120%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%) brightness(120%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 12px 30px;
@@ -8299,13 +8299,13 @@ body.theme-grey .product-details__pillow-img {
 
 @media (max-width: 768px) {
     .navbar.pill-navbar {
-        top: 35px; /* Adjusted for smaller mobile top-banner */
+        top: 22px; /* Adjusted to close gap with the slimmer top-banner */
         width: 100%;
-        padding: 10px 15px;
+        padding: 0px 15px; /* Extremely slim navbar */
         border-radius: 0;
         border-left: none;
         border-right: none;
-        background: rgba(230, 225, 215, 0.5); /* Increased transparency */
+        background: rgba(255, 255, 255, 0.1); /* Very transparent */
     }
 }
 
@@ -8322,7 +8322,7 @@ body.theme-grey .product-details__pillow-img {
 
 @media (max-width: 768px) {
     .navbar.pill-navbar.navbar--scrolled {
-        padding: 10px 15px;
+        padding: 2px 15px; /* Extremely slim navbar when scrolled */
     }
 }
 

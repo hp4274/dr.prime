@@ -583,7 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let targetFabricProgress = 0;
         let currentFabricProgress = 0;
-        const LERP_FACTOR = 0.08;
+        const LERP_FACTOR = isMobileFabric ? 0.015 : 0.08; // Slower on mobile
         let isFabricRunning = false;
 
         function updateFabricAnimation(progress) {
@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     observer.disconnect(); // Only play once
                 }
-            }, { threshold: 0.1 });
+            }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
             observer.observe(fabricSection);
         } else {
             // Desktop: Scroll linked
