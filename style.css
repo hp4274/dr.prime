@@ -226,8 +226,8 @@ ul {
 .top-banner {
     background-color: #2b1d52;
     color: var(--white);
-    padding: 12px 0;
-    font-size: 16px;
+    padding: 8px 0;
+    font-size: 14px;
     letter-spacing: 1px;
     overflow: hidden;
     white-space: nowrap;
@@ -250,14 +250,13 @@ ul {
 }
 
 .top-banner.single-text {
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .top-banner.single-text .top-banner-content {
     display: inline-block;
     padding: 0;
     width: fit-content;
-    animation: marquee-single 15s linear infinite;
 }
 
 @keyframes marquee-single {
@@ -294,20 +293,17 @@ ul {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    position: fixed;
-    top: 20px;
-    left: 0;
-    right: 0;
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    right: 0px;
     z-index: 100;
-    transition: top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                border-bottom-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                backdrop-filter 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scrolled state: flush to top, solid background, dark text */
 .navbar--scrolled {
+    position: fixed;
     top: 0;
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(12px);
@@ -320,7 +316,7 @@ ul {
 
 /* Body offset for fixed navbar */
 body {
-    padding-top: 70px;
+    padding-top: 0;
 }
 
 .nav-container {
@@ -2439,7 +2435,7 @@ body {
     /* ===== TOP BANNER ===== */
     .top-banner {
         font-size: 11px;
-        padding: 8px 16px;
+        padding: 4px 16px;
         letter-spacing: 0.5px;
     }
 
@@ -8174,4 +8170,77 @@ body.theme-grey .product-details__pillow-img {
     .sg-wash-zigzag {
         gap: 50px;
     }
+}
+
+/* --- Pill Navbar Styles --- */
+.navbar.pill-navbar {
+    top: 55px;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 12px;
+    background: rgba(230, 225, 215, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 12px 30px;
+}
+
+@media (max-width: 768px) {
+    .navbar.pill-navbar {
+        top: 35px; /* Adjusted for smaller mobile top-banner */
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        background: rgba(230, 225, 215, 0.5); /* Increased transparency */
+    }
+}
+
+.navbar.pill-navbar.navbar--scrolled {
+    position: fixed;
+    top: 0; /* Snaps to top */
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.97);
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .navbar.pill-navbar.navbar--scrolled {
+        padding: 10px 15px;
+    }
+}
+
+.pill-navbar .nav-links a {
+    color: #000;
+}
+
+.pill-navbar .nav-links a::after {
+    background-color: #000;
+}
+
+.pill-navbar .contact-link {
+    color: #000;
+}
+
+.pill-navbar .nav-cart-icon {
+    color: #000;
+}
+
+.pill-navbar .btn-primary {
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+.pill-navbar .btn-primary:hover {
+    background-color: #333;
+    color: #fff;
 }
