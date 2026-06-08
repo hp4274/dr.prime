@@ -531,6 +531,35 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        margin: 28px auto 0;
+    }
+
+    .hero-buttons .btn {
+        width: auto;
+        min-width: 110px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-outline {
+        border-radius: 999px;
+    }
+
+    .btn-hero-outline {
+        background-color: rgba(179, 217, 242, 0.18);
+        border-color: rgba(179, 217, 242, 0.32);
+    }
+}
+
 /* Features Row */
 .features-row {
     display: flex;
