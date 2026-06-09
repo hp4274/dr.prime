@@ -520,7 +520,7 @@ body {
     padding: 12px 0;
     font-size: 15px;
     font-weight: 600;
-    border: 2px solid rgba(179, 217, 242, 0.25);
+    border: 2px solid #FFF;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -528,7 +528,7 @@ body {
 
 .btn-hero-outline:hover {
     background-color: rgba(179, 217, 242, 0.18);
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color: #FFF;
     color: var(--white);
     transform: translateY(-2px);
     backdrop-filter: blur(15px);
@@ -560,7 +560,7 @@ body {
 
     .btn-hero-outline {
         background-color: rgba(179, 217, 242, 0.18);
-        border-color: rgba(179, 217, 242, 0.32);
+        border-color: #FFF;
     }
 }
 
