@@ -502,7 +502,7 @@ body {
 }
 
 .btn-hero-primary {
-    background-color: #b3d9f2;
+    background-color: #fff;
     color: var(--primary-blue);
     font-size: 15px;
     font-weight: 600;
@@ -511,13 +511,12 @@ body {
 }
 
 .btn-hero-primary:hover {
-    background-color: #9ecde8;
     transform: translateY(-2px);
 }
 
 .btn-hero-outline {
     background-color: rgba(179, 217, 242, 0.12);
-    color: #b3d9f2;
+    color: #fff;
     padding: 12px 0;
     font-size: 15px;
     font-weight: 600;
