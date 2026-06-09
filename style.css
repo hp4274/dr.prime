@@ -2284,8 +2284,8 @@ body {
 }
 
 .footer-brand .footer-logo {
-    max-width: 140px;
-    margin-bottom: 15px;
+    width: 120px;
+    max-width: 100%;
 }
 
 .footer-brand p {
@@ -3607,7 +3607,8 @@ body {
     }
 
     .footer-brand .footer-logo {
-        max-width: 120px;
+        width: 200px;
+        max-width: 100%;
         margin-bottom: 16px;
     }
 
@@ -4777,7 +4778,7 @@ body {
 
     .faq-vertical-text {
         position: absolute;
-        top: 300px;
+        top: 250px;
         font-size: 110px;
         font-family: var(--font-heading);
         color: #1e204c;
@@ -7597,7 +7598,7 @@ body.theme-grey .product-details__pillow-img {
 
     .hero-content {
         top: 20px !important;
-        margin-top: -25%;
+        margin-top: -10%;
     }
 
     /* 1. Why Choose Us Grid: 2 card pair slider handled by JS, force 2 columns */
@@ -8387,7 +8388,7 @@ body.theme-grey .product-details__pillow-img {
 }
 
 .pill-navbar .btn-primary {
-    background-color: #000;
+    background-color: #1d1c50;
     color: #fff;
     border: none;
 }
