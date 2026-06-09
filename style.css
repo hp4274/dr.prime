@@ -8396,3 +8396,8 @@ body.theme-grey .product-details__pillow-img {
     background-color: #333;
     color: #fff;
 }
+
+/* Scroll Offset for Anchor Links */
+#unboxing, #positions, #care {
+    scroll-margin-top: 100px;
+}

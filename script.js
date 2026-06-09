@@ -1235,3 +1235,49 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+
+    /* ==========================================================================
+       SMOOTH SCROLL FOR ANCHOR LINKS
+       ========================================================================== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const style = window.getComputedStyle(targetElement);
+                const scrollMarginTop = parseInt(style.scrollMarginTop, 10) || 0;
+                
+                const finalPosition = targetPosition - scrollMarginTop;
+                const distance = finalPosition - startPosition;
+                const duration = 800; // ms
+                let start = null;
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const run = ease(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        window.scrollTo(0, finalPosition);
+                    }
+                }
+
+                requestAnimationFrame(animation);
+            }
+        });
+    });
