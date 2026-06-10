@@ -7120,7 +7120,7 @@ body.theme-grey .product-details__pillow-img {
     align-items: center;
     text-align: center;
     padding: 200px 50px;
-    margin-top: -300px;
+    margin-top: -25px;
 }
 
 .warranty-text-content h1 {
@@ -7453,6 +7453,11 @@ body.theme-grey .product-details__pillow-img {
         padding: 50px 20px;
         text-align: center;
         align-items: center;
+    }
+
+    .warranty-hero {
+        max-height: none;
+        overflow: visible;
     }
 
     .warranty-text-content h1 {
