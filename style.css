@@ -569,9 +569,9 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 18px;
-    padding: 42px 34px 34px;
+    padding: 40px 34px;
     max-width: 1280px;
-    margin: 44px auto;
+    margin: 0 auto;
     text-align: center;
     border: none;
     background-color: #ffffff;
@@ -627,7 +627,7 @@ body {
 
 /* Content Section 1 */
 .content-section-1 {
-    padding: 90px 0 70px;
+    padding: 40px 0;
     background-color: #F6F7FA;
     position: relative;
 }
@@ -812,7 +812,7 @@ body {
 
 /* Why Choose Us Grid */
 .why-choose-us {
-    padding: 80px 0;
+    padding: 40px 0 80px;
     background-color: #F6F7FA;
 }
 
@@ -1552,7 +1552,7 @@ body {
 
 /* Sleep Challenge */
 .sleep-challenge {
-    padding: 80px 0 30px;
+    padding: 60px 0;
     background-color: #f7f8fa;
 }
 
@@ -1705,7 +1705,7 @@ body {
 
 /* Testimonials */
 .testimonials {
-    padding: 30px 0 20px;
+    padding: 30px;
 }
 
 .bg-light {
@@ -1716,7 +1716,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .testi-header h2 {
@@ -1983,7 +1983,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: multiply;
-    padding: 120px 0 150px;
+    padding: 80px 0;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -2140,8 +2140,7 @@ body {
     background-color: var(--white);
     position: relative;
     z-index: 10;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding: 80px 0;
 }
 
 .newsletter-box {
@@ -2272,7 +2271,7 @@ body {
 
     background-color: #1d1c50;
     color: var(--white);
-    padding: 60px 0 30px;
+    padding: 80px 0;
 }
 
 .footer-grid {
@@ -4468,7 +4467,7 @@ body {
 }
 
 .c-faq-section {
-    padding: 80px 0 120px;
+    padding: 60px 0;
     background: #ffffff;
 }
 
