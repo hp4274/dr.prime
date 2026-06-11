@@ -289,7 +289,6 @@ ul {
 /* Navbar */
 .navbar {
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -308,7 +307,7 @@ ul {
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid #eee;
+    border-bottom: none;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
 }
 
@@ -336,9 +335,16 @@ body {
     order: 2;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .logo img {
     height: 34px;
     width: auto;
+    display: block;
     transition: filter 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -366,6 +372,7 @@ body {
     text-transform: uppercase;
     color: #1e1e1e;
     position: relative;
+    padding-top: 4px;
     padding-bottom: 4px;
     transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -405,11 +412,14 @@ body {
 }
 
 .contact-link {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.45px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     color: #1e1e1e;
+    position: relative;
+    padding-top: 4px;
+    padding-bottom: 4px;
     transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -446,8 +456,8 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
     color: var(--white);
 }
 
@@ -460,35 +470,62 @@ body {
     background: rgba(0, 0, 0, 0.3);
 }
 
-.hero-content {
+.hero-container {
+    width: 100%;
     position: relative;
     z-index: 2;
+}
+
+.hero-content {
     max-width: 800px;
     top: -20px;
 }
 
 .hero-content h1 {
     font-size: 60px;
-    margin-bottom: 18px;
+    margin-bottom: 5px;
     letter-spacing: 4px;
     font-weight: 500;
     line-height: 1.1;
     color: var(--white);
 }
 
+.hero-content h1.hero-blue-text {
+    color: #51ace9;
+}
+
+.hero-decorative-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.hero-decorative-line .star {
+    color: #1e6ea4;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.hero-decorative-line .line {
+    height: 3px;
+    width: 600px;
+    background: linear-gradient(to right, #1e6ea4, transparent);
+}
+
 .hero p {
     font-size: 20px;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0;
     color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-buttons {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 .hero-buttons .btn {
@@ -540,10 +577,10 @@ body {
         flex-direction: row;
         flex-wrap: nowrap;
         gap: 10px;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         max-width: 100%;
-        margin: 28px auto 0;
+        margin: 28px 0 0;
     }
 
     .hero-buttons .btn {
@@ -630,6 +667,9 @@ body {
     padding: 40px 0;
     background-color: #F6F7FA;
     position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    overflow: hidden;
 }
 
 .content-slider-nav {
@@ -692,25 +732,29 @@ body {
     display: block;
 }
 
+.content-section-1 .image-col img {
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+    mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
 .content-slide {
-    display: none;
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-in-out;
+    z-index: 1;
 }
 
 .content-slide.active {
-    display: block;
-    animation: slideFadeIn 0.6s forwards;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 2;
 }
 
-@keyframes slideFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.content-slide.active ~ .content-slide {
+    transform: translateX(100px);
 }
 
 .sleep-capsule {
@@ -754,7 +798,7 @@ body {
     border-radius: 18px;
     position: relative;
     margin-left: -15%;
-    margin-top: 90px;
+    margin-top: 50px;
     max-width: 450px;
     z-index: 3;
     align-self: flex-start;
@@ -2533,11 +2577,11 @@ body {
         height: 480px;
         min-height: unset;
         padding: 0 20px;
-        background-position: center;
+        background-position: right center;
     }
 
     .hero-overlay {
-        background: rgba(0, 0, 0, 0.35);
+        background: rgba(0, 0, 0, 0.45);
     }
 
     .hero-content {
@@ -3483,6 +3527,7 @@ body {
         padding: 60px 20px;
         background-color: #8fbfef;
         text-align: center;
+        background-position: right center;
     }
 
     .cta-section .subtitle {
@@ -3510,13 +3555,15 @@ body {
     .cta-actions {
         display: flex;
         justify-content: center;
+        gap: 10px;
+        flex-wrap: nowrap;
     }
 
     .btn-white-solid {
         background: #fff;
         color: #8fbfef;
-        padding: 14px 36px;
-        font-size: 14px;
+        padding: 10px 20px;
+        font-size: 13px;
         font-weight: 600;
         border-radius: 999px;
         text-decoration: none;
@@ -3524,8 +3571,12 @@ body {
     }
 
     .btn-white-outline {
-        display: none;
-        /* Hide secondary button to match image */
+        padding: 10px 20px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 999px;
+        display: inline-block;
+        /* No display:none anymore */
     }
 
     /* ===== NEWSLETTER ===== */
@@ -8306,11 +8357,10 @@ body.theme-grey .product-details__pillow-img {
     margin: 0 auto;
     left: 0;
     right: 0;
-    border-radius: 12px;
+    border-radius: 50px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px) saturate(180%) brightness(120%);
     -webkit-backdrop-filter: blur(15px) saturate(180%) brightness(120%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 12px 15px;
 }
@@ -8334,7 +8384,6 @@ body.theme-grey .product-details__pillow-img {
     max-width: 100%;
     border-radius: 0;
     background: rgba(255, 255, 255, 0.97);
-    border: none;
     border-bottom: 1px solid #eee;
 }
 
