@@ -451,7 +451,7 @@ body {
 .hero {
     height: 80vh;
     background-size: cover;
-    background-position: center;
+    background-position: left center;
     background-repeat: no-repeat;
     position: relative;
     display: flex;
@@ -616,6 +616,31 @@ body {
 
 .feature-item {
     flex: 1;
+    position: relative;
+}
+
+@media (min-width: 993px) {
+    .feature-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: -9px;
+        top: 15%;
+        height: 70%;
+        width: 1px;
+        background-color: rgba(29, 28, 80, 0.2);
+    }
+}
+
+@media (max-width: 992px) {
+    .feature-item:not(:nth-child(2n))::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 15%;
+        height: 70%;
+        width: 1px;
+        background-color: rgba(29, 28, 80, 0.2);
+    }
 }
 
 .feature-icon-circle {
@@ -627,6 +652,11 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto 18px;
+    transition: 0.3s ease;
+}
+
+.feature-icon-circle:hover {
+    transform: scale(1.154);
 }
 
 .feature-item i {
@@ -6288,23 +6318,44 @@ FAQ CATEGORY SECTION
     text-align: center;
     cursor: pointer;
     transition: 0.3s ease;
+    position: relative;
 }
 
-.faq-icon:hover {
-    transform: translateY(-5px);
+@media (min-width: 993px) {
+    .faq-category-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: -20px;
+        top: 15%;
+        height: 70%;
+        width: 1px;
+        background-color: rgba(29, 28, 80, 0.2);
+    }
+}
+
+@media (max-width: 992px) {
+    .faq-category-card:not(:nth-child(2n))::after {
+        content: '';
+        position: absolute;
+        right: -20px;
+        top: 15%;
+        height: 70%;
+        width: 1px;
+        background-color: rgba(29, 28, 80, 0.2);
+    }
 }
 
 .faq-icon {
     width: 90px;
     height: 90px;
-    border: 2px solid #1d1c50;
+    border: none;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto auto 25px;
     color: #1d1c50;
-    font-size: 38px;
+    font-size: 65px;
     transition: 0.3s ease;
 }
 
@@ -6315,26 +6366,15 @@ FAQ CATEGORY SECTION
     font-family: var(--font-heading);
 }
 
-.faq-category-card.active .faq-icon {
-    background: #1d1c50;
-    color: white;
-}
-
 .faq-category-card .faq-icon:hover {
-    background: #1d1c50;
-    color: white;
-    transform: scale(1.1);
+    transform: scale(1.154);
 }
 
 .faq-icon img {
     width: 1em;
     height: 1em;
     transition: filter 0.3s;
-}
-
-.faq-category-card.active .faq-icon img,
-.faq-category-card .faq-icon:hover img {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) saturate(100%) invert(11%) sepia(82%) saturate(3295%) hue-rotate(244deg) brightness(88%) contrast(98%);
 }
 
 
@@ -7156,21 +7196,41 @@ body.theme-grey .product-details__pillow-img {
 }
 
 /* Warranty Hero Grid */
+.warranty-hero {
+    background-color: #090a25;
+    position: relative;
+    padding: 0;
+}
+
 .warranty-hero-grid {
     display: flex;
     width: 100%;
+    min-height: 500px;
+    position: relative;
 }
 
 .warranty-text-content {
-    flex: 1;
-    background-color: #1d1c50;
+    flex: 0 0 60%;
+    background-color: #090a25;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 200px 50px;
-    margin-top: -25px;
+    align-items: flex-start;
+    text-align: left;
+    padding: 100px 8% 100px 10%;
+    position: relative;
+    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+}
+
+.warranty-text-content::before {
+    content: 'REGISTER YOUR PRODUCT';
+    display: block;
+    color: #655fc9;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .warranty-text-content h1 {
@@ -7178,41 +7238,48 @@ body.theme-grey .product-details__pillow-img {
     margin-bottom: 20px;
     color: var(--white);
     font-family: var(--font-heading);
-    font-weight: 400;
-    letter-spacing: 2px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .warranty-text-content p {
     font-size: 16px;
-    color: #e0e0e0;
+    color: rgba(255, 255, 255, 0.8);
     max-width: 480px;
     line-height: 1.6;
 }
 
 .warranty-image-wrapper {
-    flex: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    z-index: 1;
 }
 
 .warranty-hero-image {
     width: 100%;
     height: 100%;
-    min-height: 400px;
     object-fit: cover;
     display: block;
 }
 
 @media (max-width: 768px) {
     .warranty-hero-grid {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
-}
-
-/* Warranty Hero Section */
-.warranty-hero {
-    background-color: var(--dreamy-blue);
-    overflow: hidden;
-    padding: 0;
-    max-height: 350px;
+    .warranty-text-content {
+        flex: 1;
+        width: 100%;
+        padding: 50px 20px;
+        clip-path: none;
+    }
+    .warranty-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
 }
 
 /* Warranty Benefits Section */
@@ -7713,18 +7780,34 @@ body.theme-grey .product-details__pillow-img {
 
 /* Sleep Guide Styles */
 .sleep-guide-header {
-    background-color: var(--dreamy-blue);
+    background-color: #1a1744; /* approximate dark blue from image if dreamy-blue is different */
     color: #fff;
-    padding: 100px 0 200px;
+    padding: 80px 0 20px;
     position: relative;
     overflow: hidden;
 }
 
-.sleep-guide-header {
-    background: linear-gradient(to right, #e2ebf3 0%, #fefefe 100%);
-    padding: 0;
+.sgh-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
     overflow: hidden;
-    position: relative;
+}
+
+.star {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+    animation: twinkle 4s infinite alternate ease-in-out;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.6); filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)); }
+    100% { opacity: 1; transform: scale(1.4); filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1)); }
 }
 
 .sgh-container {
@@ -7742,60 +7825,92 @@ body.theme-grey .product-details__pillow-img {
 }
 
 .sgh-image-col img {
-    width: 140%;
+    width: 130%;
     max-width: none;
-    margin-left: -25%;
-    margin-top: -10%;
-    margin-bottom: -15px;
+    margin-left: -10%;
+    margin-right: -20%;
+    margin-top: -15%;
+    transform: translateY(-25%);
     object-fit: contain;
     display: block;
+    -webkit-mask-image: linear-gradient(to top right, transparent 5%, black 50%);
+    mask-image: linear-gradient(to top right, transparent 5%, black 50%);
 }
 
 .sgh-text-col {
     flex: 0.8;
     padding-right: 20px;
     padding-top: 20px;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
 }
 
 .sgh-text-col h1 {
     font-size: 52px;
-    color: #000;
-    margin-bottom: 25px;
+    color: #fff;
+    margin-bottom: 15px;
     font-family: var(--font-heading);
     font-weight: 700;
+    line-height: 1.2;
+}
+
+.sgh-wave {
+    margin-bottom: 25px;
 }
 
 .sgh-text-col p {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.5;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
     margin-bottom: 30px;
     font-weight: 400;
+    max-width: 450px;
 }
 
 .sgh-links {
     list-style: none;
     padding: 0;
     margin: 0;
+    max-width: 450px;
 }
 
 .sgh-links li {
-    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sgh-links li:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sgh-links li a {
-    color: #000;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
     transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
 }
 
 .sgh-links li a:hover {
-    color: #555;
+    color: #ddd;
+}
+
+.sgh-links li a .link-icon {
+    width: 24px;
+    text-align: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: #a4bde8;
+}
+
+.sgh-links li a span {
+    flex: 1;
+}
+
+.sgh-links li a .link-arrow {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .sleep-guide-content {
