@@ -479,7 +479,6 @@ body {
 .hero-content {
     max-width: 800px;
     top: -20px;
-    margin-left: -80px;
 }
 
 .hero-content h1 {
@@ -488,11 +487,11 @@ body {
     letter-spacing: 4px;
     font-weight: 500;
     line-height: 1.1;
-    color: #192057;
+    color: var(--white);
 }
 
 .hero-content h1.hero-blue-text {
-    color: #3898dc;
+    color: #51ace9;
 }
 
 .hero-decorative-line {
