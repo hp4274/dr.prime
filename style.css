@@ -5330,7 +5330,7 @@ body {
     background-color: #1d1c50;
     border-radius: 40px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     padding: 100px 74px 80px;
     display: grid;
     grid-template-columns: 263px 1fr 298px;
@@ -5431,14 +5431,24 @@ body {
     background: #ffffff;
     border-radius: 0 0 400px 400px;
     width: 452px;
-    height: 556px;
-    margin-top: -160px;
+    height: 300px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 0;
     position: relative;
-    overflow: hidden;
+}
+
+.product-details__pillow-container::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: #ffffff;
 }
 
 .product-details__pillow-img {
@@ -5456,6 +5466,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: translateY(-80px);
 }
 
 .pillow-carousel__slide {
@@ -5935,8 +5946,8 @@ body {
 
     .product-details__pillow-container {
         width: 320px;
-        height: 420px;
-        margin-top: -80px;
+        height: 620px;
+        margin-top: -280px;
     }
 
     .body-design-section {
@@ -6044,9 +6055,9 @@ body {
     .product-details__pillow-container {
         width: 100%;
         max-width: 300px;
-        height: 420px;
+        height: 620px;
         position: relative;
-        margin-top: -60px;
+        margin-top: -260px;
     }
 
     .product-details__dots {

@@ -1233,6 +1233,69 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* ==========================================================================
+       PRODUCT HERO GALLERY AUTO-CHANGE & CLICK
+       ========================================================================== */
+    const heroGallery = document.querySelector('.product-hero__gallery');
+    if (heroGallery) {
+        const mainImageContainer = heroGallery.querySelector('.product-hero__main-image');
+        const mainImage = mainImageContainer ? mainImageContainer.querySelector('img') : null;
+        const mainGlow = heroGallery.querySelector('.product-hero__main-glow');
+        const thumbnails = heroGallery.querySelectorAll('.product-hero__thumb');
+        
+        if (mainImage && thumbnails.length > 0) {
+            let galleryCurrentIndex = 0;
+            let galleryTimer;
+            let isGalleryHovered = false;
+
+            const updateMainImage = (index) => {
+                thumbnails.forEach(thumb => thumb.classList.remove('active'));
+                thumbnails[index].classList.add('active');
+                
+                const newSrc = thumbnails[index].querySelector('img').src;
+                mainImage.src = newSrc;
+                
+                if (mainGlow) {
+                    mainGlow.style.backgroundImage = `url(${newSrc})`;
+                }
+                
+                galleryCurrentIndex = index;
+            };
+
+            const startGalleryAutoScroll = () => {
+                clearInterval(galleryTimer);
+                galleryTimer = setInterval(() => {
+                    if (!isGalleryHovered) {
+                        let nextIndex = (galleryCurrentIndex + 1) % thumbnails.length;
+                        updateMainImage(nextIndex);
+                    }
+                }, 3000); // Auto change image every 3 seconds
+            };
+
+            // Setup click listeners for each thumbnail
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => {
+                    updateMainImage(index);
+                    startGalleryAutoScroll(); // reset timer on manual click
+                });
+            });
+
+            // Pause auto-scroll on hover over the gallery
+            heroGallery.addEventListener('mouseenter', () => isGalleryHovered = true);
+            heroGallery.addEventListener('mouseleave', () => isGalleryHovered = false);
+
+            // Preload images to prevent any lag on click
+            thumbnails.forEach(thumb => {
+                const img = new Image();
+                img.src = thumb.querySelector('img').src;
+            });
+
+            // Set the first image as active by default or keep the current one active
+            // but we can just let it start auto scrolling
+            startGalleryAutoScroll();
+        }
+    }
 });
 
 
