@@ -479,6 +479,7 @@ body {
 .hero-content {
     max-width: 800px;
     top: -20px;
+    margin-left:-60px ;
 }
 
 .hero-content h1 {
