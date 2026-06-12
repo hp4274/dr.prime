@@ -3770,7 +3770,7 @@ body {
 /* About Hero */
 .about-hero {
     position: relative;
-    padding-top: 125px;
+    padding-top: 120px;
     height: 920px;
     overflow: hidden;
     background-color: #1d1c50;
@@ -6562,6 +6562,7 @@ FAQ CATEGORY SECTION
 .contact-link {
     position: relative;
     transition: color 0.3s ease;
+    letter-spacing: 1.5px;
 }
 
 .nav-links a::after,
