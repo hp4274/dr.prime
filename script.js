@@ -328,18 +328,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Helper function to apply the filter logic
         const applyCategoryFilter = (category, shouldScroll = true) => {
             // Show/hide accordion items by category
+            let visibleItems = [];
             faqAccordionItems.forEach(item => {
                 const itemCategory = item.getAttribute('data-category');
                 if (itemCategory === category) {
                     item.style.display = '';
+                    visibleItems.push(item);
                 } else {
                     item.style.display = 'none';
                 }
                 // Reset all accordion states
                 item.classList.remove('active');
+                item.style.borderBottom = ''; // Reset inline border
                 const icon = item.querySelector('.icon');
                 if (icon) icon.innerHTML = '<i class="fi fi-rs-angle-small-down"></i>';
             });
+
+            // Remove bottom border from the last visible item
+            if (visibleItems.length > 0) {
+                visibleItems[visibleItems.length - 1].style.borderBottom = 'none';
+            }
 
             // Auto-open the first visible accordion item in the selected category
             const firstVisible = document.querySelector(`.c-faq-right .accordion-item[data-category="${category}"]`);
