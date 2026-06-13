@@ -82,7 +82,6 @@
 }
 
 html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -5078,7 +5077,7 @@ body {
 }
 
 .product-hero__main-image {
-    background-color: var(--dreamy-blue);
+    background-color: transparent;
     border-radius: 15px;
     height: 544px;
     width: 100%;
@@ -5098,12 +5097,13 @@ body {
     transform: translate(-50%, -50%);
     background: radial-gradient(ellipse at center, rgba(182, 123, 186, 0.6) 0%, transparent 70%);
     z-index: 1;
+    display: none;
 }
 
 .product-hero__main-image img {
     position: relative;
     z-index: 2;
-    max-width: 80%;
+    max-width: 100%;
     object-fit: contain;
 }
 
@@ -6368,7 +6368,7 @@ FAQ CATEGORY SECTION
     transition: 0.3s ease;
 }
 
-.faq-category-card:hover .faq-icon,
+.faq-icon:hover,
 .faq-category-card.active .faq-icon {
     background: #1d1c50;
 }
@@ -6391,7 +6391,7 @@ FAQ CATEGORY SECTION
     transition: filter 0.3s ease;
 }
 
-.faq-category-card:hover .faq-icon img,
+.faq-icon:hover img,
 .faq-category-card.active .faq-icon img {
     filter: brightness(0) invert(1);
 }
@@ -7845,10 +7845,10 @@ body.theme-grey .product-details__pillow-img {
 }
 
 .sgh-image-col img {
-    width: 130%;
+    width: 145%;
     max-width: none;
-    margin-left: -10%;
-    margin-right: -20%;
+    margin-left: 0%;
+    margin-right: -45%;
     margin-top: -15%;
     transform: translateY(-25%);
     object-fit: contain;
