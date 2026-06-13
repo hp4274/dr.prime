@@ -3743,7 +3743,7 @@ body {
 .about-hero {
     position: relative;
     padding-top: 120px;
-    height: 920px;
+    height: 780px;
     overflow: hidden;
     background-color: #1d1c50;
     color: var(--white);
