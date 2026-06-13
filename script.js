@@ -1342,4 +1342,102 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    /* ==========================================================================
+       MOBILE SLEEP CHALLENGE SLIDER LOGIC
+       ========================================================================== */
+    function initSleepChallengeSlider() {
+        const container = document.querySelector('.sleep-challenge .challenge-cards');
+        const prevBtn = document.getElementById('sc-prev');
+        const nextBtn = document.getElementById('sc-next');
+        const dotsContainer = document.querySelector('.sleep-challenge .carousel-dots');
+        if (!container) return;
+
+        const cards = Array.from(container.querySelectorAll('.challenge-card'));
+        if (cards.length === 0) return;
+        
+        let autoScrollInterval;
+        let isHovered = false;
+
+        function updateDots() {
+            if (!dotsContainer || window.innerWidth > 768) return;
+            const scrollLeft = container.scrollLeft;
+            const cardWidth = cards[0].offsetWidth + 20; // 20px is gap
+            let activeIndex = Math.round(scrollLeft / cardWidth);
+            if (activeIndex < 0) activeIndex = 0;
+            if (activeIndex >= cards.length) activeIndex = cards.length - 1;
+
+            const dots = dotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        }
+
+        function buildDots() {
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            cards.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = i === 0 ? 'dot active' : 'dot';
+                dot.addEventListener('click', () => {
+                    const cardWidth = cards[0].offsetWidth + 20;
+                    container.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+                    startAutoScroll();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function startAutoScroll() {
+            clearInterval(autoScrollInterval);
+            if (window.innerWidth > 768) return;
+            autoScrollInterval = setInterval(() => {
+                if (!isHovered) {
+                    const scrollLeft = container.scrollLeft;
+                    const cardWidth = cards[0].offsetWidth + 20;
+                    let nextIndex = Math.round(scrollLeft / cardWidth) + 1;
+                    if (nextIndex >= cards.length) {
+                        nextIndex = 0;
+                    }
+                    container.scrollTo({ left: nextIndex * cardWidth, behavior: 'smooth' });
+                }
+            }, 4000);
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                const cardWidth = cards[0].offsetWidth + 20;
+                container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                startAutoScroll();
+            });
+            nextBtn.addEventListener('click', () => {
+                const cardWidth = cards[0].offsetWidth + 20;
+                container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                startAutoScroll();
+            });
+        }
+
+        container.addEventListener('scroll', updateDots);
+        container.addEventListener('mouseenter', () => isHovered = true);
+        container.addEventListener('mouseleave', () => isHovered = false);
+        container.addEventListener('touchstart', () => isHovered = true, { passive: true });
+        container.addEventListener('touchend', () => {
+            isHovered = false;
+            startAutoScroll();
+        }, { passive: true });
+
+        // Initialize
+        buildDots();
+        startAutoScroll();
+        
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) {
+                startAutoScroll();
+            } else {
+                clearInterval(autoScrollInterval);
+            }
+        });
+    }
+
+    initSleepChallengeSlider();
 
