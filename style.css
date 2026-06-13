@@ -5910,9 +5910,10 @@ body {
 
     .product-details__pillow-container {
         width: 320px;
-        height: 620px;
-        margin-top: -280px;
+        height: 350px;
+        margin-top: -150px;
     }
+
 
     .body-design-section {
         padding: 60px 40px;
@@ -6019,10 +6020,11 @@ body {
     .product-details__pillow-container {
         width: 100%;
         max-width: 300px;
-        height: 620px;
+        height: 350px;
         position: relative;
-        margin-top: -260px;
+        margin-top: -150px;
     }
+
 
     .product-details__dots {
         bottom: 20px;
