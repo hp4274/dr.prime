@@ -3332,10 +3332,7 @@ body {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
-    .challenge-card:not(:first-child) {
-        display: none;
-        /* Hide side cards completely to match mobile carousel view */
-    }
+
 
     .challenge-card img {
         width: 100%;
@@ -7764,7 +7761,7 @@ body.theme-grey .product-details__pillow-img {
         -webkit-overflow-scrolling: touch;
         gap: 20px !important;
         padding-bottom: 20px;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .sleep-challenge .challenge-card {

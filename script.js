@@ -837,16 +837,6 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const carouselConfigs = [
         {
-            containerSelector: '.sleep-challenge .challenge-cards',
-            itemSelector: '.challenge-card',
-            dotsSelector: '.sleep-challenge .carousel-dots',
-            prevArrowSelector: '#sc-prev',
-            nextArrowSelector: '#sc-next',
-            desktopItems: 3,
-            mobileItems: 1,
-            activeDisplay: 'flex'
-        },
-        {
             containerSelector: '.why-choose-us .grid-container',
             itemSelector: '.grid-card',
             dotsSelector: '.why-choose-us .carousel-dots',
