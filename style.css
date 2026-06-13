@@ -3639,35 +3639,6 @@ body {
         padding: 0 10px;
     }
 
-    .subscribe-form {
-        max-width: 100%;
-        padding: 5px;
-        border-radius: 40px;
-        display: flex;
-        align-items: center;
-    }
-
-    .subscribe-form input {
-        padding: 10px 15px;
-        font-size: 13px;
-    }
-
-    .subscribe-form .btn-subscribe {
-        padding: 0;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        flex-shrink: 0;
-    }
-
-    .subscribe-form .btn-text {
-        display: none;
-    }
-
-    .subscribe-form .btn-icon {
-        display: block;
-        font-size: 16px;
-    }
 
     /* ===== FOOTER ===== */
     .footer {
