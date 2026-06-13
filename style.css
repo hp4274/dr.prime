@@ -4242,13 +4242,19 @@ body {
 
 @media (max-width: 991px) {
     .contact-vertical-text {
-        position: absolute;
-        top: 250px;
-        font-size: 110px;
+        position: relative;
+        top: 0;
+        font-size: 65px;
         font-family: var(--font-heading);
-        color: #1e204c;
+        color: #ffffff;
         margin: 0;
         pointer-events: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-vertical-text {
+        font-size: 45px;
     }
 }
 
