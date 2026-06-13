@@ -4072,7 +4072,7 @@ body {
 @media (max-width: 992px) {
     .about-hero {
         height: auto;
-        min-height: 860px;
+        min-height: auto;
         padding: 60px 0 40px;
     }
 
