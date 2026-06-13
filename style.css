@@ -5910,7 +5910,7 @@ body {
 
     .product-details__pillow-container {
         width: 320px;
-        height: 350px;
+        height: 220px;
         margin-top: -20px;
     }
 
@@ -6020,9 +6020,9 @@ body {
     .product-details__pillow-container {
         width: 100%;
         max-width: 300px;
-        height: 350px;
+        height: 220px;
         position: relative;
-        margin-top: -20px;
+        margin-top: -40px;
     }
 
 
