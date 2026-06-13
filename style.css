@@ -2327,6 +2327,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .subscribe-form .btn-icon {
@@ -8566,3 +8568,15 @@ body.theme-grey .product-details__pillow-img {
         display: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .subscribe-form {
+        padding: 4px;
+    }
+    .subscribe-form input {
+        padding: 10px 15px;
+    }
+    .subscribe-form .btn-subscribe {
+        padding: 10px 20px;
+    }
+}
